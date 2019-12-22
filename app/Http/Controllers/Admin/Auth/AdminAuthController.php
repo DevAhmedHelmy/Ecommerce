@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,5 +29,10 @@ class AdminAuthController extends Controller
         }else{ 
             return redirect('admin/login')->with('message', __('admin.error'));
         }
+    
+    }
+    public function forgotPassword()
+    {
+        return view('admin.auth.forgot');
     }
 }

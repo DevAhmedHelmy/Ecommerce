@@ -41,24 +41,17 @@
 				<div class="col-md-12">
 					<div class="card-body">
 						<img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-                        <h4 class="mb-3 f-w-400">@lang('admin.login')</h4>
+                        <h4 class="mb-3 f-w-400">Reset your password</h4>
                         <form method="POST" action="{{url('admin/login')}}">
                             @csrf
                             <div class="form-group mb-3">
                                 <label class="floating-label" for="Email">@lang('admin.email')</label>
                                 <input type="text" class="form-control" id="Email" name="email"  placeholder="">
                             </div>
-                            <div class="form-group mb-4">
-                                <label class="floating-label" for="Password">@lang('admin.password')</label>
-                                <input type="password" class="form-control" name="password" id="Password" placeholder="">
-                            </div>
-                            <div class="custom-control custom-checkbox text-left mb-4 mt-2">
-                                <input type="checkbox" class="custom-control-input" name="rememberme" value="1" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">@lang('admin.Save_credentials')</label>
-                            </div>
+                            
+                             
                             <button class="btn btn-block btn-primary mb-4">@lang('admin.login')</button>
-						</form>
-						<p class="mb-2 text-muted">Forgot password? <a href="{{url('admin/forgot/password')}}" class="f-w-400">Reset</a></p>
+                        </form>
 						<p class="mb-2 text-muted">@lang('admin.Don’t_have_an_account')? <a href="auth-signup.html" class="f-w-400">@lang('admin.Signup')</a></p>
 					</div>
 				</div>
@@ -82,3 +75,4 @@
 
 <!-- Mirrored from ableproadmin.com/bootstrap/default/auth-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Nov 2019 08:45:56 GMT -->
 </html>
+ 
