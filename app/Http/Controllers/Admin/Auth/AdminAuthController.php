@@ -35,4 +35,9 @@ class AdminAuthController extends Controller
     {
         return view('admin.auth.forgot');
     }
+
+    public function logout()
+    {
+        
+    }
 }

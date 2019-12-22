@@ -9,6 +9,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.layouts.master');
         });
+        Route::any('logout', "Admin\Auth\AdminAuthController@logout");
     });
     
 });
