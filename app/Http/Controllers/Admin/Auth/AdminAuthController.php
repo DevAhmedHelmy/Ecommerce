@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Admin;
 use Illuminate\Http\Request;
+use App\Mail\AdminResetPassword;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -43,7 +45,14 @@ class AdminAuthController extends Controller
         if(!empty($admin))
         {
             $token = app('auth.password.broker')->createToken($admin);
+            $data = DB::table('password_resets')->insert([
+                'email' => $admin->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+            return new AdminResetPassword(['data'=>$admin, 'token' => $token]);
         }
+        return back();
          
     }
 

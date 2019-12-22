@@ -3,8 +3,8 @@
 
 The body of your message.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => adminUrl('reset/password/'.$data['token'])])
+Reset Your Password
 @endcomponent
 
 Thanks,<br>

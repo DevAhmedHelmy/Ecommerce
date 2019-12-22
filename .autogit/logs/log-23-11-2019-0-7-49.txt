@@ -1,0 +1,22 @@
+-------------------- Auto-Git Log --------------------
+		Mon Dec 23 2019 00:07:49 GMT+0200 (Eastern European Standard Time)
+------------------------------------------------------
+
+Modified files:
+* app/Helper.php
+* app/Http/Controllers/Admin/Auth/AdminAuthController.php
+* resources/views/admin/auth/login.blade.php
+* resources/views/admin/layouts/_nav.blade.php
+* routes/admin.php
+
+
+Created files:
+* .autogit/logs/log-22-11-2019-23-37-43.txt
+* app/Mail/AdminRestPassword.php
+* resources/views/admin/emails/admin_reset_password.blade.php
+
+
+Deleted files:
+
+
+Renamed files:

@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AdminRestPassword extends Mailable
+class AdminResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
     protected $data=[];
