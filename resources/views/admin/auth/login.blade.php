@@ -58,7 +58,7 @@
                             </div>
                             <button class="btn btn-block btn-primary mb-4">@lang('admin.login')</button>
 						</form>
-						<p class="mb-2 text-muted">Forgot password? <a href="{{url('admin/forgot/password')}}" class="f-w-400">Reset</a></p>
+						<p class="mb-2 text-muted">Forgot password? <a href="{{adminUrl('forgot/password')}}" class="f-w-400">Reset</a></p>
 						<p class="mb-2 text-muted">@lang('admin.Don’t_have_an_account')? <a href="auth-signup.html" class="f-w-400">@lang('admin.Signup')</a></p>
 					</div>
 				</div>

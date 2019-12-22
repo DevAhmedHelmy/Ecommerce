@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -22,12 +23,12 @@ class AdminAuthController extends Controller
         // ];
         // dd($credentials);
         $remember = request('rememberme') == 1 ? true : false;
-        if(auth()->guard('admin')->attempt(['email' => request('email'),'password' => request('password')], $remember )) 
+        if(admin()->attempt(['email' => request('email'),'password' => request('password')], $remember )) 
         { 
             return redirect('admin'); 
         
         }else{ 
-            return redirect('admin/login')->with('message', __('admin.error'));
+            return redirect(adminUrl('login'))->with('message', __('admin.error'));
         }
     
     }
@@ -36,8 +37,20 @@ class AdminAuthController extends Controller
         return view('admin.auth.forgot');
     }
 
+    public function forgotPasswordPost()
+    {
+        $admin = Admin::where($email, request('email'))->first();
+        if(!empty($admin))
+        {
+            $token = app('auth.password.broker')->createToken($admin);
+        }
+         
+    }
+
+
     public function logout()
     {
-        
+        admin()->logout();
+        return redirect(adminUrl('login'));
     }
 }
