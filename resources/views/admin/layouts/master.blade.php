@@ -1,40 +1,44 @@
-    @include('admin.layouts._header')
- 
-<!-- [ navigation menu ] start -->
-    @include('admin.layouts._sidebar')
-<!-- [ navigation menu ] end -->
-<!-- [ Header ] start -->
-    @include('admin.layouts._nav')
-<!-- [ Header ] end -->
-	
-	
 
-<!-- [ Main Content ] start -->
-<div class="pcoded-main-container">
-    <div class="pcoded-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <div class="page-header-title">
-                            <h5 class="m-b-10">Dashboard Analytics</h5>
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
-                        </ul>
-                    </div>
-                    @yield('header')
-                </div>
-            </div>
-        </div>
-        <!-- [ breadcrumb ] end -->
-        <!-- [ Main Content ] start -->
-        <div class="row">
-            @yield('content')
-        </div>
-        <!-- [ Main Content ] end -->
+@include('admin.layouts._header')
+
+@include('admin.layouts._nav')
+ @include('admin.layouts._sidebar')
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Starter Page</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
-</div>
-@include('admin.layouts._footer')
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+            
+            @yield('content')
+             
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  @include('admin.layouts._aside')
+
+  @include('admin.layouts._footer')

@@ -1,26 +1,25 @@
-	<!-- Required Js -->
-	<script src="{{asset('js/vendor-all.min.js')}}"></script>
-	<script src="{{asset('js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('js/ripple.js')}}"></script>
-	<script src="{{asset('js/pcoded.min.js')}}"></script>
-	<script src="{{asset('js/menu-setting.min.js')}}"></script>
-	<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
-	<script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
-	<!-- Apex Chart -->
-	{{-- <script src="{{asset('js/apexcharts.min.js')}}"></script> --}}
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
 
-	<!-- custom-chart js -->
-	<script>
-		// DataTable start
-		$('#report-table').DataTable();
-		// DataTable end
-	</script>
-	<script src="{{asset('js/dashboard-main.js')}}"></script>
+<!-- REQUIRED SCRIPTS -->
 
-
-
+<!-- jQuery -->
+ 
+<script src="{{asset('js/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+ 
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<!-- AdminLTE App -->
+ 
+<script src="{{asset('js/adminlte.min.js')}}"></script>
 </body>
-
-
-<!-- Mirrored from ableproadmin.com/bootstrap/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Nov 2019 08:46:14 GMT -->
 </html>

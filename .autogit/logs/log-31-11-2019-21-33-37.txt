@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Tue Dec 31 2019 21:33:37 GMT+0200 (Eastern European Standard Time)
+------------------------------------------------------
+
+Modified files:
+* resources/views/admin/layouts/_header.blade.php
+* resources/views/admin/layouts/_nav.blade.php
+
+
+Created files:
+
+
+Deleted files:
+
+
+Renamed files:
