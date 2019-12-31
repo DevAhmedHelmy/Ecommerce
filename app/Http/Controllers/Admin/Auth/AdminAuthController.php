@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use DB;
 use App\Admin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Mail\AdminResetPassword;
-use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,16 +42,17 @@ class AdminAuthController extends Controller
 
     public function forgotPasswordPost()
     {
-        $admin = Admin::where($email, request('email'))->first();
+        $admin = Admin::where('email', request('email'))->first();
         if(!empty($admin))
         {
             $token = app('auth.password.broker')->createToken($admin);
+            // dd($token);
             $data = DB::table('password_resets')->insert([
                 'email' => $admin->email,
                 'token' => $token,
                 'created_at' => Carbon::now()
             ]);
-            return new AdminResetPassword(['data'=>$admin, 'token' => $token]);
+            return new AdminResetPassword([$admin, $token]);
         }
         return back();
          

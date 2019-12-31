@@ -35,7 +35,7 @@
 					<div class="card-body login-card-body">
 					 
 				
-					<form method="POST" action="{{url('admin/login')}}">
+					<form method="POST" action="{{adminUrl('forgot/password')}}">
 						@csrf
 						<div class="form-group has-feedback">
 						<input type="email" name="email" class="form-control" placeholder="@lang('admin.email')">
