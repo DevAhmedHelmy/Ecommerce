@@ -24,8 +24,10 @@
 	<link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/animate.min.css ')}}">
     <!-- vendor css -->
-	<link rel="stylesheet" href="{{asset('css/style.css')}}">
     
+	<link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/layout-rtl.css')}}">
+     
     
 
 </head>
