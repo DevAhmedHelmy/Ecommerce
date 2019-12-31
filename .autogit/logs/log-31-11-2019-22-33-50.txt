@@ -1,0 +1,23 @@
+-------------------- Auto-Git Log --------------------
+		Tue Dec 31 2019 22:33:50 GMT+0200 (Eastern European Standard Time)
+------------------------------------------------------
+
+Modified files:
+* resources/views/admin/auth/forgot.blade.php
+* resources/views/admin/auth/login.blade.php
+* resources/views/admin/layouts/_header.blade.php
+* resources/views/admin/layouts/_sidebar.blade.php
+* resources/views/admin/layouts/master.blade.php
+
+
+Created files:
+* .autogit/logs/log-31-11-2019-22-3-43.txt
+* public/css/blue.css
+* public/css/blue.png
+* public/js/icheck.min.js
+
+
+Deleted files:
+
+
+Renamed files:
