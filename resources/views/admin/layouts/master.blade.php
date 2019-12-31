@@ -28,8 +28,10 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-12">
+
+                </div>
             
-            @yield('content')
              
             </div>
             <!-- /.row -->
