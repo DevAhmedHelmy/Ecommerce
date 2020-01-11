@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 class AdminResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
@@ -18,9 +15,8 @@ class AdminResetPassword extends Mailable
      */
     public function __construct($data=[])
     {
-        $this->date = $data;
+        $this->data = $data;
     }
-
     /**
      * Build the message.
      *
@@ -29,7 +25,7 @@ class AdminResetPassword extends Mailable
     public function build()
     {
         return $this->markdown('admin.emails.admin_reset_password')
-            ->subject('Reset Admin Acount')
-            ->with('data', $this->data);
+        ->subject('Reset Admin Account')
+        ->with('data',$this->data);
     }
 }

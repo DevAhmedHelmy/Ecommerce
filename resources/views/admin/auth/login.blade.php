@@ -15,26 +15,32 @@
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
-  
+
   <!-- iCheck -->
-   
+
   <link rel="stylesheet" href="{{asset('css/blue.css')}}">
   <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/toastr.min.js')}}"></script>
+  <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 </head>
-@if(session("message"))
-    <h1>not found</h1>
-@endif
+
 <body>
+@include('admin.layouts._messages')
 	<div class="login-box">
 		<div class="login-logo">
 			<a href="../../index2.html"><b>Admin</b>LTE</a>
 		</div>
+
+
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
 			<p class="login-box-msg">Sign in to start your session</p>
-		
+
 			<form method="POST" action="{{url('admin/login')}}">
 				@csrf
 				<div class="form-group has-feedback">
@@ -60,10 +66,10 @@
 				<!-- /.col -->
 				</div>
 			</form>
-		
-				
+
+
 			<!-- /.social-auth-links -->
-		
+
 			<p class="mb-1">
 					<a href="{{adminUrl('forgot/password')}}" class="f-w-400">@lang('admin.Reset')</a>
 			</p>
@@ -74,16 +80,16 @@
 			<!-- /.login-card-body -->
 		</div>
 	</div>
- 
+
 
 	<!-- jQuery -->
 	<script src="{{asset('js/jquery.min.js')}}"></script>
 	<!-- Bootstrap 4 -->
-	
+
 	<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 	<!-- iCheck -->
 	<script src="{{asset('js/icheck.min.js')}}"></script>
-	
+
 	<script>
 	$(function () {
 		$('input').iCheck({

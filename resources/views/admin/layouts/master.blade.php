@@ -26,13 +26,15 @@
 
     <!-- Main content -->
     <div class="content">
+@include('admin.layouts._messages')
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
+                    @yield('content')
                 </div>
-            
-             
+
+
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

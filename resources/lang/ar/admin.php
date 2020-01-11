@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 
- 
+
  return [
 
 // 	'view'             => 'عرض البيانات',
@@ -45,7 +45,7 @@
     'yes'                                               => 'نعم',
     'no'                                                => 'لا',
     'confirm_delete_user'                               => 'هل تريد حذف المستخدم ؟',
-    
+
     'remember_me'                                       => 'تذكرني',
     'password'                                          => 'كلمه المرور',
     'password_confirmation'                             => 'تاكيد كلمه المرور',
@@ -53,6 +53,11 @@
     'added_successfully'                                => 'تم اضافه البيانات بنجاح',
     'updated_successfully'                              => 'تم تعديل البيانات بنجاح',
     'deleted_successfully'                              => 'تم حذف البيانات بنجاح',
+    'send_successfully'                                 => 'تم الارسال بنجاح',
+    'send_failed'                                       => 'لم يتم الارسال',
+    'warnning_data'                                       => 'الرجاء التاكد من البيانات المدحلة',
+    'login_successfully'                                => 'تم نسجبل الدحول بنجاح',
+    
     'view'                                              => 'عرض ',
     'no_data_found'                                     => 'للاسف لا يوجد اي سجلات',
     'no_records'                                        => 'للاسف لا يوجد اي سجلات',

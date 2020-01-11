@@ -15,17 +15,21 @@
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
-  
+
   <!-- iCheck -->
-   
+
   <link rel="stylesheet" href="{{asset('css/blue.css')}}">
   <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <script src="{{asset('js/jquery.min.js')}}"></script>
+  <script src="{{asset('js/toastr.min.js')}}"></script>
+  <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 </head>
-@if(session("message"))
-    <h1>not found</h1>
-@endif
+
 <body>
+@include('admin.layouts._messages')
 		<div class="login-box">
 				<div class="login-logo">
 					<a><b>Admin Rest Password</a>
@@ -33,17 +37,17 @@
 				<!-- /.login-logo -->
 				<div class="card">
 					<div class="card-body login-card-body">
-					 
-				
+
+
 					<form method="POST" action="{{adminUrl('forgot/password')}}">
 						@csrf
 						<div class="form-group has-feedback">
 						<input type="email" name="email" class="form-control" placeholder="@lang('admin.email')">
 						<span class="fa fa-envelope form-control-feedback"></span>
 						</div>
-						 
+
 						<div class="row">
-						 
+
 						<!-- /.col -->
 						<div class="col-4">
 							<button type="submit" class="btn btn-primary btn-block btn-flat">@lang('admin.Rest')</button>
@@ -51,25 +55,25 @@
 						<!-- /.col -->
 						</div>
 					</form>
-				
-						
+
+
 					<!-- /.social-auth-links -->
-				
-					 
-					 
+
+
+
 					</div>
 					<!-- /.login-card-body -->
 				</div>
 			</div>
- 
+
 	<!-- jQuery -->
 	<script src="{{asset('js/jquery.min.js')}}"></script>
 	<!-- Bootstrap 4 -->
-	
+
 	<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 	<!-- iCheck -->
 	<script src="{{asset('js/icheck.min.js')}}"></script>
-	
+
 	<script>
 	$(function () {
 		$('input').iCheck({
