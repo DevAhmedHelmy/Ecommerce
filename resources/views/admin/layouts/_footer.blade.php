@@ -19,7 +19,14 @@
  
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
- 
+<script src="{{asset('js/jquery.dataTables.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('js/dataTables.buttons.js')}}"></script> 
+
+
+<script src="/vendor/datatables/buttons.server-side.js"></script> 
 <script src="{{asset('js/adminlte.min.js')}}"></script>
+@stack('js')
+@stack('css')
 </body>
 </html>

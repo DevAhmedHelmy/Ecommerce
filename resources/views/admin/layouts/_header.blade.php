@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin | Starter</title>
+  <title>{{!empty($title) ? $title : trans('admin.adminpanel')}}</title>
 
   <!-- Font Awesome Icons -->
 
   <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
+
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->

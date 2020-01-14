@@ -9,13 +9,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('forgot/password','Admin\Auth\AdminAuthController@forgotPassword');
     Route::post('forgot/password','Admin\Auth\AdminAuthController@forgotPasswordPost');
     Route::get('reset/password/{token}', 'Admin\Auth\AdminAuthController@resetWithTokenPassword');
-    Route::get('store/password/{token}', 'Admin\Auth\AdminAuthController@storeNewPassword');
+    Route::post('store/password/{token}', 'Admin\Auth\AdminAuthController@storeNewPassword');
 
 
     Route::group(['middleware' => 'admin:admin'],function(){
-        Route::get('/', function () {
-            return view('admin.layouts.master');
-        });
+        Route::resource('admin', 'Admin\AdminController');
         Route::any('logout', "Admin\Auth\AdminAuthController@logout");
     });
 

@@ -66,7 +66,17 @@ return[
     'sale_price'                                        => 'Sale Price',
     'stock'                                             => 'Stock',
     'profit_percent'                                    => 'Profit Percent',
-
+    'adminpanel'                                        => 'Admin panel',
+    'adminAcounts'                                      => 'Admin Acounts',
+    'create_admin'                                      => 'Add New Admin',
+	'ex_excel'                                          => 'Export Excel',
+	'ex_csv'                                            => 'Export CSV',
+	'print'                                             => '  Pint',
+    'refresh'                                           => '  Refresh',
+    'all_record'                                        => 'All Record',
+    'sProcessing'                                       => 'Processing',
+    'sLengthMenu'                                       => 'show _MENU_ Record',
+    'excel'                                             => 'excel',
     'ar' => [
         'name'                                          => 'Arabic Name',
         'description'                                   => 'Arabic Description',

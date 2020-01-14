@@ -35,19 +35,13 @@
         <div class="login-logo">
             <a href="/admin"><b>{{ trans('admin.forgotPasswordTitle') }}</b></a>
         </div>
-        @if ($errors->all())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-            </div>
-        @endif
+        @include('admin.layouts._errors')
         <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
             <p class="login-box-msg">Reset Password</p>
       
-            <form action="{{ adminUrl('store/password/' . $checkToken->token) }}" method="post">
+            <form action="{{ adminUrl('store/password/' . $checkToken->token) }}" method="POST">
                 {{ csrf_field() }}
               <div class="input-group mb-3">
               <input type="email" value="{{ $checkToken->email }}" class="form-control" placeholder="Email" autocomplete="" name="email">

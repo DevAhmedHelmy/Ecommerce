@@ -18,7 +18,11 @@ class AdminAuthController extends Controller
     }
     public function doLogin()
     {
-
+        request()->validate([
+			'email' => 'required',
+			'password' => 'required|confirmed',
+			 
+		]);
         $remember = request('rememberme') == 1 ? true : false;
         if(admin()->attempt(['email' => request('email'),'password' => request('password')], $remember ))
         {

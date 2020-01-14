@@ -37,7 +37,7 @@
 				<!-- /.login-logo -->
 				<div class="card">
 					<div class="card-body login-card-body">
-
+@include('admin.layouts._errors')
 
 					<form method="POST" action="{{adminUrl('forgot/password')}}">
 						@csrf
