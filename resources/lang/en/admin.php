@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 return[
-    
+
     'view'                                              => 'View Date',
 	'edit'                                              => 'Edit Data',
 	'delete'                                            => 'Delete Date',
@@ -41,8 +41,8 @@ return[
 	'password'                                          => 'Password',
 	'new_password'                                      => 'New Password',
     'password_confirmation'                             => 'Password Confirmation',
-    
-    
+
+
     'controll'                                          => 'Controll',
     'users'                                             => 'Users',
 	'first_name'                                        => 'First Name',
@@ -77,6 +77,29 @@ return[
     'sProcessing'                                       => 'Processing',
     'sLengthMenu'                                       => 'show _MENU_ Record',
     'excel'                                             => 'excel',
+    'sProcessing'                                       => 'Processing',
+	'sLengthMenu'                                       => 'show _MENU_ Record',
+	'sZeroRecords'                                      => 'Zero Records',
+	'sEmptyTable'                                       => 'EmptyTable',
+	'sInfo'                                             => 'show _START_ to _END_ from _TOTAL_ record',
+	'sInfoEmpty'                                        => 'Info Empty',
+	'sInfoFiltered'                                     => 'Info Filtered',
+	'sInfoPostFix'                                      => '',
+	'sSearch'                                           => 'Search',
+	'sUrl'                                              => '',
+	'sInfoThousands'                                    => 'Info Thousands',
+	'sLoadingRecords'                                   => 'Loading Records',
+	'sFirst'                                            => 'First',
+	'sLast'                                             => 'Last',
+	'sNext'                                             => 'Next',
+	'sPrevious'                                         => 'Previous',
+	'sSortAscending'                                    => 'Sort Ascending',
+    'sSortDescending'                                   => 'Sort Descending',
+    'admin_name'                                        => 'Admin Name',
+	'admin_email'                                       => 'Email',
+	'created_at'                                        => 'Created',
+    'updated_at'                                        => 'Updated',
+    'actions'                                           => 'Actions',
     'ar' => [
         'name'                                          => 'Arabic Name',
         'description'                                   => 'Arabic Description',

@@ -16,7 +16,7 @@
         <h3 class="card-title">{!! $title  !!}</h3>
     </div>
     <div class="card-body">
-        {!! $dataTable->table(['class'=>'table table-bordered table-hover dataTable']) !!}
+        {!! $dataTable->table(['class'=>'table table-bordered table-hover dataTable'], true) !!}
     </div>
 </div>
 @push('js')

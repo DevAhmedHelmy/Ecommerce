@@ -48,18 +48,31 @@ class AdminsDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
+                    ->orderBy([0, 'desc'])
                     ->lengthMenu([[10,25,50,100,250, -1],[10,25,50,100,250, trans('admin.all_record')]])
                     ->pageLength(25)
                     ->buttons(
+
                         Button::make('create')->className('btn btn-primary ml-2 my-3')->text(' <i class="fa fa-plus"></i> '.trans('admin.create_admin')),
                         Button::make('csv')->className('btn btn-danger ml-2')->text(' <i class="fa fa-download"></i> '.trans('admin.ex_csv')),
                         Button::make('excel')->className('btn btn-danger ml-2')->text(' <i class="fa fa-download"></i> '.trans('admin.excel')),
 
                         Button::make('print')->className('btn btn-success ml-2')->text(' <i class="fa fa-print"></i> '.trans('admin.print')),
                         Button::make('reload')->className('btn btn-warning ml-2')->text(' <i class="fa fa-undo"></i> '.trans('admin.refresh')),
-                    );
-                    
+                    )->parameters([
+                        'initComplete' => " function () {
+                            this.api().columns([1,2,3,4]).every(function () {
+                                var column = this;
+                                var input = document.createElement(\"input\");
+                                $(input).appendTo($(column.footer()).empty())
+                                .on('keyup', function () {
+                                    column.search($(this).val(), false, false, true).draw();
+                                });
+                            });
+                        }",
+                        'language' => datatable_lang()
+                    ]);
+
     }
 
     /**
@@ -70,7 +83,7 @@ class AdminsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-			 
+
             [
 				'name'  => 'id',
 				'data'  => 'id',
@@ -100,7 +113,7 @@ class AdminsDataTable extends DataTable
 				'printable'  => false,
 				'orderable'  => false,
 				'searchable' => false,
-            ], 
+            ],
 		];
     }
 

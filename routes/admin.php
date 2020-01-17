@@ -15,6 +15,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin:admin'],function(){
         Route::resource('admin', 'Admin\AdminController');
         Route::any('logout', "Admin\Auth\AdminAuthController@logout");
+
+
+
+
     });
 
 });
