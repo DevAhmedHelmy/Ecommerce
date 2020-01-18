@@ -16,7 +16,11 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('admin', 'Admin\AdminController');
         Route::any('logout', "Admin\Auth\AdminAuthController@logout");
 
-
+        Route::get('lang/{lang}', function($lang){
+            session()->has('lang') ? session()->forget('lang') : '' ;
+            $lang == 'ar' ? session()->put('lang', 'ar') : session()->put('lang', 'en');
+            return back();
+        });
 
 
     });

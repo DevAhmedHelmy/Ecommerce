@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en">
+@if (direction() == 'ltr')
+<html lang="en" direction="ltr" style="direction: ltr;" >
+@else
+<html lang="en" direction="rtl" style="direction: rtl;" >
+@endif
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,19 +14,66 @@
 
   <!-- Font Awesome Icons -->
 
-  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
-  <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.css')}}">
+
+    <link rel="stylesheet" href="{{asset('adminPanal/css/font-awesome.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('adminPanal/css/dataTables.bootstrap4.css')}}">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/skins/skin-blue.min.css')}}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/blue.css')}}">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/morris.css')}}">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/jquery-jvectormap-1.2.2.css')}}">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/datepicker3.css')}}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/daterangepicker-bs3.css')}}">
+
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('adminPanal/css/toastr.min.css')}}">
+
 
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
-  <!-- Google Font: Source Sans Pro -->
+  @if(direction() == 'ltr')
+    <link rel="stylesheet" href="{{asset('adminPanal/css/adminlte.min.css')}}">
+  @else
 
-  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
 
-  <script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="{{asset('js/toastr.min.js')}}"></script>
-  <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/AdminLTE-rtl.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/_all-skins-rtl.min.css')}}">
+
+  <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+			<style>
+			*,body,p,h1,h2,h3,h4,h5,h6,span{
+				font-family: 'Cairo', sans-serif;
+			}
+			.bgArabic{
+				background-color: #F2F3F8 !important;
+			}
+			</style>
+
+
+  @endif
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    *,body,p,h1,h2,h3,h4,h5,h6,span{
+        font-family: 'Roboto', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+    }
+
+    </style>
+
+  <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
+  <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
+  <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

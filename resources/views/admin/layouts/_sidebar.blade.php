@@ -1,10 +1,10 @@
  <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3"
+    <a href="#" class="brand-link">
+      <img src="{{ asset('adminPanal/uploads/logos/logo.jpg') }}" alt="Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Ahmed</span>
+      <span class="brand-text font-weight-light">E-Commerce</span>
     </a>
 
     <!-- Sidebar -->
@@ -12,10 +12,13 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="#" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('adminPanal/uploads/users/user.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
+
         <div class="info">
+            @if(admin())
           <a href="#" class="d-block">{{admin()->user()->name}}</a>
+          @endif
         </div>
       </div>
 
@@ -30,7 +33,7 @@
 				<i class="nav-icon fa fa-dashboard"></i>
 				<p>
 					{{trans('admin.dashboard')}}
-					 
+
 				</p>
 				</a>
 			</li>

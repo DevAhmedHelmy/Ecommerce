@@ -19,7 +19,7 @@ if(!function_exists('datatable_lang'))
 {
     function datatable_lang()
     {
-        $langJson = [
+        return [
             "sProcessing"=> trans('admin.sProcessing'),
             "sLengthMenu"=> trans('admin.sLengthMenu'),
             "sZeroRecords"=> trans('admin.sZeroRecords'),
@@ -43,6 +43,30 @@ if(!function_exists('datatable_lang'))
                 "sSortDescending"=> trans('admin.sSortDescending')
             ]
         ];
-        return response($langJson);
+
     }
 }
+
+if(!function_exists('lang'))
+{
+    function lang()
+    {
+       if(session()->has('lang')) { return session('lang') ;}else{ return 'en';}
+    }
+}
+
+if(!function_exists('direction'))
+{
+    function direction()
+    {
+       if(session()->has('lang')) {
+           if(session('lang') == 'ar')
+           {
+               return 'rtl';
+           }else{
+               return 'ltr';
+           }
+       }else{ return 'ltr';}
+    }
+}
+

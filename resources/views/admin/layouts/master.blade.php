@@ -11,7 +11,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
         @yield('header')
-           
+
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -38,6 +38,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-  @include('admin.layouts._aside')
+  {{--  @include('admin.layouts._aside')  --}}
 
   @include('admin.layouts._footer')

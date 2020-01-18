@@ -20,9 +20,10 @@ class AdminAuthController extends Controller
     {
         request()->validate([
 			'email' => 'required',
-			'password' => 'required|confirmed',
-			 
-		]);
+			'password' => 'required',
+
+        ]);
+
         $remember = request('rememberme') == 1 ? true : false;
         if(admin()->attempt(['email' => request('email'),'password' => request('password')], $remember ))
         {
@@ -84,7 +85,7 @@ class AdminAuthController extends Controller
             $admin = Admin::where('email', $checkToken->email)
                         ->update([ 'email'=>$checkToken->email, 'password'=>bcrypt($request->password)]);
             DB::table('password_resets')->whereEmail($request->email)->delete();
-			
+
 			admin()->attempt(['email' => $checkToken->email, 'password' => $request->password], true);
             return redirect(adminUrl());
         }else {
