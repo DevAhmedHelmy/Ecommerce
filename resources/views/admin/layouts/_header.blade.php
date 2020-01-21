@@ -74,6 +74,8 @@ font-family: 'Open Sans Condensed', sans-serif;
   <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
   <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
   <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
+
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

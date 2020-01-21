@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "03049e8c4d57bb700079eca6a7ff7f29",
+    "content-hash": "88d4b138f63965c1bfc933d352184591",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -677,6 +677,53 @@
                 "psysh"
             ],
             "time": "2019-08-07T15:10:45+00:00"
+        },
+        {
+            "name": "laravelcollective/errors",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/errors.git",
+                "reference": "380aeab2c5e7ae500d315e5a880ff02c9eadfb77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/errors/zipball/380aeab2c5e7ae500d315e5a880ff02c9eadfb77",
+                "reference": "380aeab2c5e7ae500d315e5a880ff02c9eadfb77",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Errors\\ErrorsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Errors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Lantz",
+                    "email": "matt@laravelcollective.com"
+                }
+            ],
+            "description": "Error pages for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2019-09-17T13:51:33+00:00"
         },
         {
             "name": "laravelcollective/html",

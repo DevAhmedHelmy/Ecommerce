@@ -24,7 +24,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create',['title' => trans('admin.create_admin')]);
     }
 
     /**
@@ -35,7 +35,25 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email|unique:admins',
+            'password' => 'required|min:6'
+        ],[],[
+            'name' => trans('admin.name'),
+            'email' => trans('admin.email'),
+            'password' => trans('admin.password'),
+
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect(route('admin.create'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+
     }
 
     /**

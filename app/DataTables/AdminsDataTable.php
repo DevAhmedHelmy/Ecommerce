@@ -22,7 +22,8 @@ class AdminsDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('actions', 'admin.admins.buttons.actions')
-            ->rawColumns(['actions']);
+            ->addColumn('checkbox', 'admin.admins.buttons.checkbox')
+            ->rawColumns(['actions','checkbox']);
     }
 
     /**
@@ -54,11 +55,13 @@ class AdminsDataTable extends DataTable
                     ->buttons(
 
                         Button::make('create')->className('btn btn-primary ml-2 my-3')->text(' <i class="fa fa-plus"></i> '.trans('admin.create_admin')),
+
                         Button::make('csv')->className('btn btn-danger ml-2')->text(' <i class="fa fa-download"></i> '.trans('admin.ex_csv')),
                         Button::make('excel')->className('btn btn-danger ml-2')->text(' <i class="fa fa-download"></i> '.trans('admin.excel')),
 
                         Button::make('print')->className('btn btn-success ml-2')->text(' <i class="fa fa-print"></i> '.trans('admin.print')),
                         Button::make('reload')->className('btn btn-warning ml-2')->text(' <i class="fa fa-undo"></i> '.trans('admin.refresh')),
+                        Button::make()->className('btn btn-danger ml-2 delBtn')->text('<i class="fa fa-trash"></i>'.trans('admin.deleteAll')),
                     )->parameters([
                         'initComplete' => " function () {
                             this.api().columns([1,2,3,4]).every(function () {
@@ -85,10 +88,18 @@ class AdminsDataTable extends DataTable
         return [
 
             [
+				'name'  => 'checkbox',
+				'data'  => 'checkbox',
+                'title' => '<input type="checkbox" class="check_all" onclick="check_all();"/>',
+                'exportable' => false,
+				'printable'  => false,
+				'orderable'  => false,
+				'searchable' => false,
+			], [
 				'name'  => 'id',
 				'data'  => 'id',
 				'title' => '#',
-			], [
+			],[
 				'name'  => 'name',
 				'data'  => 'name',
 				'title' => trans('admin.admin_name'),

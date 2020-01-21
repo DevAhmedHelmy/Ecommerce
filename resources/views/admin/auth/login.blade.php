@@ -12,20 +12,20 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminPanal/css/font-awesome.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminPanal/css/adminlte.min.css')}}">
 
   <!-- iCheck -->
 
-  <link rel="stylesheet" href="{{asset('css/blue.css')}}">
+  <link rel="stylesheet" href="{{asset('adminPanal/css/blue.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-  <script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="{{asset('js/toastr.min.js')}}"></script>
-  <script src="{{asset('js/sweetalert2.min.js')}}"></script>
+  <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
+  <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
+  <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
 </head>
 
 <body>
@@ -83,12 +83,12 @@
 
 
 	<!-- jQuery -->
-	<script src="{{asset('js/jquery.min.js')}}"></script>
+	<script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
 	<!-- Bootstrap 4 -->
 
-	<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+	<script src="{{asset('adminPanal/js/bootstrap.bundle.min.js')}}"></script>
 	<!-- iCheck -->
-	<script src="{{asset('js/icheck.min.js')}}"></script>
+	<script src="{{asset('adminPanal/js/icheck.min.js')}}"></script>
 
 	<script>
 	$(function () {

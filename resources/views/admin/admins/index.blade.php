@@ -16,10 +16,24 @@
         <h3 class="card-title">{!! $title  !!}</h3>
     </div>
     <div class="card-body">
-        {!! $dataTable->table(['class'=>'table table-bordered table-hover dataTable'], true) !!}
+        {!! Form::open(['id'=>'form_data','url'=>adminUrl('admin/destroy/all'),'method'=>'delete']) !!}
+            {{ $dataTable->table([ 'class' => 'table table-bordered table-hover dataTable'], true) }}
+        {!! Form::close() !!}
+
     </div>
+
+
+
+
+
+
+@include('admin.admins.confirmModal')
 </div>
+
 @push('js')
+
+<script>deleteAll();</script>
 {!! $dataTable->scripts() !!}
+
 @endpush
 @endsection

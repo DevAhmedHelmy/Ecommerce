@@ -24,7 +24,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-              @include('admin.layouts._errors')
+                    <div class="col-md-4 offset-md-4">@include('admin.layouts._errors')</div>
+
 
                     @yield('content')
                 </div>

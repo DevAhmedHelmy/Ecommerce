@@ -26,6 +26,7 @@
 
 <script src="/vendor/datatables/buttons.server-side.js"></script>
 <script src="{{asset('adminPanal/js/adminlte.min.js')}}"></script>
+<script src="{{asset('adminPanal/js/custom.js')}}"></script>
 @stack('js')
 @stack('css')
 </body>
