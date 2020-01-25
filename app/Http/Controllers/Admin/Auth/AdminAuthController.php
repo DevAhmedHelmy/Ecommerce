@@ -27,6 +27,7 @@ class AdminAuthController extends Controller
         $remember = request('rememberme') == 1 ? true : false;
         if(admin()->attempt(['email' => request('email'),'password' => request('password')], $remember ))
         {
+
             return redirect('admin')->with('success', trans('admin.login_successfully'));
 
         }else{

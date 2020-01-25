@@ -16,7 +16,7 @@
         </div>
 
         <div class="info">
-            @if(admin())
+            @if(\Auth::check())
           <a href="#" class="d-block">{{admin()->user()->name}}</a>
           @endif
         </div>
@@ -37,35 +37,80 @@
 				</p>
 				</a>
 			</li>
-          <li class="nav-item has-treeview">
+            <li class="nav-item">
+				<a href="{{adminUrl('settings')}}" class="nav-link">
+				<i class="nav-icon fa fa-dashboard"></i>
+				<p>
+					{{trans('admin.settings')}}
+
+				</p>
+				</a>
+			</li>
+          <li class="nav-item has-treeview {{active_menu('admin')[0]}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>
-                {{trans('admin.adminAcounts')}}
+                {{trans('admin.admins')}}
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
+            <ul class="nav nav-treeview {{active_menu('admin')[1]}}">
+              <li class="nav-item {{active_menu('admin')[2]}}">
                 <a href="{{adminUrl('admin')}}" class="nav-link">
                   <i class="fa fa-users nav-icon"></i>
                   <p>{{trans('admin.adminAcounts')}}</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Inactive Page</p>
+
+            </ul>
+          </li>
+
+
+          <li class="nav-item has-treeview {{active_menu('user')[0]}}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                {{trans('admin.users')}}
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview {{active_menu('user')[1]}}">
+              <li class="nav-item {{active_menu('admin')[2]}}">
+                <a href="{{adminUrl('user')}}" class="nav-link">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>{{trans('admin.users_acounts')}}</p>
                 </a>
               </li>
+
+              <li class="nav-item {{active_menu('admin')[2]}}">
+                <a href="{{adminUrl('user')}}?level=user" class="nav-link">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>{{trans('admin.user')}}</p>
+                </a>
+              </li>
+
+              <li class="nav-item {{active_menu('admin')[2]}}">
+                <a href="{{adminUrl('user')}}?level=vendor" class="nav-link">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>{{trans('admin.vendor')}}</p>
+                </a>
+              </li>
+
+              <li class="nav-item {{active_menu('admin')[2]}}">
+                <a href="{{adminUrl('user')}}?level=company" class="nav-link">
+                  <i class="fa fa-users nav-icon"></i>
+                  <p>{{trans('admin.company')}}</p>
+                </a>
+              </li>
+
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
+            <a href="{{adminUrl('logout')}}" class="nav-link">
+              <i class="nav-icon fa fa-sign-out"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+
+                {{ trans('admin.logout') }}
               </p>
             </a>
           </li>

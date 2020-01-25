@@ -35,7 +35,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
 
-<link rel="stylesheet" href="{{asset('adminPanal/css/toastr.min.css')}}">
+
 
 
   <!-- Theme style -->
@@ -70,10 +70,10 @@ font-family: 'Open Sans Condensed', sans-serif;
     }
 
     </style>
-
-  <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
-  <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
-  <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('adminPanal/css/toastr.min.css')}}">
+    <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
+    <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
+    <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
 
 
 </head>

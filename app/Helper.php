@@ -51,7 +51,7 @@ if(!function_exists('lang'))
 {
     function lang()
     {
-       if(session()->has('lang')) { return session('lang') ;}else{ return 'en';}
+       if(session()->has('lang')) { return session('lang') ;}else{ return setting()->main_lang;}
     }
 }
 
@@ -70,3 +70,39 @@ if(!function_exists('direction'))
     }
 }
 
+if(!function_exists('active_menu'))
+{
+    function active_menu($link)
+    {
+        if(preg_match('/'.$link.'/i', Request::segment(2)))
+        {
+            return ['menu-open', 'display:block', 'active'];
+        }else{
+            return ['', '', ''];
+
+        }
+    }
+}
+
+if(!function_exists('setting'))
+{
+    function setting()
+    {
+        return \App\Setting::orderBy('id', 'desc')->first();
+    }
+}
+////////////////////// validate functions ////////////////////////////
+if(!function_exists('validate_image'))
+{
+    function validate_image($ext=null)
+    {
+        if($ext === null)
+        {
+            return 'image|mimes:jpg,png,jpeg,gif';
+        }else{
+            return 'image|mimes:'.$ext;
+
+        }
+    }
+}
+////////////////////// validate functions ////////////////////////////

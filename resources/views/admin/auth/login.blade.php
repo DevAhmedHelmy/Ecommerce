@@ -20,7 +20,7 @@
 
   <link rel="stylesheet" href="{{asset('adminPanal/css/blue.css')}}">
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminPanal/css/toastr.min.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
@@ -40,7 +40,7 @@
 		<div class="card">
 			<div class="card-body login-card-body">
 			<p class="login-box-msg">Sign in to start your session</p>
-@include('admin.layouts._errors')
+                @include('admin.layouts._errors')
 			<form method="POST" action="{{url('admin/login')}}">
 				@csrf
 				<div class="form-group has-feedback">
