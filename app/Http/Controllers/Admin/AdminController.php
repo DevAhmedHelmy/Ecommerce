@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\DataTables\AdminsDataTable;
+use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\DataTables\AdminsDataTable;
 use App\Http\Controllers\Controller;
-use App\Admin;
+use App\Http\Requests\AdminsRequest;
+
 class AdminController extends Controller
 {
     /**
@@ -12,9 +14,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(AdminsDataTable $admin)
+    public function index()
     {
-        return $admin->render('admin.admins.index',['title' => trans('admin.Admin_Control')]);
+        $admins = Admin::paginate(20);
+        return view('admin.admins.index',['admins' => $admins,'title' => trans('admin.Admin_Control')]);
     }
 
     /**
@@ -34,24 +37,13 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminsRequest $request)
     {
-        $data = $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email|unique:admins',
-            'password' => 'required|min:6'
-        ],[],[
-            'name' => trans('admin.name'),
-            'email' => trans('admin.email'),
-            'password' => trans('admin.password'),
-
-
-        ]);
-
+        $data = $request->validated();
         $data['password'] = bcrypt($request->password);
         Admin::create($data);
         session()->flash('success', trans('admin.added_successfully'));
-        return redirect(route('admin.index'));
+        return redirect(route('admin.admins.index'));
 
 
     }
@@ -62,9 +54,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Admin $admin)
     {
-        //
+
+        return view('admin.admins.show',['title' => trans('admin.show'), 'admin' => $admin]);
     }
 
     /**
@@ -73,9 +66,8 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Admin $admin)
     {
-        $admin = Admin::findOrfail($id);
         return view('admin.admins.form',['titleEdit' => trans('admin.edit'), 'admin' => $admin]);
     }
 
@@ -86,24 +78,15 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminsRequest $request, Admin $admin)
     {
-        $data = $this->validate(request(),
-			[
-				'name'     => 'required',
-				'email'    => 'required|email|unique:admins,email,'.$id,
-				'password' => 'sometimes|nullable|min:6'
-			], [], [
-				'name'     => trans('admin.name'),
-				'email'    => trans('admin.email'),
-				'password' => trans('admin.password'),
-			]);
-		if (request()->has('password')) {
+        $data = $request->validated();
+		if ($request->has('password')) {
 			$data['password'] = bcrypt(request('password'));
 		}
-        Admin::where('id', $id)->update($data);
+        $admin->update($data);
         session()->flash('success', trans('admin.updated_successfully'));
-        return redirect(route('admin.index'));
+        return redirect(route('admin.admins.index'));
     }
 
     /**
@@ -112,11 +95,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Admin $admin)
     {
-        Admin::findOrfail($id)->delete();
+        $admin->delete();
         session()->flash('success', trans('admin.deleted_successfully'));
-        return redirect(route('admin.index'));
+        return redirect(route('admin.admins.index'));
     }
 
     /**
@@ -126,17 +109,14 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function multiDelete()
-     {
+    public function multiDelete()
+    {
         if(is_array(request()->item)){
-            // Admin::whereIn('id', request('item'))->delete();
-            // or
             Admin::destroy(request('item'));
         }else{
             Admin::findOrfail(request('item'))->delete();
         }
-
         session()->flash('success', trans('admin.deleted_successfully'));
-        return redirect(route('admin.index'));
-     }
+        return redirect(route('admin.admins.index'));
+    }
 }

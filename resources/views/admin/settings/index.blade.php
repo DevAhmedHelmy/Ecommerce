@@ -44,14 +44,14 @@
                                 {!! Form::label('logo',trans('admin.logo')) !!}
                                 {!! Form::file('logo',['class'=>'form-control']) !!}
                                 @if(!empty(setting()->logo))
-                                    <img src="{{ Storage::url(setting()->logo) }}">
+                                    <img src="{{ asset('storage/'.setting()->logo) }}" style="width:50px;height: 50px;" />
                                 @endif
                             </div>
                             <div class="col-6">
                                 {!! Form::label('icon',trans('admin.icon')) !!}
                                 {!! Form::file('icon',['class'=>'form-control']) !!}
                                 @if(!empty(setting()->icon))
-
+                                    <img src="{{ asset('storage/'.setting()->icon) }}" style="width:50px;height: 50px;" />
                                 @endif
                             </div>
                         </div>
@@ -63,7 +63,7 @@
             <div class="col-12">
                 <div class="form-group">
                     {!! Form::label('description',trans('admin.description')) !!}
-                    {!! Form::textarea('icon',null,['class'=>'form-control']) !!}
+                    {!! Form::textarea('description',setting()->description,['class'=>'form-control']) !!}
                 </div>
 
             </div>
@@ -71,12 +71,12 @@
                 <div class="mt-4 d-flex justify-content-between">
                     <div class="col form-group">
                         {!! Form::label('main_lang', trans('admin.main_lang')) !!}
-                        {!! Form::select('main_lang', ['ar' => trans('admin.Arabic'), 'en' => trans('admin.English')], null, ['class' => 'form-control','placeholder' => trans('admin.choose')]); !!}
+                        {!! Form::select('main_lang', ['ar' => trans('admin.Arabic'), 'en' => trans('admin.English')], setting()->main_lang, ['class' => 'form-control']); !!}
 
                     </div>
                     <div class="col form-group">
                         {!! Form::label('status', trans('admin.status')) !!}
-                        {!! Form::select('status', ['open' => trans('admin.open'), 'close' => trans('admin.close')], null, ['class' => 'form-control','placeholder' => trans('admin.choose')]); !!}
+                        {!! Form::select('status', ['open' => trans('admin.open'), 'close' => trans('admin.close')], setting()->status, ['class' => 'form-control']); !!}
 
                     </div>
                 </div>
@@ -84,7 +84,7 @@
             <div class="col-12">
                 <div class="form-group">
                     {!! Form::label('message_maintenance',trans('admin.message_maintenance')) !!}
-                    {!! Form::textarea('message_maintenance',null,['class'=>'form-control']) !!}
+                    {!! Form::textarea('message_maintenance',setting()->message_maintenance,['class'=>'form-control']) !!}
                 </div>
 
             </div>

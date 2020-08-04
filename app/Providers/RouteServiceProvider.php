@@ -35,6 +35,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        \Config::set('filesystem.disk.public.url',url('storage'));
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -53,14 +54,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebAdminRoutes()
     {
-
-        Route::middleware(['web','Lang'])
+        // \Config::set('filesystem.disk.public.url',url('storage'));
+        Route::middleware('web')
             ->namespace($this->namespace)
-            ->group(base_path('routes/admin.php'));
+            ->group(base_path('routes/dashboard/web.php'));
     }
     protected function mapWebRoutes()
     {
-        Route::middleware(['web','Lang'])
+        Route::middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
 

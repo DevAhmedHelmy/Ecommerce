@@ -41,7 +41,7 @@
 			<div class="card-body login-card-body">
 			<p class="login-box-msg">Sign in to start your session</p>
                 @include('admin.layouts._errors')
-			<form method="POST" action="{{url('admin/login')}}">
+			<form method="POST" action="{{route('admin.login')}}">
 				@csrf
 				<div class="form-group has-feedback">
 				<input type="email" name="email" class="form-control" placeholder="@lang('admin.email')">
