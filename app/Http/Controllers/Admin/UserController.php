@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\DataTables\UsersDataTable;
-use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\DataTables\UsersDataTable;
+use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+
 class UserController extends Controller
 {
     /**
@@ -13,9 +15,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersDataTable $user)
+    public function index()
     {
-        return $user->render('admin.users.index',['title' => trans('admin.users_acounts')]);
+        $users = User::when(request()->level, function($query){
+            return $query->where('level',request()->level);
+        })->latest()->paginate(20);
+
+
+        return view('admin.users.index',[
+            'title' => trans('admin.users_acounts'),
+            'users' => $users
+            ]);
     }
 
     /**
@@ -34,26 +44,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        // dd($request->all());
-        $data = $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required|email|unique:admins',
-            'password' => 'required|min:6',
-            'level'     => ['required',Rule::in(['user','vendor','company'])]
-        ],[],[
-            'name' => trans('admin.name'),
-            'email' => trans('admin.email'),
-            'password' => trans('admin.password'),
 
-
-        ]);
-
+        $data = $request->validated();
         $data['password'] = bcrypt($request->password);
         User::create($data);
         session()->flash('success', trans('admin.added_successfully'));
-        return redirect(route('user.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -64,7 +62,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show',['titleshow' => trans('admin.show'), 'user' => $user]);
+        return view('admin.users.show',['title' => trans('admin.show'), 'user' => $user]);
 
     }
 
@@ -87,25 +85,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $data = $this->validate(request(),
-			[
-                'name'     => 'required',
-				'email'    => 'required|email|unique:admins,email,'.$user->id,
-                'password' => 'sometimes|nullable|min:6',
-                'level'     => ['required',Rule::in(['user','vendor','company'])]
-			], [], [
-				'name'     => trans('admin.name'),
-				'email'    => trans('admin.email'),
-				'password' => trans('admin.password'),
-			]);
+        $data = $request->validated();
 		if (request()->has('password')) {
 			$data['password'] = bcrypt(request('password'));
 		}
         $user->update($data);
         session()->flash('success', trans('admin.updated_successfully'));
-        return redirect(route('user.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -114,11 +102,14 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        dd($id);
+        if(!$user->delete()){
+            session()->flash('error', 'error');
+        }
         session()->flash('success', trans('admin.deleted_successfully'));
-        return redirect(route('user.index'));
+        return redirect(route('admin.users.index'));
     }
 
     /**
@@ -139,6 +130,6 @@ class UserController extends Controller
        }
 
        session()->flash('success', trans('admin.deleted_successfully'));
-       return redirect(route('user.index'));
+       return redirect(route('admin.users.index'));
     }
 }

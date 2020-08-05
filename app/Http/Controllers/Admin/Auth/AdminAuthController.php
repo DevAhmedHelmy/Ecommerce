@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use DB;
-use App\Admin;
+use App\Model\Admin;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Mail\AdminResetPassword;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Validator;
 class AdminAuthController extends Controller
 {
     public function login()
@@ -18,19 +18,26 @@ class AdminAuthController extends Controller
     }
     public function doLogin()
     {
-        request()->validate([
-			'email' => 'required',
-			'password' => 'required',
 
+        $validator = Validator::make(request()->all(), [
+            'email' => 'required',
+			'password' => 'required',
         ]);
+
+        if($validator->fails())
+        {
+
+            return redirect(adminUrl('login'))->withErrors($validator);
+        }
 
         $remember = request('rememberme') == 1 ? true : false;
         if(admin()->attempt(['email' => request('email'),'password' => request('password')], $remember ))
         {
 
-            return redirect('admin')->with('success', trans('admin.login_successfully'));
+            return redirect(adminUrl(''))->with('success', trans('admin.login_successfully'));
 
         }else{
+
             return redirect(adminUrl('login'))->with('error', trans('admin.warnning_data'));
         }
 

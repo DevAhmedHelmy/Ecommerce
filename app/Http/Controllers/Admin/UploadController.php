@@ -6,8 +6,18 @@ use Illuminate\Http\Request;
 
 class UploadController extends Controller
 {
-    public function uploadFile($request, $path, $new_name = null)
+    // $file, $path,$upload_type='single', $delete_file=null,$curd_type=[] , $new_name = null
+    public function uploadFile($data=[])
     {
-        $new_name = $new_name === null ? time() : $new_name;
+        if(in_array('new_name',$data))
+        {
+            $new_name = $data['new_name'] === null ? time() : $data['new_name'];
+
+        }
+        if(request()->hasFile($data['file']) && $data['upload_type']=='single')
+        {
+            \Storage::has($data['delete_file']) && !empty($data['delete_file']) ? \Storage::delete($data['delete_file']) : '';
+            return request()->file($data['file'])->store($data['path']);
+        }
     }
 }

@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.layouts.master');
+Route::group(['middleware'=>'Maintenance'],function(){
+    Route::get('/', function () {
+        return view('frontend.home.home');
+    });
 });
+Route::get('maintenance', function(){
+    return "Maintenance";
+});
+
