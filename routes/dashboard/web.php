@@ -43,6 +43,13 @@
                     Route::delete('cities/destroy/all', 'Admin\CityController@multiDelete')->name('cities.deleteAll');
                     Route::resource('cities','Admin\CityController');
                 // end cities
+<<<<<<< HEAD
+=======
+                // start states
+                    Route::delete('states/destroy/all', 'Admin\StateController@multiDelete')->name('states.deleteAll');
+                    Route::resource('states','Admin\StateController');
+                // end states
+>>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
             });

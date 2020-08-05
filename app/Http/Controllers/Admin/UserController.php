@@ -102,12 +102,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        dd($id);
         if(!$user->delete()){
             session()->flash('error', 'error');
         }
+
         session()->flash('success', trans('admin.deleted_successfully'));
         return redirect(route('admin.users.index'));
     }

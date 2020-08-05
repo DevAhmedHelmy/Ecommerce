@@ -163,6 +163,28 @@
                     </ul>
                 </li>
             @endcan
+<<<<<<< HEAD
+=======
+            @can('states-list')
+                <li class="nav-item has-treeview {{active_menu('states')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.states')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('states')[1]}}">
+                    <li class="nav-item {{active_menu('states')[2]}}">
+                        <a href="{{adminUrl('states')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.states')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+>>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
 
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
