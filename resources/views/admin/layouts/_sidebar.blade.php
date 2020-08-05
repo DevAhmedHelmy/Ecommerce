@@ -163,8 +163,6 @@
                     </ul>
                 </li>
             @endcan
-<<<<<<< HEAD
-=======
             @can('states-list')
                 <li class="nav-item has-treeview {{active_menu('states')[0]}}">
                     <a href="#" class="nav-link">
@@ -184,7 +182,6 @@
                     </ul>
                 </li>
             @endcan
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
 
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">

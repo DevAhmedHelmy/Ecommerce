@@ -3,13 +3,9 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-<<<<<<< HEAD
-use App\Models\Admin;
-=======
 use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Support\Str;
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
@@ -28,10 +24,6 @@ class UsersTest extends TestCase
         parent::setUp();
 
         $this->setupPermissions();
-<<<<<<< HEAD
-
-=======
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
         $this->admin = factory(\App\Models\Admin::class)->create();
         $this->admin->assignRole('superadmin');
 
@@ -50,24 +42,13 @@ class UsersTest extends TestCase
     }
     /**
      * @test
-<<<<<<< HEAD
-     */
-
-    public function logged_in_admin_can_see_user_page()
-    {
-        // dd($this->admin);
-        $this->withoutExceptionHandling();
-=======
     */
     public function logged_in_admin_can_see_user_page()
     {
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
         $this->actingAs($this->admin,'admin');
         $this->get(route('admin.users.index'))
             ->assertStatus(200);
     }
-<<<<<<< HEAD
-=======
     /**
      * @test
     */
@@ -133,10 +114,8 @@ class UsersTest extends TestCase
     public function logged_in_admin_can_delete_user()
     {
         $user = factory(User::class)->create();
-
         $this->actingAs($this->admin,'admin')
             ->delete(route('admin.users.destroy',$user->id));
         $this->assertDatabaseCount('users',0);
     }
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
 }
