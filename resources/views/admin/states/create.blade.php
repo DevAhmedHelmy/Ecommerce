@@ -12,6 +12,35 @@
         </div>
 @endsection
 @section('content')
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $(document).on('change','.country_id',function(){
+                var country = $('.country_id option:selected').val();
+                if(country > 0)
+                {
+                    $.ajax({
+                        url:"{{ route('admin.states.create') }}",
+                        type:'get',
+                        data:{
+                            country_id:country
+                        },
+                        success:function(res){
+                            console.log(res);
+                            var content = "";
+                           $.each(res,function(index,element){
+                                content = content + `<option value="${element.id}">${element.name}</option>`;
+                           });
+
+                           $('.city_id').html(content);
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+@endpush
 <div class="card border-dark mb-3">
     <div class="card-header">
         <h3 class="card-title">  {{ $title }}</h3>
@@ -51,7 +80,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.countries')</label>
-                        <select class="form-control @error('country_id') is-invalid @enderror" name="country_id">
+                        <select class="form-control country_id @error('country_id') is-invalid @enderror" name="country_id">
                             <option> @lang('admin.choose')</option>
                             @foreach($countries as $key => $value)
                                 <option value="{{ $value->id }}">{{ $value->name }}</option>
@@ -65,11 +94,9 @@
                     </div>
                     <div class="col form-group">
                         <label>@lang('admin.cities')</label>
-                        <select class="form-control @error('city_id') is-invalid @enderror" name="city_id">
-                            <option> @lang('admin.choose')</option>
-                            @foreach($cities as $key => $value)
-                                <option value="{{ $value->id }}">{{ $value->name }}</option>
-                            @endforeach
+                        <select class="form-control city_id @error('city_id') is-invalid @enderror" name="city_id">
+
+
                         </select>
                         @error('country_id')
                             <span class="invalid-feedback" role="alert">

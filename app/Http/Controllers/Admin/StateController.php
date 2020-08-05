@@ -30,12 +30,15 @@ class StateController extends Controller
      */
     public function create()
     {
+        if(request()->ajax() && request()->has('country_id'))
+        {
+            return City::where('country_id',request()->country_id)->get();
+        }
         $countries = Country::all();
-        $cities = City::all();
+
         return view('admin.states.create',
             [
                 'countries' => $countries,
-                'cities' => $cities,
                 'title' => trans('admin.create')
             ]);
     }
