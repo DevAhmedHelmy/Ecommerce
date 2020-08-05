@@ -19,10 +19,7 @@ class PermissionTableSeeder extends Seeder
             'admin-list','admin-create','admin-edit','admin-delete','admin-multi-delete',
             'countries-list','countries-create','countries-edit','countries-delete','countries-multi-delete',
             'cities-list','cities-create','cities-edit','cities-delete','cities-multi-delete',
-<<<<<<< HEAD
-=======
             'states-list','states-create','states-edit','states-delete','states-multi-delete',
->>>>>>> 3e31dfae0ff4a4ea6dae2dcf7cf2bccd078d05ce
             'category-list','category-create','category-edit','category-delete',
             'company-list','company-create','company-edit','company-delete',
             'product-list','product-create','product-edit','product-delete',
