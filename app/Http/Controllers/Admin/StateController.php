@@ -81,11 +81,10 @@ class StateController extends Controller
     public function edit(State $state)
     {
         $countries = Country::all();
-        $cities = City::all();
-        return view('admin.cities.edit',
+        $state->load('city');
+        return view('admin.states.edit',
             [
                 'countries' => $countries,
-                'cities' => $cities,
                 'state' => $state,
                 'title' => trans('admin.update')
             ]);
