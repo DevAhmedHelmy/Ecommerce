@@ -114,7 +114,6 @@ class UsersTest extends TestCase
     public function logged_in_admin_can_delete_user()
     {
         $user = factory(User::class)->create();
-
         $this->actingAs($this->admin,'admin')
             ->delete(route('admin.users.destroy',$user->id));
         $this->assertDatabaseCount('users',0);
