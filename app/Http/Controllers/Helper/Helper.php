@@ -125,3 +125,35 @@ if(!function_exists('validate_image'))
     }
 }
 ////////////////////// validate functions ////////////////////////////
+
+if(!function_exists('categories'))
+{
+    function categories($selected = null)
+    {
+
+        $categories = App\Models\Category::all();
+        $categories_list = [];
+        foreach($categories as $category)
+        {
+            $list_array = [];
+
+            if($selected !== null && $selected == $category->id)
+            {
+                $list_array['icon'] = '';
+                $list_array['li_attr'] = '';
+                $list_array['a_attr'] = '';
+                $list_array['children'] = '';
+                $list_array['children'] = [
+                    'opened' => true,
+                    'selected' => true
+                ];
+
+            }
+            $list_array['id'] = $category->id;
+            $list_array['parent'] = $category->parent_id !== null ? '#' : $category->parent_id;
+            $list_array['text'] = $category->name;
+            array_push($categories_list, $list_array);
+        }
+        return json_encode($categories_list,JSON_UNESCAPED_UNICODE);
+    }
+}

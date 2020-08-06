@@ -182,7 +182,25 @@
                     </ul>
                 </li>
             @endcan
-
+            @can('countries-list')
+                <li class="nav-item has-treeview {{active_menu('categories')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.categories')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('categories')[1]}}">
+                    <li class="nav-item {{active_menu('categories')[2]}}">
+                        <a href="{{adminUrl('categories')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.categories')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
                 <i class="nav-icon fa fa-sign-out"></i>

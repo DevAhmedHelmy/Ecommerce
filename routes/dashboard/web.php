@@ -47,8 +47,16 @@
                     Route::delete('states/destroy/all', 'Admin\StateController@multiDelete')->name('states.deleteAll');
                     Route::resource('states','Admin\StateController');
                 // end states
+                // start states
+                    Route::delete('categories/destroy/all', 'Admin\CategoryController@multiDelete')->name('categories.deleteAll');
+                    Route::resource('categories','Admin\CategoryController');
+                // end states
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
+
+                    Route::get('test',function(){
+                        return categories();
+                    });
             });
 
         });

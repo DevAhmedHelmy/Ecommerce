@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CityRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,18 @@ class CityRequest extends FormRequest
     {
         $rules=[
 
-            'country_id'=>['required']
+            'icon'=>['nullable','max:255'],
+            'parent_id'=>['sometimes','nullable','exists:categories,id']
         ];
         foreach (config('translatable.locales') as $locale) {
 
-            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:city_translations,name']]: [$locale . '.name' => ['required', Rule::unique('city_translations', 'name')->ignore($this->city->id,'city_id')]];
+            $rules += [$locale . '.name' => ['required']];
+            $rules += [$locale . '.description' => ['sometimes','nullable']];
+            $rules += [$locale . '.keywords' => ['sometimes','nullable']];
+
 
         }
+
         return $rules;
     }
 }
