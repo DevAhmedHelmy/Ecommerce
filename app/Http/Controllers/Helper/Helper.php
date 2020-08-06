@@ -150,7 +150,7 @@ if(!function_exists('categories'))
 
             }
             $list_array['id'] = $category->id;
-            $list_array['parent'] = $category->parent_id !== null ? '#' : $category->parent_id;
+            $list_array['parent'] = $category->parent_id > 0 ?  $category->parent_id : '#' ;
             $list_array['text'] = $category->name;
             array_push($categories_list, $list_array);
         }

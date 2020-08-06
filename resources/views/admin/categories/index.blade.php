@@ -13,20 +13,34 @@
 @push('js')
     <script>
         $(document).ready(function(){
-            $('#jstree_demo_div').jstree({ 'core' : {
-                'data' : [
-                   { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },
-                   { "id" : "ajson2", "parent" : "ajson1", "text" : "Root node 2" },
-                   { "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },
-                   { "id" : "ajson4", "parent" : "ajson3", "text" : "Child 2" },
-                ]
+            $('#jstree').jstree({ 'core' : {
+                'data' : {!! categories() !!}
             },
             "checkbox" : {
                 "keep_selected_style" : true
               },
-              "plugins" : [ "wholerow", "checkbox" ]
+              "plugins" : [ "wholerow" ]
              });
+
         });
+        $('#jstree').on('changed.jstree',function(e, data){
+            var i , j, r =[];
+            for(i=0,j=data.selected.length; i < j; i++)
+            {
+            r.push(data.instance.get_node(data.selected[i]).id);
+            }
+            console.log(r);
+            $('.parent_id').val(r.join(', '));
+
+            if(r.join(', ') != '')
+            {
+                $('.showbtn_control').removeClass('d-none');
+
+                $('.edit_category').attr('href',"{{ adminUrl('categories') }}/"+r.join(', ')+'/edit');
+            }else{
+                $('.showbtn_control').addClass('d-none');
+            }
+         });
     </script>
 @endpush
 @section('content')
@@ -36,52 +50,12 @@
 
     <div class="card-header">
         <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">@lang('admin.create_category')</a>
-        <button type="button" class="btn btn-danger ml-2 delBtn" data-toggle="modal" data-target="#multiDelete">@lang('admin.deleteAll')</button>
-
     </div>
     <div class="card-body">
-        <div id="jstree_demo_div"></div>
-        {{--  <div class="table-responsive">
-
-            <table class="table">
-                <thead>
-                    <tr>
-
-
-                        <th scope="col">#</th>
-                        <th scope="col">@lang('admin.name')</th>
-                        <th scope="col">@lang('admin.currency')</th>
-                        <th scope="col">@lang('admin.iso_code')</th>
-                        <th scope="col">@lang('admin.code')</th>
-                        <th scope="col">@lang('admin.control')</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      @foreach($categories as $key => $category)
-                      <tr>
-                            <th scope="row">{{ $key+1 }}</th>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->currency }}</td>
-                            <td>{{ $category->iso_code }}</td>
-                            <td>{{ $category->code }}</td>
-                            <td>
-
-                                <a href="{{route('admin.categories.show',$category->id)}}" class="btn btn-info btn-sm"> <i class="fa fa-eye fa-sm"></i> @lang('admin.view')</a>
-                                <a href="{{route('admin.categories.edit',$category->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-edit fa-sm"></i> @lang('admin.edit')</a>
-                                <form id="delete-form-{{ $category->id }}" action="{{ route('admin.categories.destroy',$category->id) }}" method="post" style="display: inline-block">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete('delete-form-{{ $category->id }}')"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</button>
-                                </form>
-                            </td>
-                      </tr>
-                      @endforeach
-
-
-                  </tbody>
-            </table>
-            {{ $categories->links() }}
-          </div>  --}}
+        <a href="" class="btn btn-primary btn-sm edit_category showbtn_control d-none"> <i class="fa fa-edit fa-sm"></i> @lang('admin.edit')</a>
+        <a href="" class="btn btn-danger btn-sm delete_category showbtn_control d-none"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</a>
+        <div id="jstree"></div>
+        <input type="hidden" class="parent_id" name="parent_id" value="">
 
 
     </div>

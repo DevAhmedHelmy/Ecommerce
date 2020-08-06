@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
         $rules=[
 
             'icon'=>['nullable','max:255'],
-            'parent_id'=>['sometimes','nullable','exists:categories,id']
+            'parent_id'=>['sometimes','nullable']
         ];
         foreach (config('translatable.locales') as $locale) {
 
