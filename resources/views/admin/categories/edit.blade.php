@@ -54,9 +54,9 @@
 
         <div class="col-md-12">
 
-            <form action="{{ route('admin.categories.store') }}" method="post">
+            <form action="{{ route('admin.categories.update',$category->id) }}" method="post">
                 @csrf
-                <input type="hidden" class="parent_id" name="parent_id" value="{{ old('parent_id') }}">
+                <input type="hidden" class="parent_id" name="parent_id" value="{{ $category->parent_id }}">
                 <div class="d-flex justify-content-between">
                     {{--  input name  --}}
                     @foreach (config('translatable.locales') as $locale)
@@ -66,7 +66,7 @@
                             @else
                                 <label>@lang('admin.name')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.name')" class="form-control @error("{{ $locale . '.name' }}" ) is-invalid @enderror">
+                            <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ $category->translate($locale)->name }}">
                         </div>
                         @error("{{ $locale . '.name' ['requried'] }} ")
                             <span class="invalid-feedback" role="alert">
@@ -85,7 +85,8 @@
                             @else
                                 <label>@lang('admin.description')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[description]' }}" id="{{ $locale . '[description]' }}" placeholder="@lang('admin.description')" class="form-control @error("{{ $locale . '.description' }}" ) is-invalid @enderror">
+                            <input type="text" name="{{ $locale }}[description]" class="form-control" value="{{ $category->translate($locale)->description }}">
+
                         </div>
                         @error("{{ $locale . '.description' ['requried'] }} ")
                             <span class="invalid-feedback" role="alert">
@@ -104,7 +105,8 @@
                             @else
                                 <label>@lang('admin.keywords')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[keywords]' }}" id="{{ $locale . '[keywords]' }}" placeholder="@lang('admin.keywords')" class="form-control @error("{{ $locale . '.keyword' }}" ) is-invalid @enderror">
+
+                            <input type="text" name="{{ $locale }}[keywords]" class="form-control" value="{{ $category->translate($locale)->keywords }}">
                         </div>
                         @error("{{ $locale . '.keywords' ['requried'] }} ")
                             <span class="invalid-feedback" role="alert">
@@ -117,7 +119,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.icon')</label>
-                        <input type="text" name="icon"  class="form-control" id="">
+                        <input type="text" name="icon"  class="form-control" value="{{ $category->icon }}">
                     </div>
                     <div class="col form-group">
 

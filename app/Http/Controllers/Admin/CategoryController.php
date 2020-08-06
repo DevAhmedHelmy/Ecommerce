@@ -53,7 +53,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+
     }
 
     /**
@@ -64,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+
+        return view('admin.categories.edit',['category' => $category,'title' => trans('admin.update')]);
     }
 
     /**

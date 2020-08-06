@@ -128,7 +128,7 @@ if(!function_exists('validate_image'))
 
 if(!function_exists('categories'))
 {
-    function categories($selected = null)
+    function categories($selected = null, $cat_hide = null)
     {
 
         $categories = App\Models\Category::all();
@@ -136,18 +136,26 @@ if(!function_exists('categories'))
         foreach($categories as $category)
         {
             $list_array = [];
-
+            $list_array['icon'] = '';
+            $list_array['li_attr'] = '';
+            $list_array['a_attr'] = '';
+            $list_array['children'] = '';
             if($selected !== null && $selected == $category->id)
             {
-                $list_array['icon'] = '';
-                $list_array['li_attr'] = '';
-                $list_array['a_attr'] = '';
-                $list_array['children'] = '';
-                $list_array['children'] = [
+
+                $list_array['state'] = [
                     'opened' => true,
-                    'selected' => true
+                    'selected' => true,
+                    'disabled' => false,
                 ];
 
+            }elseif($cat_hide !== null && $cat_hide == $category->id){
+                $list_array['state'] = [
+                    'opened' => false,
+                    'selected' => false,
+                    'disabled' => true,
+                    'hidden' => true
+                ];
             }
             $list_array['id'] = $category->id;
             $list_array['parent'] = $category->parent_id > 0 ?  $category->parent_id : '#' ;
