@@ -10,6 +10,25 @@
         </ol>
     </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('#jstree_demo_div').jstree({ 'core' : {
+                'data' : [
+                   { "id" : "ajson1", "parent" : "#", "text" : "Simple root node" },
+                   { "id" : "ajson2", "parent" : "ajson1", "text" : "Root node 2" },
+                   { "id" : "ajson3", "parent" : "ajson2", "text" : "Child 1" },
+                   { "id" : "ajson4", "parent" : "ajson3", "text" : "Child 2" },
+                ]
+            },
+            "checkbox" : {
+                "keep_selected_style" : true
+              },
+              "plugins" : [ "wholerow", "checkbox" ]
+             });
+        });
+    </script>
+@endpush
 @section('content')
 <div class="card">
 
@@ -21,8 +40,8 @@
 
     </div>
     <div class="card-body">
-
-        <div class="table-responsive">
+        <div id="jstree_demo_div"></div>
+        {{--  <div class="table-responsive">
 
             <table class="table">
                 <thead>
@@ -62,18 +81,12 @@
                   </tbody>
             </table>
             {{ $categories->links() }}
-          </div>
+          </div>  --}}
 
 
     </div>
 
-@include('admin.layouts.confirmModal')
+
 </div>
 
-@push('js')
-
-<script>deleteAll();</script>
-
-
-@endpush
 @endsection

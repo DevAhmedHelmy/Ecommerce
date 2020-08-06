@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('adminPanal/css/daterangepicker-bs3.css')}}">
     {{-- bootstrap wysihtml5 - text editor --}}
     <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('adminPanal/jstree/themes/default/style.css') }}">
 
 
 

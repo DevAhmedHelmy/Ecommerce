@@ -28,7 +28,9 @@
 <script src="{{asset('adminPanal/js/adminlte.min.js')}}"></script>
 <script src="{{asset('adminPanal/js/custom.js')}}"></script>
 <script src="{{asset('adminPanal/js/sweetalert.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js" integrity="sha512-mgZL3SZ/vIooDg2mU2amX6NysMlthFl/jDbscSRgF/k3zmICLe6muAs7YbITZ+61FeUoo1plofYAocoR5Sa1rQ==" crossorigin="anonymous"></script>
+
+<script src="{{ asset('adminPanal/jstree/jstree.js') }}"></script>
+<script src="{{ asset('adminPanal/jstree/jstree.checkbox.js') }}"></script>
 <script>
     function confirmDelete(item_id) {
 
