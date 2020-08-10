@@ -24,13 +24,17 @@
 
         });
         $('#jstree').on('changed.jstree',function(e, data){
-            var i , j, r =[];
+            var i , j,r  =[];
+            var name = [];
             for(i=0,j=data.selected.length; i < j; i++)
             {
-            r.push(data.instance.get_node(data.selected[i]).id);
+                r.push(data.instance.get_node(data.selected[i]).id);
+                name.push(data.instance.get_node(data.selected[i]).text);
             }
-            console.log(r);
-            $('.parent_id').val(r.join(', '));
+
+            $('#delete_category').attr('href',"{{ adminUrl('categories') }}/"+r.join(', '));
+            $('.cat_name').text(name,r.join(', '));
+
 
             if(r.join(', ') != '')
             {
@@ -53,14 +57,42 @@
     </div>
     <div class="card-body">
         <a href="" class="btn btn-primary btn-sm edit_category showbtn_control d-none"> <i class="fa fa-edit fa-sm"></i> @lang('admin.edit')</a>
-        <a href="" class="btn btn-danger btn-sm delete_category showbtn_control d-none"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</a>
+        <a href="" class="btn btn-danger btn-sm delete_category showbtn_control d-none" data-toggle="modal" data-target="#delete_bootstrap_modal"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</a>
         <div id="jstree"></div>
-        <input type="hidden" class="parent_id" name="parent_id" value="">
+
 
 
     </div>
 
 
 </div>
+<div class="modal fade" id="delete_bootstrap_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">@lang('admin.delete')</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="delete_category" action="" method="POST">
+                @csrf
+                @method('delete')
+                <div class="modal-body">
+                    @lang('admin.ask_delete')  <span class="cat_name"></span>
+                </div>
+                <div class="modal-footer">
+
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('admin.cancel')</button>
+                        <button type="submit" class="btn btn-danger">@lang("admin.delete")</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
 
 @endsection

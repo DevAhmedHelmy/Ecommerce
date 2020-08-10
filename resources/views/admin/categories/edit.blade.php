@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function(){
             $('#jstree').jstree({ 'core' : {
-                'data' : {!! categories(old('parent_id')) !!}
+                'data' : {!! categories($category->parent_id,$category->id) !!}
             },
             "checkbox" : {
                 "keep_selected_style" : false
@@ -54,8 +54,9 @@
 
         <div class="col-md-12">
 
-            <form action="{{ route('admin.categories.update',$category->id) }}" method="post">
+            <form action="{{ route('admin.categories.update',$category->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <input type="hidden" class="parent_id" name="parent_id" value="{{ $category->parent_id }}">
                 <div class="d-flex justify-content-between">
                     {{--  input name  --}}
@@ -119,7 +120,10 @@
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.icon')</label>
-                        <input type="text" name="icon"  class="form-control" value="{{ $category->icon }}">
+                        <input type="file" name="icon"  class="form-control" value="">
+                        @if(!empty($category->icon) && \Storage::url($category->icon))
+                            <img src="{{ \Storage::url($category->icon) }}" alt="" style="width: 100px; height:100px">
+                        @endif
                     </div>
                     <div class="col form-group">
 

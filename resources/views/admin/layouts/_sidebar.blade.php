@@ -182,7 +182,7 @@
                     </ul>
                 </li>
             @endcan
-            @can('countries-list')
+            @can('categories-list')
                 <li class="nav-item has-treeview {{active_menu('categories')[0]}}">
                     <a href="#" class="nav-link">
                     <i class="nav-icon fa fa-flag"></i>
@@ -196,6 +196,44 @@
                         <a href="{{adminUrl('categories')}}" class="nav-link">
                         <i class="fa fa-flag nav-icon"></i>
                         <p>{{trans('admin.categories')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('tradmarks-list')
+                <li class="nav-item has-treeview {{active_menu('tradmarks')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.tradmarks')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('tradmarks')[1]}}">
+                    <li class="nav-item {{active_menu('tradmarks')[2]}}">
+                        <a href="{{adminUrl('tradmarks')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.tradmarks')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('manufacthrers-list')
+                <li class="nav-item has-treeview {{active_menu('manufacthrers')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.manufacthrers')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('manufacthrers')[1]}}">
+                    <li class="nav-item {{active_menu('manufacthrers')[2]}}">
+                        <a href="{{adminUrl('manufacthrers')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.manufacthrers')}}</p>
                         </a>
                     </li>
                     </ul>

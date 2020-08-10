@@ -31,6 +31,7 @@
 
 <script src="{{ asset('adminPanal/jstree/jstree.js') }}"></script>
 <script src="{{ asset('adminPanal/jstree/jstree.checkbox.js') }}"></script>
+
 <script>
     function confirmDelete(item_id) {
 

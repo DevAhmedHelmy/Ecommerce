@@ -51,9 +51,17 @@ Route::group(
                     Route::resource('states','Admin\StateController');
                 // end states
                 // start states
-                    Route::delete('categories/destroy/all', 'Admin\CategoryController@multiDelete')->name('categories.deleteAll');
                     Route::resource('categories','Admin\CategoryController');
                 // end states
+                // start tradmarks
+                    Route::delete('tradmarks/destroy/all', 'Admin\TradmarkController@multiDelete')->name('tradmarks.deleteAll');
+                    Route::resource('tradmarks','Admin\TradmarkController');
+                // end tradmarks
+
+                // start manufacthrers
+                    Route::delete('manufacthrers/destroy/all', 'Admin\ManufacthrerController@multiDelete')->name('manufacthrers.deleteAll');
+                    Route::resource('manufacthrers','Admin\ManufacthrerController');
+                // end manufacthrers
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
 

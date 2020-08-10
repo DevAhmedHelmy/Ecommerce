@@ -40,6 +40,14 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request->validated();
+        if (request()->hasFile('icon')) {
+			$data['icon'] = up()->uploadFile([
+                'file'        => 'logo',
+                'path'        => 'categories',
+                'upload_type' => 'single',
+                'delete_file' => '',
+            ]);
+		}
         Category::create($data);
 		session()->flash('success', trans('admin.added_successfully'));
 		return redirect(route('admin.categories.index'));
@@ -78,6 +86,14 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $data = $request->validated();
+        if (request()->hasFile('icon')) {
+			$data['icon'] = up()->uploadFile([
+                'file'        => 'icon',
+                'path'        => 'categories',
+                'upload_type' => 'single',
+                'delete_file' => $country->icon,
+            ]);
+		}
         $category->update($data);
 		session()->flash('success', trans('admin.updated_successfully'));
 		return redirect(route('admin.categories.index'));
@@ -91,6 +107,21 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        self::delete_parent($category->id);
+        session()->flash('success', trans('admin.deleted_successfully'));
+		return redirect(route('admin.categories.index'));
+    }
+    public static function delete_parent($id)
+    {
+        $categories = Category::where('parent_id',$id)->get();
+        foreach($categories as $sub)
+        {
+            self::delete_parent($sub->id);
+            \Storage::has($sub->icon) && !empty($sub->icon) ? \Storage::delete($sub->icon) : '';
+            Category::findOrfail($sub->id)->delete();
+        }
+        $main_cat = Category::findOrfail($id);
+        \Storage::has($main_cat->icon) && !empty($main_cat->icon) ? \Storage::delete($main_cat->icon) : '';
+        $main_cat->delete();
     }
 }

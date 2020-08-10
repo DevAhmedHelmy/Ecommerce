@@ -131,6 +131,7 @@ if(!function_exists('categories'))
     function categories($selected = null, $cat_hide = null)
     {
 
+
         $categories = App\Models\Category::all();
         $categories_list = [];
         foreach($categories as $category)
@@ -150,6 +151,7 @@ if(!function_exists('categories'))
                 ];
 
             }elseif($cat_hide !== null && $cat_hide == $category->id){
+
                 $list_array['state'] = [
                     'opened' => false,
                     'selected' => false,
@@ -162,6 +164,7 @@ if(!function_exists('categories'))
             $list_array['text'] = $category->name;
             array_push($categories_list, $list_array);
         }
+
         return json_encode($categories_list,JSON_UNESCAPED_UNICODE);
     }
 }

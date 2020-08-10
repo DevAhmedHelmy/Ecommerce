@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-class StateRequest extends FormRequest
+class TradmarkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,13 @@ class StateRequest extends FormRequest
     public function rules()
     {
         $rules=[
-
-            'country_id'=>['required','exists:countries,id'],
-            'city_id'=>['required','exists:cities,id']
+            'logo' => validate_image()
         ];
         foreach (config('translatable.locales') as $locale) {
 
-            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:state_translations,name']]: [$locale . '.name' => ['required', Rule::unique('state_translations', 'name')->ignore($this->state->id,'state_id')]];
+            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:tradmark_translations,name']]: [$locale . '.name' => ['required', Rule::unique('tradmark_translations', 'name')->ignore($this->tradmark->id,'tradmark_id')]];
 
         }
-
         return $rules;
     }
 }

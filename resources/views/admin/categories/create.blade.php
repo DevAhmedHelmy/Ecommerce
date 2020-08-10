@@ -54,7 +54,7 @@
 
         <div class="col-md-12">
 
-            <form action="{{ route('admin.categories.store') }}" method="post">
+            <form action="{{ route('admin.categories.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" class="parent_id" name="parent_id" value="{{ old('parent_id') }}">
                 <div class="d-flex justify-content-between">
@@ -117,7 +117,7 @@
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.icon')</label>
-                        <input type="text" name="icon"  class="form-control" id="">
+                        <input type="file" name="icon"  class="form-control" id="">
                     </div>
                     <div class="col form-group">
 

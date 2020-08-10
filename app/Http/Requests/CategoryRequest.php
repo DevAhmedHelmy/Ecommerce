@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     {
         $rules=[
 
-            'icon'=>['nullable','max:255'],
+            'logo' => validate_image(),
             'parent_id'=>['sometimes','nullable']
         ];
         foreach (config('translatable.locales') as $locale) {
