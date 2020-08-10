@@ -12,6 +12,33 @@
             </ol>
           </div><!-- /.col -->
 @endsection
+@push('js')
+@php
+       $latitude = !empty($manufacthrer->latitude)? $manufacthrer->latitude : '27.140114909636054';
+       $longitude = !empty($manufacthrer->longitude)? $manufacthrer->longitude : '29.471013069152864';
+
+@endphp
+    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDUWP2b1y4vXGJwjjt4W9QI-FZhZV8PMjI'></script>
+    {{--  <script src="{{asset('adminPanal/js/google_map.js')}}"></script>  --}}
+    <script src="{{asset('adminPanal/js/locationpicker.jquery.js')}}"></script>
+    <script>
+        $('#us1').locationpicker({
+            location: {
+                latitude: {{ $latitude }},
+                longitude: {{ $longitude }}
+            },
+            radius: 300,
+            markerIcon: "{{asset('adminPanal/uploads/map-marker-2-xl.png')}}",
+            inputBinding: {
+                latitudeInput: $('#latitude'),
+                longitudeInput: $('#longitude'),
+                //radiusInput: $('#us2-radius'),
+                locationNameInput: $('#address')
+            }
+
+        });
+    </script>
+@endpush
 @section('content')
 <div class="card border-dark mb-3">
     <div class="card-header">
@@ -24,6 +51,8 @@
                 <form action="{{ route('admin.manufacthrers.update',$manufacthrer->id) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @csrf
+                <input type="hidden" value="{{ $latitude }}" id="latitude" name="latitude">
+                <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">
             <div class="d-flex justify-content-between">
                 {{--  input name  --}}
                 @foreach (config('translatable.locales') as $locale)
@@ -77,10 +106,14 @@
                         <input type="file" name="logo" class="form-control logo">
                 </div>
                 <div class="col form-group">
+                    <label>@lang('admin.address')</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ $manufacthrer->address }}">
                 </div>
 
             </div>
-
+            <div class="d-flex justify-content-between">
+                <div id="us1" style="width: 500px; height: 400px;"></div>
+            </div>
             <div class="col-12 text-center">
                 <div class="mt-4 d-flex justify-content-between">
                     <div class="col form-group">

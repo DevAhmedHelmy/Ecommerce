@@ -31,8 +31,8 @@ class ManufacthrerRequest extends FormRequest
             'phone' => ['required'],
             'email' => ['required'],
             'latitude' => ['sometimes','nullable'],
-            'longitude' => ['sometimes','nullable']
-
+            'longitude' => ['sometimes','nullable'],
+            'adddress' => ['sometimes','nullable']
 
         ];
         foreach (config('translatable.locales') as $locale) {

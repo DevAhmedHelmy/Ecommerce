@@ -13,22 +13,27 @@
           </div><!-- /.col -->
 @endsection
 @push('js')
-    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyCSEEbbmZ5zuK_soJqFHA3mIlIwu6-NieE'></script>
+@php
+       $latitude = !empty(old('latitude'))? old('latitude') : '27.140114909636054';
+       $longitude = !empty(old('longitude'))? old('longitude') : '29.471013069152864';
+
+@endphp
+    <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDUWP2b1y4vXGJwjjt4W9QI-FZhZV8PMjI'></script>
     {{--  <script src="{{asset('adminPanal/js/google_map.js')}}"></script>  --}}
     <script src="{{asset('adminPanal/js/locationpicker.jquery.js')}}"></script>
     <script>
         $('#us1').locationpicker({
             location: {
-                latitude: 46.15242437752303,
-                longitude: 2.7470703125
+                latitude: {{ $latitude }},
+                longitude: {{ $longitude }}
             },
             radius: 300,
-            markerIcon: 'http://www.iconsdb.com/icons/preview/tropical-blue/map-marker-2-xl.png',
+            markerIcon: "{{asset('adminPanal/uploads/map-marker-2-xl.png')}}",
             inputBinding: {
                 latitudeInput: $('#latitude'),
                 longitudeInput: $('#longitude'),
                 //radiusInput: $('#us2-radius'),
-                //locationNameInput: $('#us2-address')
+                locationNameInput: $('#address')
             }
 
         });
@@ -43,6 +48,8 @@
         <div class="col-md-12">
             <form action="{{ route('admin.manufacthrers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" value="{{ $latitude }}" id="latitude" name="latitude">
+                <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">
                 <div class="d-flex justify-content-between">
                     {{--  input name  --}}
                     @foreach (config('translatable.locales') as $locale)
@@ -102,6 +109,8 @@
 
             </div>
             <div class="col form-group">
+                <label>@lang('admin.address')</label>
+                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
             </div>
         </div>
         <div class="d-flex justify-content-between">

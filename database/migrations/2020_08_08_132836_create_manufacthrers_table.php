@@ -18,11 +18,11 @@ class CreateManufacthrersTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('facebook')->nullable();
-
             $table->string('twitter')->nullable();
             $table->string('website')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('address')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
         });
