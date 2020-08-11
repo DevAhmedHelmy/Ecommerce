@@ -100,14 +100,37 @@
 
             </div>
             <div class="d-flex justify-content-between">
+                <div class="col form-group">
+                    <label>@lang('admin.facebook')</label>
+                    <input type="text" name="facebook" class="form-control" value="{{ $manufacthrer->facebook }}">
+                </div>
+                <div class="col form-group">
+                    <label>@lang('admin.twitter')</label>
+                    <input type="text" name="twitter" class="form-control" value="{{ $manufacthrer->twitter }}">
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="col form-group">
+                    <label>@lang('admin.website')</label>
+                    <input type="text" name="website" class="form-control" value="{{ $manufacthrer->website }}">
+                </div>
+                <div class="col form-group">
+                    <label>@lang('admin.address')</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ $manufacthrer->address }}">
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-between">
 
                 <div class="col form-group">
                     <label>@lang('admin.logo')</label>
                         <input type="file" name="logo" class="form-control logo">
                 </div>
                 <div class="col form-group">
-                    <label>@lang('admin.address')</label>
-                    <input type="text" class="form-control" id="address" name="address" value="{{ $manufacthrer->address }}">
+
                 </div>
 
             </div>

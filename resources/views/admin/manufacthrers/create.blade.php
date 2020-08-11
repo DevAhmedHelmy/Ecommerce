@@ -100,6 +100,30 @@
                     </div>
 
                 </div>
+                <div class="d-flex justify-content-between">
+                    <div class="col form-group">
+                        <label>@lang('admin.facebook')</label>
+                        <input type="text" name="facebook" class="form-control">
+
+                    </div>
+                    <div class="col form-group">
+                        <label>@lang('admin.twitter')</label>
+                        <input type="text" name="twitter" class="form-control">
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="col form-group">
+                        <label>@lang('admin.website')</label>
+                        <input type="text" name="website" class="form-control">
+
+                    </div>
+                    <div class="col form-group">
+                        <label>@lang('admin.address')</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+                    </div>
+
+                </div>
         <div class="d-flex justify-content-between">
 
 
@@ -109,8 +133,7 @@
 
             </div>
             <div class="col form-group">
-                <label>@lang('admin.address')</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+
             </div>
         </div>
         <div class="d-flex justify-content-between">

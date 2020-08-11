@@ -70,33 +70,45 @@
 
                 </div>
                 <div class="d-flex justify-content-between">
-                    {{--  input name  --}}
-                    @foreach (config('translatable.locales') as $locale)
-                        <div class="col form-group">
-                            @if(count(config('translatable.locales'))>1)
-                                <label>@lang('admin.' . $locale . '.contact_name')</label>
-                            @else
-                                <label>@lang('admin.contact_name')</label>
-                            @endif
-                            <input type="text" name="{{ $locale.'[contact_name]' }}" id="{{ $locale . '[contact_name]' }}" placeholder="@lang('admin.contact_name')" class="form-control @error("{{ $locale . '.contact_name' }}" ) is-invalid @enderror">
-                        </div>
-                        @error("{{ $locale . '.contact_name' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    @endforeach
-
-                </div>
-                <div class="d-flex justify-content-between">
+                    <div class="col form-group">
+                        <label>@lang('admin.users')</label>
+                        <select class="form-control" name="user_id" id="user_id">
+                            <option value="" disabled>@lang('admin.choose')</option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col form-group">
                         <label>@lang('admin.email')</label>
                         <input type="email" name="email" class="form-control">
 
                     </div>
+
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="col form-group">
+                        <label>@lang('admin.facebook')</label>
+                        <input type="text" name="facebook" class="form-control">
+
+                    </div>
+                    <div class="col form-group">
+                        <label>@lang('admin.website')</label>
+                        <input type="text" name="website" class="form-control">
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-between">
+
                     <div class="col form-group">
                         <label>@lang('admin.phone')</label>
                         <input type="text" name="phone" class="form-control">
+                    </div>
+                    <div class="col form-group">
+                        <label>@lang('admin.address')</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+
                     </div>
 
                 </div>
@@ -109,8 +121,7 @@
 
             </div>
             <div class="col form-group">
-                <label>@lang('admin.address')</label>
-                <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+
             </div>
         </div>
         <div class="d-flex justify-content-between">

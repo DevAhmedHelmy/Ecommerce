@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +30,7 @@ class ShippingController extends Controller
     public function create()
     {
         $users = User::where('level','company')->get();
-        return view('admin.manufacthrers.create',['users'=>$users,'title' => trans('admin.create')]);
+        return view('admin.shippings.create',['users'=>$users,'title' => trans('admin.create')]);
     }
 
     /**
