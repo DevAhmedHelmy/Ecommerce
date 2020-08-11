@@ -23,7 +23,7 @@ class PermissionTableSeeder extends Seeder
             'categories-list','categories-create','categories-edit','categories-delete',
             'tradmarks-list','tradmarks-create','tradmarks-edit','tradmarks-delete',
             'manufacthrers-list','manufacthrers-create','manufacthrers-edit','manufacthrers-delete',
-
+            'shippings-list','shippings-create','shippings-edit','shippings-delete',
             'product-list','product-create','product-edit','product-delete',
             'client-list','client-create','client-edit','client-delete',
 

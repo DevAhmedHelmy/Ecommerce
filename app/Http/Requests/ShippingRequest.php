@@ -26,13 +26,13 @@ class ShippingRequest extends FormRequest
         $rules=[
             'logo' => validate_image(),
             'facebook' => ['sometimes','nullable','url'],
-            'twitter' => ['sometimes','nullable','url'],
             'website' => ['sometimes','nullable','url'],
             'phone' => ['sometimes','nullable'],
             'email' => ['sometimes','nullable'],
             'latitude' => ['sometimes','nullable'],
             'longitude' => ['sometimes','nullable'],
-            'adddress' => ['sometimes','nullable']
+            'adddress' => ['sometimes','nullable'],
+            'user_id'=>['required','exists:users,id'],
 
         ];
         foreach (config('translatable.locales') as $locale) {

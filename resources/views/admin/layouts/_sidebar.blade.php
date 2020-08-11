@@ -239,6 +239,25 @@
                     </ul>
                 </li>
             @endcan
+            @can('shippings-list')
+                <li class="nav-item has-treeview {{active_menu('shippings')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.shippings')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('shippings')[1]}}">
+                    <li class="nav-item {{active_menu('shippings')[2]}}">
+                        <a href="{{adminUrl('shippings')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.shippings')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
                 <i class="nav-icon fa fa-sign-out"></i>

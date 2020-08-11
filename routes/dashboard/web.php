@@ -62,6 +62,10 @@ Route::group(
                     Route::delete('manufacthrers/destroy/all', 'Admin\ManufacthrerController@multiDelete')->name('manufacthrers.deleteAll');
                     Route::resource('manufacthrers','Admin\ManufacthrerController');
                 // end manufacthrers
+                // start manufacthrers
+                    Route::delete('shippings/destroy/all', 'Admin\ShippingController@multiDelete')->name('shippings.deleteAll');
+                    Route::resource('shippings','Admin\ShippingController');
+                // end manufacthrers
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
 

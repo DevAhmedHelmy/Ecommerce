@@ -18,12 +18,13 @@ class CreateShippingsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
             $table->string('website')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('address')->nullable();
             $table->string('logo')->nullable();
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
