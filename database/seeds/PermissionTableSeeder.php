@@ -24,6 +24,9 @@ class PermissionTableSeeder extends Seeder
             'tradmarks-list','tradmarks-create','tradmarks-edit','tradmarks-delete',
             'manufacthrers-list','manufacthrers-create','manufacthrers-edit','manufacthrers-delete',
             'shippings-list','shippings-create','shippings-edit','shippings-delete',
+            'malls-list','malls-create','malls-edit','malls-delete',
+            'colors-list','colors-create','colors-edit','colors-delete',
+            'sizes-list','sizes-create','sizes-edit','sizes-delete',
             'product-list','product-create','product-edit','product-delete',
             'client-list','client-create','client-edit','client-delete',
 

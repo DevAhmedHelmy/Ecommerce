@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-class ShippingRequest extends FormRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class MallRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +27,18 @@ class ShippingRequest extends FormRequest
         $rules=[
             'logo' => validate_image(),
             'facebook' => ['sometimes','nullable','url'],
+            'twitter' => ['sometimes','nullable','url'],
             'website' => ['sometimes','nullable','url'],
             'phone' => ['required'],
-            'email' => ['sometimes','nullable'],
+            'email' => ['required'],
             'latitude' => ['sometimes','nullable'],
             'longitude' => ['sometimes','nullable'],
-            'adddress' => ['sometimes','nullable'],
-            'user_id'=>['required','exists:users,id'],
+            'adddress' => ['sometimes','nullable']
 
         ];
         foreach (config('translatable.locales') as $locale) {
 
-            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:shipping_translations,name']]: [$locale . '.name' => ['required', Rule::unique('shipping_translations', 'name')->ignore($this->shipping->id,'shipping_id')]];
+            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:mall_translations,name']]: [$locale . '.name' => ['required', Rule::unique('mall_translations', 'name')->ignore($this->mall->id,'mall_id')]];
 
 
         }

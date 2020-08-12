@@ -62,10 +62,22 @@ Route::group(
                     Route::delete('manufacthrers/destroy/all', 'Admin\ManufacthrerController@multiDelete')->name('manufacthrers.deleteAll');
                     Route::resource('manufacthrers','Admin\ManufacthrerController');
                 // end manufacthrers
-                // start manufacthrers
+                // start shippings
                     Route::delete('shippings/destroy/all', 'Admin\ShippingController@multiDelete')->name('shippings.deleteAll');
                     Route::resource('shippings','Admin\ShippingController');
-                // end manufacthrers
+                // end shippings
+                // start malls
+                    Route::delete('malls/destroy/all', 'Admin\MallController@multiDelete')->name('malls.deleteAll');
+                    Route::resource('malls','Admin\MallController');
+                // end malls
+                // start colors
+                    Route::delete('colors/destroy/all', 'Admin\ColorController@multiDelete')->name('colors.deleteAll');
+                    Route::resource('colors','Admin\ColorController');
+                // end colors
+                // start sizes
+                    Route::delete('sizes/destroy/all', 'Admin\SizeController@multiDelete')->name('sizes.deleteAll');
+                    Route::resource('sizes','Admin\SizeController');
+                // end sizes
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
 

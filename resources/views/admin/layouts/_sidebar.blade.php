@@ -258,6 +258,63 @@
                     </ul>
                 </li>
             @endcan
+            @can('malls-list')
+                <li class="nav-item has-treeview {{active_menu('malls')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.malls')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('malls')[1]}}">
+                    <li class="nav-item {{active_menu('malls')[2]}}">
+                        <a href="{{adminUrl('malls')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.malls')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('colors-list')
+                <li class="nav-item has-treeview {{active_menu('colors')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.colors')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('colors')[1]}}">
+                    <li class="nav-item {{active_menu('colors')[2]}}">
+                        <a href="{{adminUrl('colors')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.colors')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('sizes-list')
+                <li class="nav-item has-treeview {{active_menu('sizes')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.sizes')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('sizes')[1]}}">
+                    <li class="nav-item {{active_menu('sizes')[2]}}">
+                        <a href="{{adminUrl('sizes')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.sizes')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
                 <i class="nav-icon fa fa-sign-out"></i>

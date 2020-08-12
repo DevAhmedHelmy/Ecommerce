@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
 @section('header')
     <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{trans('admin.shippings')}}</h1>
+            <h1 class="m-0 text-dark">{{trans('admin.malls')}}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{route('admin.shippings.index')}}">{{trans('admin.shippings')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.malls.index')}}">{{trans('admin.malls')}}</a></li>
 
                 <li class="breadcrumb-item active">{{trans('admin.update')}}</li>
 
@@ -14,8 +14,8 @@
 @endsection
 @push('js')
 @php
-       $latitude = !empty($shipping->latitude)? $shipping->latitude : '27.140114909636054';
-       $longitude = !empty($shipping->longitude)? $shipping->longitude : '29.471013069152864';
+       $latitude = !empty($mall->latitude)? $mall->latitude : '27.140114909636054';
+       $longitude = !empty($mall->longitude)? $mall->longitude : '29.471013069152864';
 
 @endphp
     <script type="text/javascript" src='https://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyDUWP2b1y4vXGJwjjt4W9QI-FZhZV8PMjI'></script>
@@ -48,7 +48,7 @@
     <div class="card-body text-secondary">
 
         <div class="col-md-12">
-                <form action="{{ route('admin.shippings.update',$shipping->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.malls.update',$mall->id) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                 <input type="hidden" value="{{ $latitude }}" id="latitude" name="latitude">
@@ -64,37 +64,45 @@
                             <label>@lang('admin.name')</label>
 
                         @endif
-                        <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ $shipping->translate($locale)->name }}">
+                        <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ $mall->translate($locale)->name }}">
 
                     </div>
                 @endforeach
 
             </div>
-            <div class="d-flex justify-content-between">
-                {{--  input name  --}}
-                @foreach (config('translatable.locales') as $locale)
-                    <div class="col form-group">
-                        @if(count(config('translatable.locales'))>1)
-                            <label>@lang('admin.' . $locale . '.contact_name')</label>
 
-                        @else
-                            <label>@lang('admin.contact_name')</label>
-
-                        @endif
-                        <input type="text" name="{{ $locale }}[contact_name]" class="form-control" value="{{ $shipping->translate($locale)->contact_name }}">
-
-                    </div>
-                @endforeach
-
-            </div>
             <div class="d-flex justify-content-between">
                 <div class="col form-group">
                     <label>@lang('admin.email')</label>
-                    <input type="text" name="email" class="form-control" value="{{ $shipping->email }}">
+                    <input type="text" name="email" class="form-control" value="{{ $mall->email }}">
                 </div>
                 <div class="col form-group">
                     <label>@lang('admin.phone')</label>
-                    <input type="text" name="phone" class="form-control" value="{{ $shipping->phone }}">
+                    <input type="text" name="phone" class="form-control" value="{{ $mall->phone }}">
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="col form-group">
+                    <label>@lang('admin.facebook')</label>
+                    <input type="text" name="facebook" class="form-control" value="{{ $mall->facebook }}">
+                </div>
+                <div class="col form-group">
+                    <label>@lang('admin.twitter')</label>
+                    <input type="text" name="twitter" class="form-control" value="{{ $mall->twitter }}">
+                </div>
+
+
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="col form-group">
+                    <label>@lang('admin.website')</label>
+                    <input type="text" name="website" class="form-control" value="{{ $mall->website }}">
+                </div>
+                <div class="col form-group">
+                    <label>@lang('admin.address')</label>
+                    <input type="text" class="form-control" id="address" name="address" value="{{ $mall->address }}">
                 </div>
 
 
@@ -106,8 +114,7 @@
                         <input type="file" name="logo" class="form-control logo">
                 </div>
                 <div class="col form-group">
-                    <label>@lang('admin.address')</label>
-                    <input type="text" class="form-control" id="address" name="address" value="{{ $shipping->address }}">
+
                 </div>
 
             </div>

@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
 @section('header')
     <div class="col-sm-6">
-            <h1 class="m-0 text-dark">{{trans('admin.shippings')}}</h1>
+            <h1 class="m-0 text-dark">{{trans('admin.malls')}}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.shippings.index')}}">{{trans('admin.shippings')}}</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.malls.index')}}">{{trans('admin.malls')}}</a></li>
 
                 <li class="breadcrumb-item active">{{trans('admin.create')}}</li>
 
@@ -46,7 +46,7 @@
     </div>
     <div class="card-body text-secondary">
         <div class="col-md-12">
-            <form action="{{ route('admin.shippings.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.malls.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="{{ $latitude }}" id="latitude" name="latitude">
                 <input type="hidden" value="{{ $longitude }}" id="longitude" name="longitude">
@@ -69,22 +69,17 @@
                     @endforeach
 
                 </div>
+
                 <div class="d-flex justify-content-between">
-                    <div class="col form-group">
-                        <label>@lang('admin.users')</label>
-                        <select class="form-control" name="user_id" id="user_id">
-                            <option value="" disabled>@lang('admin.choose')</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     <div class="col form-group">
                         <label>@lang('admin.email')</label>
                         <input type="email" name="email" class="form-control">
 
                     </div>
-
+                    <div class="col form-group">
+                        <label>@lang('admin.phone')</label>
+                        <input type="text" name="phone" class="form-control">
+                    </div>
 
                 </div>
                 <div class="d-flex justify-content-between">
@@ -94,21 +89,20 @@
 
                     </div>
                     <div class="col form-group">
-                        <label>@lang('admin.website')</label>
-                        <input type="text" name="website" class="form-control">
+                        <label>@lang('admin.twitter')</label>
+                        <input type="text" name="twitter" class="form-control">
                     </div>
 
                 </div>
                 <div class="d-flex justify-content-between">
-
                     <div class="col form-group">
-                        <label>@lang('admin.phone')</label>
-                        <input type="text" name="phone" class="form-control">
+                        <label>@lang('admin.website')</label>
+                        <input type="text" name="website" class="form-control">
+
                     </div>
                     <div class="col form-group">
                         <label>@lang('admin.address')</label>
                         <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
-
                     </div>
 
                 </div>

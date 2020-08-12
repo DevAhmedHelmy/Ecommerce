@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class ShippingTranslation extends Model
+
+
+class MallTranslation extends Model
 {
     public $timestamps = false;
 }

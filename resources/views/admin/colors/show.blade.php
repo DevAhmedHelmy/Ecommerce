@@ -1,11 +1,11 @@
 @extends('admin.layouts.master')
 @section('header')
     <div class="col-sm-6">
-        <h3 class="m-0 text-dark">{{ trans('admin.shippings') }}</h3>
+        <h3 class="m-0 text-dark">{{ trans('admin.colors') }}</h3>
     </div>
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('admin.shippings.index')}}">@lang('admin.shippings')</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.colors.index')}}">@lang('admin.colors')</a></li>
             <li class="breadcrumb-item active">{!! $title  !!}</li>
         </ol>
     </div>
@@ -25,7 +25,7 @@
             <div class="col-sm-4 border-right">
                 <div class="description-block">
                 <h5 class="description-header">@lang('admin.name')</h5>
-                <span class="description-text"> {{ $shipping->name }} </span>
+                <span class="description-text"> {{ $color->name }} </span>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@
             <div class="col-sm-4 border-right">
                 <div class="description-block">
                 <h5 class="description-header">@lang('admin.created_at')</h5>
-                <span class="description-text"> {{ $shipping->created_at->format('Y/m/d') }} </span>
+                <span class="description-text"> {{ $color->created_at->format('Y/m/d') }} </span>
                 </div>
             </div>
 

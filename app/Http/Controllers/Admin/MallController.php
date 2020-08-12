@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Shipping;
+use App\Models\Mall;
 use Illuminate\Http\Request;
+use App\Http\Requests\MallRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ShippingRequest;
 use Illuminate\Support\Facades\Storage;
-class ShippingController extends Controller
+class MallController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        $shippings = Shipping::paginate(10);
+        $malls = Mall::paginate(10);
 
-        return view('admin.shippings.index',['shippings'=>$shippings,'title' => trans('admin.tradmark_Control')]);
+        return view('admin.malls.index',['malls'=>$malls,'title' => trans('admin.tradmark_Control')]);
     }
 
     /**
@@ -29,95 +28,95 @@ class ShippingController extends Controller
      */
     public function create()
     {
-        $users = User::where('level','company')->get();
-        return view('admin.shippings.create',['users'=>$users,'title' => trans('admin.create')]);
+        return view('admin.malls.create',['title' => trans('admin.create')]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\ShippingRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ShippingRequest $request)
+    public function store(MallRequest $request)
     {
         $data = $request->validated();
 
         if (request()->hasFile('logo')) {
 			$data['logo'] = up()->uploadFile([
                 'file'        => 'logo',
-                'path'        => 'shippings',
+                'path'        => 'malls',
                 'upload_type' => 'single',
                 'delete_file' => '',
             ]);
 		}
 
-        Shipping::create($data);
+        Mall::create($data);
 		session()->flash('success', trans('admin.added_successfully'));
-		return redirect(adminUrl('shippings'));
+		return redirect(adminUrl('malls'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shipping  $shipping
+     * @param  \App\Models\Mall  $mall
      * @return \Illuminate\Http\Response
      */
-    public function show(Shipping $shipping)
+    public function show(Mall $mall)
     {
-        return view('admin.shippings.show',['title' => trans('admin.show'), 'shipping' => $shipping]);
+        return view('admin.malls.show',['title' => trans('admin.show'), 'mall' => $mall]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shipping  $shipping
+     * @param  \App\Models\Mall  $mall
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shipping $shipping)
+    public function edit(Mall $mall)
     {
-        return view('admin.shippings.edit',['shipping' => $shipping ,'title' => trans('admin.edit')]);
+        return view('admin.malls.edit',['mall' => $mall ,'title' => trans('admin.edit')]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shipping  $shipping
+     * @param  \App\Models\Mall  $mall
      * @return \Illuminate\Http\Response
      */
-    public function update(ShippingRequest $request, Shipping $shipping)
+    public function update(MallRequest $request, Mall $mall)
     {
         $data = $request->validated();
 
         if (request()->hasFile('logo')) {
 			$data['logo'] = up()->uploadFile([
                 'file'        => 'logo',
-                'path'        => 'shippings',
+                'path'        => 'malls',
                 'upload_type' => 'single',
-                'delete_file' => '',
+                'delete_file' => $mall->logo,
             ]);
 		}
 
-        $shipping->update($data);
+        $mall->update($data);
 		session()->flash('success', trans('admin.updated_successfully'));
-		return redirect(adminUrl('shippings'));
+		return redirect(route('admin.malls.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shipping  $shipping
+     * @param  \App\Models\Mall  $mall
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shipping $shipping)
+    public function destroy(Mall $mall)
     {
-        ($shipping->logo) ? \Storage::delete($shipping->logo) : '';
+        ($mall->logo) ? Storage::delete($mall->logo) : '';
 
-        $shipping->delete();
+        $mall->delete();
         session()->flash('success', trans('admin.deleted_successfully'));
-        return redirect(route('admin.shippings.index'));
+        return redirect(route('admin.malls.index'));
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -129,18 +128,18 @@ class ShippingController extends Controller
     {
        if(is_array(request()->item)){
            foreach (request()->item as $id) {
-               $shipping = Shipping::findOrfail($id);
-               Storage::delete($shipping->logo);
-               $shipping->delete();
+               $mall = Mall::findOrfail($id);
+               Storage::delete($mall->logo);
+               $mall->delete();
            }
 
        }else{
-               $shipping = Shipping::findOrfail(request('item'));
-               Storage::delete($shipping->logo);
-               $shipping->delete();
+               $mall = Mall::findOrfail(request('item'));
+               Storage::delete($mall->logo);
+               $mall->delete();
        }
 
        session()->flash('success', trans('admin.deleted_successfully'));
-       return redirect(route('admin.shippings.index'));
+       return redirect(route('admin.malls.index'));
     }
 }
