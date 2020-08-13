@@ -315,6 +315,44 @@
                     </ul>
                 </li>
             @endcan
+            @can('weights-list')
+                <li class="nav-item has-treeview {{active_menu('weights')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.weights')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('weights')[1]}}">
+                    <li class="nav-item {{active_menu('weights')[2]}}">
+                        <a href="{{adminUrl('weights')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.weights')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
+            @can('products-list')
+                <li class="nav-item has-treeview {{active_menu('products')[0]}}">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-flag"></i>
+                    <p>
+                        {{trans('admin.products')}}
+                        <i class="right fa fa-angle-left"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview {{active_menu('products')[1]}}">
+                    <li class="nav-item {{active_menu('products')[2]}}">
+                        <a href="{{adminUrl('products')}}" class="nav-link">
+                        <i class="fa fa-flag nav-icon"></i>
+                        <p>{{trans('admin.products')}}</p>
+                        </a>
+                    </li>
+                    </ul>
+                </li>
+            @endcan
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
                 <i class="nav-icon fa fa-sign-out"></i>

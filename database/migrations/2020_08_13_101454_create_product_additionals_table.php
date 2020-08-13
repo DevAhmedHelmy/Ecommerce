@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSizeTranslationsTable extends Migration
+class CreateProductAdditionalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSizeTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('size_translations', function (Blueprint $table) {
+        Schema::create('product_additionals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('size_id');
-            $table->string('locale')->index();
             $table->string('name');
-            $table->unique(['size_id','locale']);
-            $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
+            $table->text('value');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ class CreateSizeTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('size_translations');
+        Schema::dropIfExists('product_additionals');
     }
 }

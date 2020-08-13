@@ -18,6 +18,7 @@ class CreateCountriesTable extends Migration
             $table->string('currency');
             $table->string('iso_code');
             $table->string('code');
+
             $table->string('logo')->nullable();
             $table->timestamps();
         });

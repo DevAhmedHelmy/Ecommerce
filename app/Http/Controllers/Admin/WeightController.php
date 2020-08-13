@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Color;
+use App\Models\Weight;
 use Illuminate\Http\Request;
-use App\Http\Requests\ColorRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\WeightRequest;
 
-class ColorController extends Controller
+class WeightController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::paginate(10);
+        $weights = Weight::paginate(10);
 
-        return view('admin.colors.index',['colors'=>$colors,'title' => trans('admin.color_Control')]);
+        return view('admin.weights.index',['weights'=>$weights,'title' => trans('admin.weights_Control')]);
     }
 
     /**
@@ -29,7 +28,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return view('admin.colors.create',['title' => trans('admin.create')]);
+        return view('admin.weights.create',['title' => trans('admin.create')]);
     }
 
     /**
@@ -38,63 +37,63 @@ class ColorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ColorRequest $request)
+    public function store(WeightRequest $request)
     {
         $data = $request->validated();
 
-        Color::create($data);
+        Weight::create($data);
 		session()->flash('success', trans('admin.added_successfully'));
-		return redirect(adminUrl('colors'));
+		return redirect(adminUrl('weights'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Color  $color
+     * @param  \App\Models\Weight  $weight
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Weight $weight)
     {
-        return view('admin.colors.show',['title' => trans('admin.show'), 'color' => $color]);
+        return view('admin.weights.show',['title' => trans('admin.show'), 'weight' => $weight]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Color  $color
+     * @param  \App\Models\Weight  $weight
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit(Weight $weight)
     {
-        return view('admin.colors.edit',['color' => $color ,'title' => trans('admin.edit')]);
+        return view('admin.weights.edit',['weight' => $weight ,'title' => trans('admin.edit')]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Color  $color
+     * @param  \App\Models\Weight  $weight
      * @return \Illuminate\Http\Response
      */
-    public function update(ColorRequest $request, Color $color)
+    public function update(WeightRequest $request, Weight $weight)
     {
         $data = $request->validated();
-        $color->update($data);
+        $weight->update($data);
 		session()->flash('success', trans('admin.updated_successfully'));
-		return redirect(route('admin.colors.index'));
+		return redirect(route('admin.weights.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Color  $color
+     * @param  \App\Models\Weight  $weight
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Weight $weight)
     {
-        $color->delete();
+        $weight->delete();
         session()->flash('success', trans('admin.deleted_successfully'));
-        return redirect(route('admin.colors.index'));
+        return redirect(route('admin.weights.index'));
     }
     /**
      * Remove the specified resource from storage.
@@ -107,18 +106,18 @@ class ColorController extends Controller
     {
        if(is_array(request()->item)){
            foreach (request()->item as $id) {
-               $color = Color::findOrfail($id);
-               Storage::delete($color->logo);
-               $color->delete();
+               $weight = Weight::findOrfail($id);
+
+               $weight->delete();
            }
 
        }else{
-               $color = Color::findOrfail(request('item'));
-               Storage::delete($color->logo);
-               $color->delete();
+               $weight = Weight::findOrfail(request('item'));
+
+               $weight->delete();
        }
 
        session()->flash('success', trans('admin.deleted_successfully'));
-       return redirect(route('admin.colors.index'));
+       return redirect(route('admin.weights.index'));
     }
 }

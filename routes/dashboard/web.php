@@ -78,6 +78,14 @@ Route::group(
                     Route::delete('sizes/destroy/all', 'Admin\SizeController@multiDelete')->name('sizes.deleteAll');
                     Route::resource('sizes','Admin\SizeController');
                 // end sizes
+                // start weights
+                    Route::delete('weights/destroy/all', 'Admin\WeightController@multiDelete')->name('weights.deleteAll');
+                    Route::resource('weights','Admin\WeightController');
+                // end weights
+                // start products
+                    Route::delete('products/destroy/all', 'Admin\ProductController@multiDelete')->name('products.deleteAll');
+                    Route::resource('products','Admin\ProductController');
+                // end products
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");
 
