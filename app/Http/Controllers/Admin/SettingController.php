@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Setting;
+use App\Models\Setting;
 use Storage;
 
 class SettingController extends Controller
@@ -30,7 +30,7 @@ class SettingController extends Controller
 			'logo' => trans('admin.logo'),
 			'icon' => trans('admin.icon')
 		]);
-             
+
         if(request()->hasFile('logo'))
         {
 
@@ -57,7 +57,7 @@ class SettingController extends Controller
         }
 
         Setting::orderBy('id', 'desc')->update($data);
-		session()->flash('success', trans('admin.updated_record'));
+		session()->flash('success', trans('admin.updated_successfully'));
 		return redirect(adminUrl('settings'));
     }
 }

@@ -36,15 +36,7 @@
 @endpush
 @section('content')
 <div class="card border-dark mb-3">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
     <div class="card-header">
         <h3 class="card-title">  {{  $title }}</h3>
     </div>
@@ -67,13 +59,14 @@
                             @else
                                 <label>@lang('admin.name')</label>
                             @endif
-                            <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ $category->translate($locale)->name }}">
+                            <input type="text" name="{{ $locale }}[name]" class="form-control @error("$locale.name") is-invalid @enderror" value="{{ $category->translate($locale)->name }}">
+                            @error("$locale.name")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.name' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
@@ -86,14 +79,14 @@
                             @else
                                 <label>@lang('admin.description')</label>
                             @endif
-                            <input type="text" name="{{ $locale }}[description]" class="form-control" value="{{ $category->translate($locale)->description }}">
-
+                            <input type="text" name="{{ $locale }}[description]" class="form-control @error("$locale.description" ) is-invalid @enderror" value="{{ $category->translate($locale)->description }}">
+                            @error("$locale.description")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.description' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
@@ -107,20 +100,26 @@
                                 <label>@lang('admin.keywords')</label>
                             @endif
 
-                            <input type="text" name="{{ $locale }}[keywords]" class="form-control" value="{{ $category->translate($locale)->keywords }}">
+                            <input type="text" name="{{ $locale }}[keywords]" class="form-control @error("$locale.keyword") is-invalid @enderror" value="{{ $category->translate($locale)->keywords }}">
+                            @error("$locale.keyword")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.keywords' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.icon')</label>
-                        <input type="file" name="icon"  class="form-control" value="">
+                        <input type="file" name="icon"  class="form-control @error("icon") is-invalid @enderror" value="">
+                        @error("icon")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         @if(!empty($category->icon) && \Storage::url($category->icon))
                             <img src="{{ \Storage::url($category->icon) }}" alt="" style="width: 100px; height:100px">
                         @endif

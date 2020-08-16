@@ -18,7 +18,7 @@ class MallController extends Controller
     {
         $malls = Mall::paginate(10);
 
-        return view('admin.malls.index',['malls'=>$malls,'title' => trans('admin.tradmark_Control')]);
+        return view('admin.malls.index',['malls'=>$malls,'title' => trans('admin.malls')]);
     }
 
     /**

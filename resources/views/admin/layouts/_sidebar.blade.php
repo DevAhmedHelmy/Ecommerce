@@ -42,7 +42,7 @@
                     <a href="{{route('admin.roles.index')}}" class="nav-link">
                     <i class="nav-icon fa fa-dashboard"></i>
                     <p>
-                        {{trans('admin.roles')}}
+                        {{trans('admin.permissions')}}
 
                     </p>
                     </a>

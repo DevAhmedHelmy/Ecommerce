@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
 
-        return view('admin.products.index',['products'=>$products,'title' => trans('admin.product_Control')]);
+        return view('admin.products.index',['products'=>$products,'title' => trans('admin.products')]);
     }
 
     /**

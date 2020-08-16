@@ -5,7 +5,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="{{route('countries.index')}}">{{trans('admin.countries')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('admin.countries.index')}}">{{trans('admin.countries')}}</a></li>
 
                 <li class="breadcrumb-item active">{{trans('admin.update')}}</li>
 
@@ -21,7 +21,7 @@
     <div class="card-body text-secondary">
 
         <div class="col-md-12">
-                <form action="{{ route('countries.update',$country->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.countries.update',$country->id) }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @csrf
             <div class="d-flex justify-content-between">
@@ -64,9 +64,9 @@
                     <label>@lang('admin.logo')</label>
                         <input type="file" name="logo" class="form-control logo">
 
-                    @if(!empty($country->logo))
+                   @if(!empty($country->logo))
 
-                        <img src="{{ asset('/storage/app/public/countries/BooSVvwFuj2wN26uISJQYUVyn9cfZ1JaoePb7GFw.png') }}" style="width:50px;height: 50px;" />
+                        <img src="{{ Storage::url($country->logo) }}" style="width:50px;height: 50px;" />
                     @endif
                 </div>
             </div>

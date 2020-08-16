@@ -66,13 +66,14 @@
                             @else
                                 <label>@lang('admin.name')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.name')" class="form-control @error("{{ $locale . '.name' }}" ) is-invalid @enderror">
+                            <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.name')" class="form-control @error("$locale.name") is-invalid @enderror">
+                            @error("$locale.name")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.name' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
@@ -85,13 +86,14 @@
                             @else
                                 <label>@lang('admin.description')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[description]' }}" id="{{ $locale . '[description]' }}" placeholder="@lang('admin.description')" class="form-control @error("{{ $locale . '.description' }}" ) is-invalid @enderror">
+                            <input type="text" name="{{ $locale.'[description]' }}" id="{{ $locale . '[description]' }}" placeholder="@lang('admin.description')" class="form-control @error("$locale.description" ) is-invalid @enderror">
+                            @error("$locale.description")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.description' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
@@ -104,13 +106,14 @@
                             @else
                                 <label>@lang('admin.keywords')</label>
                             @endif
-                            <input type="text" name="{{ $locale.'[keywords]' }}" id="{{ $locale . '[keywords]' }}" placeholder="@lang('admin.keywords')" class="form-control @error("{{ $locale . '.keyword' }}" ) is-invalid @enderror">
+                            <input type="text" name="{{ $locale.'[keywords]' }}" id="{{ $locale . '[keywords]' }}" placeholder="@lang('admin.keywords')" class="form-control @error("$locale.keyword") is-invalid @enderror">
+                            @error("$locale.keyword")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        @error("{{ $locale . '.keywords' ['requried'] }} ")
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+
                     @endforeach
 
                 </div>
@@ -118,6 +121,11 @@
                     <div class="col form-group">
                         <label>@lang('admin.icon')</label>
                         <input type="file" name="icon"  class="form-control" id="">
+                        @error("icon")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="col form-group">
 

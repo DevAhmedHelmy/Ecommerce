@@ -21,49 +21,84 @@
 
         <div class="col-md-12">
 
-            {!! Form::open(['route'=>'admin.countries.store','files'=>true]) !!}
 
-            <div class="d-flex justify-content-between">
-                {{--  input name  --}}
-                @foreach (config('translatable.locales') as $locale)
+            <form action="{{ route('admin.countries.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+
+                <div class="d-flex justify-content-between">
+                    {{--  input name  --}}
+                    @foreach (config('translatable.locales') as $locale)
+                        <div class="col form-group">
+                            @if(count(config('translatable.locales'))>1)
+                                <label>@lang('admin.' . $locale . '.name')</label>
+                            @else
+                                <label>@lang('admin.name')</label>
+                            @endif
+                            <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.' . $locale . '.name')" class="form-control @error("$locale.name" ) is-invalid @enderror">
+                            @error("$locale.name")
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                    @endforeach
+
+                </div>
+                <div class="d-flex justify-content-between">
+
                     <div class="col form-group">
-                        @if(count(config('translatable.locales'))>1)
-                        {!! Form::label('name_'.$locale, trans('admin.name_' . $locale)) !!}
-                        @else
-                            {!! Form::label('name_en', trans('admin.name_en')) !!}
-                        @endif
-                        {!! Form::text($locale.'[name]', old('name'.$locale), ['class'=>'form-control ' .($errors->has('name_'.$locale) ? ' is-invalid' : '') , 'required'=> 'required',
-                        'placeholder' =>  trans('admin.name'),]) !!}
+                        <label for="">@lang('admin.currency')</label>
+                        <input type="text" name="currency" id="currency" class="form-control @error("currency" ) is-invalid @enderror" placeholder="@lang('admin.currency')">
+                        @error("currency")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                @endforeach
+                    <div class="col form-group">
+                        <label for="">@lang('admin.iso_code')</label>
+                        <input type="text" name="iso_code" id="iso_code" class="form-control @error("iso_code" ) is-invalid @enderror" placeholder="@lang('admin.iso_code')">
+                        @error("iso_code")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-            </div>
-            <div class="d-flex justify-content-between">
-                <div class="col form-group">
-                    {!! Form::label('currency', trans('admin.currency')) !!}
-                    {!! Form::text('currency', old('currency'), ['class'=>'form-control ' .($errors->has('currency') ? ' is-invalid' : '') , 'required'=> 'required',
-                    'placeholder' =>  trans('admin.currency'),]) !!}
+
                 </div>
-                <div class="col form-group">
-                    {!! Form::label('iso_code', trans('admin.iso_code')) !!}
-                    {!! Form::text('iso_code', old('iso_code'), ['class'=>'form-control ' .($errors->has('iso_code') ? ' is-invalid' : '') , 'required'=> 'required',
-                    'placeholder' =>  trans('admin.iso_code'),]) !!}
+                <div class="d-flex justify-content-between">
+
+                    <div class="col form-group">
+                        <label for="">@lang('admin.code')</label>
+                        <input type="text" name="code" id="code" class="form-control @error("code" ) is-invalid @enderror" placeholder="@lang('admin.code')">
+                        @error("code")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col form-group">
+                        <label for="">@lang('admin.logo')</label>
+                        <input type="file" name="logo" id="logo" class="form-control @error("logo" ) is-invalid @enderror" placeholder="@lang('admin.logo')">
+                        @error("logo")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+
                 </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <div class="col form-group">
-                    {!! Form::label('code', trans('admin.code')) !!}
-                    {!! Form::text('code', old('code'), ['class'=>'form-control ' .($errors->has('code') ? ' is-invalid' : '') , 'required'=> 'required',
-                    'placeholder' =>  trans('admin.code'),]) !!}
-                </div>
-                <div class="col form-group">
-                    {!! Form::label('logo',trans('admin.logo')) !!}
-                    {!! Form::file('logo',['class'=>'form-control']) !!}
-                    @if(!empty($country->logo))
-                        <img src="{{ asset('storage/'.$country->logo) }}" style="width:50px;height: 50px;" />
-                    @endif
-                </div>
-            </div>
+
+
+
+
+
+
+
             <div class="col-12 text-center">
                 <div class="mt-4 d-flex justify-content-between">
                     <div class="col form-group">
@@ -71,8 +106,7 @@
                     </div>
                 </div>
             </div>
-            {!! Form::close() !!}
-
+        </form>
         </div>
 
     </div>

@@ -19,7 +19,7 @@ class SizeController extends Controller
     {
         $sizes = Size::paginate(10);
 
-        return view('admin.sizes.index',['sizes'=>$sizes,'title' => trans('admin.size_Control')]);
+        return view('admin.sizes.index',['sizes'=>$sizes,'title' => trans('admin.sizes')]);
     }
 
     /**

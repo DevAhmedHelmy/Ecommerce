@@ -16,7 +16,7 @@
 
 
     <div class="card-header">
-        <a href="{{ route('admin.countries.create') }}" class="btn btn-primary">@lang('admin.create_country')</a>
+        <a href="{{ route('admin.countries.create') }}" class="btn btn-primary">@lang('admin.create')</a>
         <button type="button" class="btn btn-danger ml-2 delBtn" data-toggle="modal" data-target="#multiDelete">@lang('admin.deleteAll')</button>
 
     </div>

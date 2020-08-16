@@ -20,7 +20,7 @@ class StateController extends Controller
     {
         $states = State::with(['country','city'])->paginate(10);
 
-        return view('admin.states.index',['states'=>$states,'title' => trans('admin.state_Control')]);
+        return view('admin.states.index',['states'=>$states,'title' => trans('admin.states')]);
     }
 
     /**

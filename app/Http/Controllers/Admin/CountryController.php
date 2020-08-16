@@ -34,7 +34,7 @@ class CountryController extends Controller
     {
         $countries = Country::paginate(10);
 
-        return view('admin.countries.index',['countries'=>$countries,'title' => trans('admin.country_Control')]);
+        return view('admin.countries.index',['countries'=>$countries,'title' => trans('admin.countries')]);
     }
 
     /**

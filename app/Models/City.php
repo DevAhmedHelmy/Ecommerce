@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\State;
 use App\Models\Country;
 use Astrotomic\Translatable\Translatable;
 
@@ -16,5 +17,11 @@ class City extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function states()
+    {
+        return $this->hasMany(State::class);
+    }
+
 
 }

@@ -52,7 +52,7 @@
 
 
 </div>
-@if(isset($country->cities))
+@if(count($country->cities) > 0)
 <div class="card">
 
 
@@ -73,7 +73,7 @@
 
                         <th scope="col">#</th>
                         <th scope="col">@lang('admin.name')</th>
-                        <th scope="col">@lang('admin.country')</th>
+                        <th scope="col">@lang('admin.city')</th>
                         <th scope="col">@lang('admin.control')</th>
                     </tr>
                   </thead>

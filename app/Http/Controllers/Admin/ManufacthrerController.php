@@ -18,7 +18,7 @@ class ManufacthrerController extends Controller
     {
         $manufacthrers = Manufacthrer::paginate(10);
 
-        return view('admin.manufacthrers.index',['manufacthrers'=>$manufacthrers,'title' => trans('admin.tradmark_Control')]);
+        return view('admin.manufacthrers.index',['manufacthrers'=>$manufacthrers,'title' => trans('admin.manufacthrers')]);
     }
 
     /**

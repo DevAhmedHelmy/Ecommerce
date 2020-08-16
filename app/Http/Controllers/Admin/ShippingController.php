@@ -19,7 +19,7 @@ class ShippingController extends Controller
     {
         $shippings = Shipping::paginate(10);
 
-        return view('admin.shippings.index',['shippings'=>$shippings,'title' => trans('admin.tradmark_Control')]);
+        return view('admin.shippings.index',['shippings'=>$shippings,'title' => trans('admin.shippings')]);
     }
 
     /**

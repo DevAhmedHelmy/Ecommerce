@@ -16,8 +16,8 @@
 
 
     <div class="card-header">
-        <a href="{{ route('admin.cities.create') }}" class="btn btn-primary">@lang('admin.create_city')</a>
-        <button type="button" class="btn btn-danger ml-2 delBtn" data-toggle="modal" data-target="#multiDelete">@lang('admin.deleteAll')</button>
+        <a href="{{ route('admin.cities.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> @lang('admin.create')</a>
+        <button type="button" class="btn btn-danger ml-2 btn-sm delBtn" data-toggle="modal" data-target="#multiDelete"><i class="fa fa-trash fa-sm"></i> @lang('admin.deleteAll')</button>
 
     </div>
     <div class="card-body">

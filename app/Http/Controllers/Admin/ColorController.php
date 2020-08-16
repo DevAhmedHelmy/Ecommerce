@@ -19,7 +19,7 @@ class ColorController extends Controller
     {
         $colors = Color::paginate(10);
 
-        return view('admin.colors.index',['colors'=>$colors,'title' => trans('admin.color_Control')]);
+        return view('admin.colors.index',['colors'=>$colors,'title' => trans('admin.colors')]);
     }
 
     /**

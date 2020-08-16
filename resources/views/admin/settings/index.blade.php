@@ -12,11 +12,22 @@
 @endsection
 @section('content')
 <div class="card">
+    @if ($errors->any())
+
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div class="card-header">
         <h3 class="card-title">{!! $title  !!}</h3>
     </div>
     <div class="card-body">
-        {!! Form::open(['url'=>adminUrl('settings'),'files'=>true]) !!}
+        {!! Form::open(['route'=> 'admin.save_settings','files'=>true]) !!}
             <div class=col-12>
                 <div class="mt-4 d-flex justify-content-between">
                     <div class="col form-group">

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{!empty($title) ? $title : trans('admin.adminpanel')}}</title>
+    <title> {{ (app()->getLocale() == 'ar') ? setting()->sitename_ar : setting()->sitename_en }} | {{ !empty($title) ? $title : trans('admin.adminpanel')}}</title>
 
     {{-- Font Awesome Icons --}}
     <link rel="stylesheet" href="{{asset('adminPanal/css/font-awesome.min.css')}}">

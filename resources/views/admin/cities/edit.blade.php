@@ -35,8 +35,12 @@
                             <label>@lang('admin.name')</label>
 
                         @endif
-                        <input type="text" name="{{ $locale }}[name]" class="form-control" value="{{ $city->translate($locale)->name }}">
-
+                        <input type="text" name="{{ $locale }}[name]" class="form-control @error( "$locale.name" ) is-invalid @enderror" value="{{ $city->translate($locale)->name }}">
+                        @error("$locale.name")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 @endforeach
 
@@ -44,12 +48,17 @@
             <div class="d-flex justify-content-between">
                 <div class="col form-group">
                     <label>@lang('admin.countries')</label>
-                        <select class="form-control" name="country_id">
+                        <select class="form-control @error('country_id') is-invalid @enderror" name="country_id">
                             <option> @lang('admin.choose')</option>
                             @foreach($countries as $key => $value)
                                 <option @if($city->country_id == $value->id) selected @endif value="{{ $value->id }}">{{ $value->name }}</option>
                             @endforeach
                         </select>
+                        @error("country_id")
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 
                 </div>
                 <div class="col form-group">

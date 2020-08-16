@@ -18,7 +18,7 @@ class WeightController extends Controller
     {
         $weights = Weight::paginate(10);
 
-        return view('admin.weights.index',['weights'=>$weights,'title' => trans('admin.weights_Control')]);
+        return view('admin.weights.index',['weights'=>$weights,'title' => trans('admin.weights')]);
     }
 
     /**

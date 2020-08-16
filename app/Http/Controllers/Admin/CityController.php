@@ -19,7 +19,7 @@ class CityController extends Controller
     {
         $cities = City::with('country')->paginate(10);
 
-        return view('admin.cities.index',['cities'=>$cities,'title' => trans('admin.ciy_Control')]);
+        return view('admin.cities.index',['cities'=>$cities,'title' => trans('admin.cities')]);
     }
 
     /**

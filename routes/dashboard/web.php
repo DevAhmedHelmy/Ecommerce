@@ -23,8 +23,8 @@ Route::group(
 
                 Route::resource('roles','Admin\Role\RoleController');
                 // settings route
-                    Route::get('/settings', 'Admin\SettingController@index');
-                    Route::post('/settings', 'Admin\SettingController@update_setting');
+                    Route::get('/settings', 'Admin\SettingController@index')->name('get_settings');
+                    Route::post('/settings', 'Admin\SettingController@update_setting')->name('save_settings');
                 // dashboard route
                     Route::get('/', function(){return view('admin.dashboard');})->name('home');
                 // start admins routes

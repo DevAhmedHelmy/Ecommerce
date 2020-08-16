@@ -53,11 +53,14 @@
 
 
     <div class="card-header">
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">@lang('admin.create_category')</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-sm"></i> @lang('admin.create')</a>
     </div>
     <div class="card-body">
-        <a href="" class="btn btn-primary btn-sm edit_category showbtn_control d-none"> <i class="fa fa-edit fa-sm"></i> @lang('admin.edit')</a>
-        <a href="" class="btn btn-danger btn-sm delete_category showbtn_control d-none" data-toggle="modal" data-target="#delete_bootstrap_modal"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</a>
+        <div class="mb-2">
+            <a href="" class="btn btn-primary btn-sm edit_category showbtn_control d-none"> <i class="fa fa-edit fa-sm"></i> @lang('admin.edit')</a>
+            <a href="" class="btn btn-danger btn-sm delete_category showbtn_control d-none" data-toggle="modal" data-target="#delete_bootstrap_modal"> <i class="fa fa-trash fa-sm"></i> @lang('admin.delete')</a>
+        </div>
+
         <div id="jstree"></div>
 
 

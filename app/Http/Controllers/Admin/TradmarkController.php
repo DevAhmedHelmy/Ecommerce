@@ -18,7 +18,7 @@ class TradmarkController extends Controller
     {
         $tradmarks = Tradmark::paginate(10);
 
-        return view('admin.tradmarks.index',['tradmarks'=>$tradmarks,'title' => trans('admin.tradmark_Control')]);
+        return view('admin.tradmarks.index',['tradmarks'=>$tradmarks,'title' => trans('admin.tradmarks')]);
     }
 
     /**
