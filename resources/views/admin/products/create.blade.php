@@ -12,7 +12,43 @@
             </ol>
           </div><!-- /.col -->
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('#jstree').jstree({ 'core' : {
+                'data' : {!! categories() !!}
+            },
+            "checkbox" : {
+                "keep_selected_style" : true
+              },
+              "plugins" : [ "wholerow" ]
+             });
 
+        });
+        $('#jstree').on('changed.jstree',function(e, data){
+            var i , j,r  =[];
+            var name = [];
+            for(i=0,j=data.selected.length; i < j; i++)
+            {
+                r.push(data.instance.get_node(data.selected[i]).id);
+                name.push(data.instance.get_node(data.selected[i]).text);
+            }
+
+            $('#delete_category').attr('href',"{{ adminUrl('categories') }}/"+r.join(', '));
+            $('.cat_name').text(name,r.join(', '));
+
+
+            if(r.join(', ') != '')
+            {
+                $('.showbtn_control').removeClass('d-none');
+
+                $('.edit_category').attr('href',"{{ adminUrl('categories') }}/"+r.join(', ')+'/edit');
+            }else{
+                $('.showbtn_control').addClass('d-none');
+            }
+         });
+    </script>
+@endpush
 @section('content')
 <div class="card border-dark mb-3">
     <div class="card-header">
@@ -52,49 +88,8 @@
 
               {{-- Tab panes --}}
               <div class="tab-content">
-                <div class="tab-pane container active" id="product_info">
-                    <div class="d-flex justify-content-between">
-                        {{--  input name  --}}
-                        @foreach (config('translatable.locales') as $locale)
-                            <div class="col form-group">
-                                @if(count(config('translatable.locales'))>1)
-                                    <label>@lang('admin.' . $locale . '.name')</label>
-                                @else
-                                    <label>@lang('admin.name')</label>
-                                @endif
-                                <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.name')" class="form-control @error("{{ $locale . '.name' }}" ) is-invalid @enderror">
-                            </div>
-                            @error("{{ $locale . '.name' ['requried'] }} ")
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        @endforeach
-
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        {{--  input name  --}}
-                        @foreach (config('translatable.locales') as $locale)
-                            <div class="col form-group">
-                                @if(count(config('translatable.locales'))>1)
-                                    <label>@lang('admin.' . $locale . '.content')</label>
-                                @else
-                                    <label>@lang('admin.content')</label>
-                                @endif
-
-                                <textarea name="{{ $locale.'[content]' }}" id="{{ $locale.'[content]' }}" placeholder="@lang('admin.' . $locale . '.content')" class="form-control" cols="30" rows="10"></textarea>
-                            </div>
-                            @error("{{ $locale . '.content' ['requried'] }} ")
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        @endforeach
-
-                    </div>
-
-                </div>
-                <div class="tab-pane container fade" id="categories">...</div>
+                @include('admin.products.taps.product_info')
+                @include('admin.products.taps.categories')
                 <div class="tab-pane container fade" id="product_setting">
                     <div class="d-flex justify-content-between">
 

@@ -29,7 +29,7 @@
     {{-- bootstrap wysihtml5 - text editor --}}
     <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
     <link rel="stylesheet" href="{{ asset('adminPanal/jstree/themes/default/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('adminPanal/css/select2.min.css') }}">
 
 
     @if(app()->getLocale() == 'en')
@@ -66,7 +66,7 @@
     <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
     <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
     <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
-
+    <script src="{{asset('adminPanal/js/select2.min.js')}}"></script>
 
 </head>
 <body class="hold-transition sidebar-mini">
