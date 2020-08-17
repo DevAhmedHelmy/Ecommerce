@@ -85,6 +85,8 @@ Route::group(
                 // start products
                     Route::delete('products/destroy/all', 'Admin\ProductController@multiDelete')->name('products.deleteAll');
                     Route::resource('products','Admin\ProductController');
+                    Route::post('product/upload_images/{id}','Admin\ProductController@upload_images');
+                    Route::post('product/delete_image','Admin\ProductController@delete_image');
                 // end products
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");

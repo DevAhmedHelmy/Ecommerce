@@ -31,6 +31,9 @@
 
 <script src="{{ asset('adminPanal/jstree/jstree.js') }}"></script>
 <script src="{{ asset('adminPanal/jstree/jstree.checkbox.js') }}"></script>
+<script src="{{asset('adminPanal/js/select2.min.js')}}"></script>
+<script src="{{asset('adminPanal/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('adminPanal/js/bootstrap-datepicker.ar.min.js')}}"></script>
 
 <script>
     function confirmDelete(item_id) {

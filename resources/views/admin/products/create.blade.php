@@ -56,7 +56,7 @@
     </div>
     <div class="card-body text-secondary">
         <div class="col-md-12">
-            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            <form  action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
             <button class="btn btn-primary">@lang('admin.save')</button>
             <button class="btn btn-success">@lang('admin.save_and_continue')</button>
@@ -90,21 +90,8 @@
               <div class="tab-content">
                 @include('admin.products.taps.product_info')
                 @include('admin.products.taps.categories')
-                <div class="tab-pane container fade" id="product_setting">
-                    <div class="d-flex justify-content-between">
-
-
-                        <div class="col form-group">
-                            <label>@lang('admin.color')</label>
-
-
-                        </div>
-                        <div class="col form-group">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane container fade" id="product_media">...</div>
+                @include('admin.products.taps.product_setting')
+                @include('admin.products.taps.product_media')
                 <div class="tab-pane container fade" id="product_size_weight">...</div>
 
                 <div class="tab-pane container fade" id="additional_data">...</div>

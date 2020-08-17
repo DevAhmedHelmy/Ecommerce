@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create',['title' => trans('admin.create')]);
+        return view('admin.products.create',['product' => new Product(),'title' => trans('admin.create')]);
     }
 
     /**
@@ -121,5 +121,36 @@ class ProductController extends Controller
 
        session()->flash('success', trans('admin.deleted_successfully'));
        return redirect(route('admin.pro$products.index'));
+    }
+
+    /**
+     * store image .
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function upload_images($id)
+    {
+        if (request()->hasFile('files')) {
+		    up()->uploadFile([
+                'file'        => 'file',
+                'path'        => 'product/'.$id,
+                'upload_type' => 'files',
+                'file_type'   => 'product',
+                'relation_id' => $id,
+            ]);
+		}
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_image()
+    {
+        if (request()->has('id')) {
+		    up()->delete(request()->id);
+		}
     }
 }
