@@ -170,3 +170,23 @@ if(!function_exists('categories'))
         return json_encode($categories_list,JSON_UNESCAPED_UNICODE);
     }
 }
+
+if(!function_exists('get_parent'))
+{
+    function get_parent($category_id)
+    {
+
+        
+        $category = App\Models\Category::findOrfail($category_id);
+        if(!empty($category->parent_id) && $category->parent_id > 0)
+        {
+            // array_push($categories_list, $category->id);
+            return get_parent($category->parent_id) . ',' . $category_id;
+        }else{
+            return $category_id;
+        }
+        
+
+        return $categories_list;
+    }
+}

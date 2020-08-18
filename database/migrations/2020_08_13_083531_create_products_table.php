@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('main_color')->nullable();
             $table->foreignId('color_id')->nullable();
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
-
+            $table->string('size')->nullable();
             $table->foreignId('size_id')->nullable();
             $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
 

@@ -32,7 +32,7 @@
                             @csrf
                         <th scope="col"><input type="checkbox" name="checkbox" class="check_all" onclick="check_all();"/></th>
                         <th scope="col">#</th>
-                        <th scope="col">@lang('admin.name')</th>
+                        <th scope="col">@lang('admin.title')</th>
                         <th scope="col">@lang('admin.created_at')</th>
 
                         <th scope="col">@lang('admin.control')</th>
@@ -44,7 +44,7 @@
                             <th><input type="checkbox" name="item[]" class="item_check" value="{{ $product->id }}"></th>
                         </form>
                             <th scope="row">{{ $key+1 }}</th>
-                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->title }}</td>
                             <td>{{ $product->created_at }}</td>
 
                             <td>

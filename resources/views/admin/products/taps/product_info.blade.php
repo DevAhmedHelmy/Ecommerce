@@ -8,7 +8,11 @@
                 @else
                     <label>@lang('admin.title')</label>
                 @endif
-                <input type="text" name="{{ $locale.'[title]' }}" id="{{ $locale . '[title]' }}" placeholder="@lang('admin.title')" class="form-control @error("{{ $locale . '.title' }}" ) is-invalid @enderror">
+                @if(!isset($product))
+                    <input type="text" name="{{ $locale.'[title]' }}" id="{{ $locale . '[title]' }}" placeholder="@lang('admin.title')" class="form-control @error("{{ $locale . '.title' }}" ) is-invalid @enderror">
+                @else
+                    <input type="text" name="{{ $locale }}[title]" class="form-control" value="{{ $product->translate($locale)->title }}">
+                @endif
             </div>
             @error("{{ $locale . '.title' ['requried'] }} ")
                 <span class="invalid-feedback" role="alert">
@@ -27,8 +31,12 @@
                 @else
                     <label>@lang('admin.content')</label>
                 @endif
-
+                @if(!isset($product))
                 <textarea name="{{ $locale.'[content]' }}" id="{{ $locale.'[content]' }}" placeholder="@lang('admin.' . $locale . '.content')" class="form-control" cols="30" rows="10"></textarea>
+                @else
+                <textarea name="{{ $locale.'[content]' }}" id="{{ $locale.'[content]' }}" placeholder="@lang('admin.' . $locale . '.content')" class="form-control" cols="30" rows="10">{{ $product->translate($locale)->content }}</textarea>
+                     
+                @endif
             </div>
             @error("{{ $locale . '.content' ['requried'] }} ")
                 <span class="invalid-feedback" role="alert">

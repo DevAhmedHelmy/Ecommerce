@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Size;
+use App\Models\Weight;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create',['product' => new Product(),'title' => trans('admin.create')]);
+        return view('admin.products.form',['product' => new Product(),'title' => trans('admin.create')]);
     }
 
     /**
@@ -66,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit',['product' => $product ,'title' => trans('admin.edit')]);
+        return view('admin.products.form',['product' => $product ,'title' => trans('admin.edit')]);
     }
 
     /**
@@ -120,7 +122,7 @@ class ProductController extends Controller
        }
 
        session()->flash('success', trans('admin.deleted_successfully'));
-       return redirect(route('admin.pro$products.index'));
+       return redirect(route('admin.products.index'));
     }
 
     /**
@@ -131,9 +133,10 @@ class ProductController extends Controller
      */
     public function upload_images($id)
     {
+        dd($ddd);
         if (request()->hasFile('files')) {
 		    up()->uploadFile([
-                'file'        => 'file',
+                'file'        => 'files',
                 'path'        => 'product/'.$id,
                 'upload_type' => 'files',
                 'file_type'   => 'product',
@@ -160,10 +163,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete_main_image($id)
+    public function update_main_image($id)
     {
         $product = Product::findOrfail($id);
-        // (!empty($product->photo)) ??
+         
         $product->update([
             'photo'=>up()->uploadFile([
                 'file'        => 'file',
@@ -173,6 +176,27 @@ class ProductController extends Controller
             ])
         ]);
          return response(['status' => true],200);
+    }
+    public function delete_product_image()
+    {
+        $product = Product::findOrfail($id);
+        Storage::delete($product->photo);
+        $product->photo = null;
+        $product->save();
+    }
+
+    public function preapir_weight_size()
+    {
+        
+        if(request()->ajax() && request()->has('category_id'))
+        {
+            return get_parent(request('category_id'));
+            $sizes = Size::where('category_id',request('category_id'))->get();
+            $weights = Weight::all();
+            return view('admin.products.ajax.size_weight',['sizes' => $sizes, 'weights' => $weights])->render();
+        }else{
+            return trans('admin.choose_category');
+        }
     }
 
 }

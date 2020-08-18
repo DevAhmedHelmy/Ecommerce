@@ -20,10 +20,17 @@
 
             }
 
-
+            var category_id = r.join(', ');
             $('.category_id').val(r.join(', '));
 
-
+            $.ajax({
+                url:"{{adminUrl('load/weight/size')}}",
+                dataType:'html',
+                data:{_token:"{{csrf_token()}}",category_id:category_id},
+                success:function(data){
+                    $('.size_weight').html(data);
+                }
+            });
 
          });
     </script>

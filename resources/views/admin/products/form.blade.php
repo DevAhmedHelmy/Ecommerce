@@ -55,11 +55,27 @@
         <h3 class="card-title">  {{  $title }}</h3>
     </div>
     <div class="card-body text-secondary">
+        @if ($errors->any())
+
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <div class="col-md-12">
-            <form  action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            @if(!isset($product))
+                <form  action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+            @else
+                <form  action="{{ route('admin.products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
+                {{-- @method('put') --}}
+            @endif
                 @csrf
-            <button class="btn btn-primary">@lang('admin.save')</button>
-            <button class="btn btn-success">@lang('admin.save_and_continue')</button>
+            <button type="submit" class="btn btn-primary">@lang('admin.save')</button>
+            <button type="submit" class="btn btn-success">@lang('admin.save_and_continue')</button>
             <button class="btn btn-info">@lang('admin.copy')</button>
             <button class="btn btn-danger">@lang('admin.delete')</button>
 
@@ -92,9 +108,9 @@
                 @include('admin.products.taps.categories')
                 @include('admin.products.taps.product_setting')
                 @include('admin.products.taps.product_media')
-                <div class="tab-pane container fade" id="product_size_weight">...</div>
-
-                <div class="tab-pane container fade" id="additional_data">...</div>
+                @include('admin.products.taps.product_size_weight')
+                @include('admin.products.taps.product_additional_data')
+                
               </div>
 
 

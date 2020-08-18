@@ -5,6 +5,8 @@
     <script>
         Dropzone.autoDiscover = false;
         $(document).ready(function(){
+            
+             
             $('#myDropzoneFile').dropzone({
                 url:"{{adminUrl('product/upload_images/'.$product->id)}}",
                 paramName : 'files[]',
@@ -15,7 +17,7 @@
                 dictDefaultMessage:"{{trans('admin.uploadFiles')}}",
                 dictRemoveFile:"{{trans('admin.delete')}}",
                 params:{
-                    _token:"{{csrf_token()}}"
+                    _token:"{{csrf_token()}}",
                 },
                 addRemoveLinks:true,
                 removefile:function(file){
@@ -54,8 +56,10 @@
             });
 
             $('#mainPhoto').dropzone({
-                url:"{{adminUrl('product/upload_images/'.$product->id)}}",
+                
+                url:"{{adminUrl('product/update/image/'.$product->id)}}",
                 paramName : 'file',
+                method:'POST',
                 uploadMultiple:false,
                 autoDiscover:false,
                 maxFiles:1,
@@ -71,12 +75,14 @@
                     $.ajax({
                         dataType:'json',
                         type:'post',
-                        url:"{{adminUrl('product/delete_image/'.$product->id)}}",
+                        url:"{{adminUrl('product/delete/image/'.$product->id)}}",
                         data:{
+                             
                             _token:"{{csrf_token()}}",
                             id:file.fid
                         }
                     });
+                     
                     var fmock;
                     return (fmock = file.previweElement) != null ? fmock.parentMode.removeChild(file.previweElement) : void 0;
                 },
