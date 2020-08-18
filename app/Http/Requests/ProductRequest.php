@@ -50,7 +50,7 @@ class ProductRequest extends FormRequest
         ];
         foreach (config('translatable.locales') as $locale) {
 
-            $rules += $this->isMethod('post') ? [$locale . '.name' => ['required','unique:product_translations,name']]: [$locale . '.name' => ['required', Rule::unique('product_translations', 'name')->ignore($this->product->id,'product_id')]];
+            $rules += $this->isMethod('post') ? [$locale . '.title' => ['required','unique:product_translations,title']]: [$locale . '.title' => ['required', Rule::unique('product_translations', 'title')->ignore($this->product->id,'product_id')]];
             $rules +=  [$locale . '.content' => ['required']];
 
         }

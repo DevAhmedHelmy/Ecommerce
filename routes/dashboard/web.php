@@ -87,6 +87,7 @@ Route::group(
                     Route::resource('products','Admin\ProductController');
                     Route::post('product/upload_images/{id}','Admin\ProductController@upload_images');
                     Route::post('product/delete_image','Admin\ProductController@delete_image');
+                    Route::post('product/delete/image/{id}','Admin\ProductController@delete_main_image');
                 // end products
                 // logout route
                     Route::any('logout', "Admin\Auth\AdminAuthController@logout");

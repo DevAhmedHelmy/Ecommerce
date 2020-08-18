@@ -153,4 +153,26 @@ class ProductController extends Controller
 		    up()->delete(request()->id);
 		}
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_main_image($id)
+    {
+        $product = Product::findOrfail($id);
+        // (!empty($product->photo)) ??
+        $product->update([
+            'photo'=>up()->uploadFile([
+                'file'        => 'file',
+                'path'        => 'product/'.$id,
+                'upload_type' => 'single',
+                'delete_file' => $id,
+            ])
+        ]);
+         return response(['status' => true],200);
+    }
+
 }

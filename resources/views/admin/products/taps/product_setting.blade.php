@@ -23,7 +23,13 @@
         </div>
         <div class="col form-group">
             <label>@lang('admin.status')</label>
-            <input type="text" name="status" id="status" class="form-control">
+            <select name="status" id="status" class="form-control">
+                <option>@lang('admin.choose')</option>
+                <option value="pending">@lang('admin.pending')</option>
+                <option value="active">@lang('admin.active')</option>
+                <option value="refused">@lang('admin.refused')</option>
+            </select>
+
         </div>
     </div>
     <div class="d-flex justify-content-between">
@@ -49,7 +55,7 @@
             <label>@lang('admin.end_offer_at')</label>
             <input type="text" name="end_offer_at" id="end_offer_at" class="form-control datepicker">
         </div>
-        
+
     </div>
     <div class="d-flex justify-content-between">
         <div class="col form-group">

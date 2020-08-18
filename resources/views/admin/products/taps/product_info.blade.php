@@ -4,13 +4,13 @@
         @foreach (config('translatable.locales') as $locale)
             <div class="col form-group">
                 @if(count(config('translatable.locales'))>1)
-                    <label>@lang('admin.' . $locale . '.name')</label>
+                    <label>@lang('admin.' . $locale . '.title')</label>
                 @else
-                    <label>@lang('admin.name')</label>
+                    <label>@lang('admin.title')</label>
                 @endif
-                <input type="text" name="{{ $locale.'[name]' }}" id="{{ $locale . '[name]' }}" placeholder="@lang('admin.name')" class="form-control @error("{{ $locale . '.name' }}" ) is-invalid @enderror">
+                <input type="text" name="{{ $locale.'[title]' }}" id="{{ $locale . '[title]' }}" placeholder="@lang('admin.title')" class="form-control @error("{{ $locale . '.title' }}" ) is-invalid @enderror">
             </div>
-            @error("{{ $locale . '.name' ['requried'] }} ")
+            @error("{{ $locale . '.title' ['requried'] }} ")
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
