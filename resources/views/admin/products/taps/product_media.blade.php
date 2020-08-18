@@ -43,15 +43,19 @@
                         this.emit("addedfile", this.mock);
                         this.options.thumbnail.call(this.mock,"{{url('storage/'.$file->full_path)}}");
                     @endforeach
-
-                    
+                    this.on('sending', function(file,xhr,formData){
+                        formData.append('fid','');
+                        file.id=''
+                    });
+                    this.on('success', function(file,response){
+                        file.id = response.id
+                    });
                 },
             });
         });
     </script>
 @endpush
 <div class="tab-pane container fade" id="product_media">
-    <div class="dropzone" id="myDropzoneFile">
-         
-      </div>
+    <div class="dropzone" id="mainPhoto"></div>
+    <div class="dropzone" id="myDropzoneFile"></div>
 </div>
