@@ -14,6 +14,7 @@
 
     {{-- Font Awesome Icons --}}
     <link rel="stylesheet" href="{{asset('adminPanal/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanal/css/all.min.css')}}">
     {{-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --}}
     <link rel="stylesheet" href="{{asset('adminPanal/css/skins/skin-blue.min.css')}}">
     {{-- iCheck --}}
@@ -30,7 +31,7 @@
     <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
     <link rel="stylesheet" href="{{ asset('adminPanal/jstree/themes/default/style.css') }}">
     <link rel="stylesheet" href="{{ asset('adminPanal/css/select2.min.css') }}">
-    
+
 
     @if(app()->getLocale() == 'en')
 
@@ -66,7 +67,7 @@
     <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
     <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
     <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
-    
+
 
 </head>
 <body class="hold-transition sidebar-mini">

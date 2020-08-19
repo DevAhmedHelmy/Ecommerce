@@ -30,7 +30,7 @@
 
 			<li class="nav-item">
 				<a href="{{adminUrl('')}}" class="nav-link">
-				<i class="nav-icon fa fa-dashboard"></i>
+				<i class="nav-icon fas fa-tachometer-alt-slowest"></i>
 				<p>
 					{{trans('admin.dashboard')}}
 
@@ -185,7 +185,7 @@
             @can('categories-list')
                 <li class="nav-item has-treeview {{active_menu('categories')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fa fa-list-alt"></i>
                     <p>
                         {{trans('admin.categories')}}
                         <i class="right fa fa-angle-left"></i>
@@ -194,7 +194,7 @@
                     <ul class="nav nav-treeview {{active_menu('categories')[1]}}">
                     <li class="nav-item {{active_menu('categories')[2]}}">
                         <a href="{{adminUrl('categories')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fa fa-list-alt nav-icon"></i>
                         <p>{{trans('admin.categories')}}</p>
                         </a>
                     </li>
@@ -204,7 +204,7 @@
             @can('tradmarks-list')
                 <li class="nav-item has-treeview {{active_menu('tradmarks')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fa fa-trademark"></i>
                     <p>
                         {{trans('admin.tradmarks')}}
                         <i class="right fa fa-angle-left"></i>
@@ -213,7 +213,7 @@
                     <ul class="nav nav-treeview {{active_menu('tradmarks')[1]}}">
                     <li class="nav-item {{active_menu('tradmarks')[2]}}">
                         <a href="{{adminUrl('tradmarks')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fa fa-trademark nav-icon"></i>
                         <p>{{trans('admin.tradmarks')}}</p>
                         </a>
                     </li>
@@ -223,7 +223,7 @@
             @can('manufacthrers-list')
                 <li class="nav-item has-treeview {{active_menu('manufacthrers')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fa fa-industry"></i>
                     <p>
                         {{trans('admin.manufacthrers')}}
                         <i class="right fa fa-angle-left"></i>
@@ -232,7 +232,7 @@
                     <ul class="nav nav-treeview {{active_menu('manufacthrers')[1]}}">
                     <li class="nav-item {{active_menu('manufacthrers')[2]}}">
                         <a href="{{adminUrl('manufacthrers')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fa fa-industry nav-icon"></i>
                         <p>{{trans('admin.manufacthrers')}}</p>
                         </a>
                     </li>
@@ -242,7 +242,7 @@
             @can('shippings-list')
                 <li class="nav-item has-treeview {{active_menu('shippings')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fa fa-shopping-cart"></i>
                     <p>
                         {{trans('admin.shippings')}}
                         <i class="right fa fa-angle-left"></i>
@@ -251,7 +251,7 @@
                     <ul class="nav nav-treeview {{active_menu('shippings')[1]}}">
                     <li class="nav-item {{active_menu('shippings')[2]}}">
                         <a href="{{adminUrl('shippings')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fa fa-shopping-cart nav-icon"></i>
                         <p>{{trans('admin.shippings')}}</p>
                         </a>
                     </li>
@@ -261,7 +261,7 @@
             @can('malls-list')
                 <li class="nav-item has-treeview {{active_menu('malls')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fa fa-shopping-basket"></i>
                     <p>
                         {{trans('admin.malls')}}
                         <i class="right fa fa-angle-left"></i>
@@ -270,7 +270,7 @@
                     <ul class="nav nav-treeview {{active_menu('malls')[1]}}">
                     <li class="nav-item {{active_menu('malls')[2]}}">
                         <a href="{{adminUrl('malls')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fa fa-shopping-basket nav-icon"></i>
                         <p>{{trans('admin.malls')}}</p>
                         </a>
                     </li>
@@ -280,7 +280,7 @@
             @can('colors-list')
                 <li class="nav-item has-treeview {{active_menu('colors')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fas fa-palette"></i>
                     <p>
                         {{trans('admin.colors')}}
                         <i class="right fa fa-angle-left"></i>
@@ -289,7 +289,7 @@
                     <ul class="nav nav-treeview {{active_menu('colors')[1]}}">
                     <li class="nav-item {{active_menu('colors')[2]}}">
                         <a href="{{adminUrl('colors')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fas fa-palette nav-icon"></i>
                         <p>{{trans('admin.colors')}}</p>
                         </a>
                     </li>
@@ -299,7 +299,7 @@
             @can('sizes-list')
                 <li class="nav-item has-treeview {{active_menu('sizes')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fas fa-sort-size-up-alt"></i>
                     <p>
                         {{trans('admin.sizes')}}
                         <i class="right fa fa-angle-left"></i>
@@ -308,7 +308,7 @@
                     <ul class="nav nav-treeview {{active_menu('sizes')[1]}}">
                     <li class="nav-item {{active_menu('sizes')[2]}}">
                         <a href="{{adminUrl('sizes')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fas fa-sort-size-up-alt nav-icon"></i>
                         <p>{{trans('admin.sizes')}}</p>
                         </a>
                     </li>
@@ -318,7 +318,7 @@
             @can('weights-list')
                 <li class="nav-item has-treeview {{active_menu('weights')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fas fa-balance-scale"></i>
                     <p>
                         {{trans('admin.weights')}}
                         <i class="right fa fa-angle-left"></i>
@@ -327,7 +327,7 @@
                     <ul class="nav nav-treeview {{active_menu('weights')[1]}}">
                     <li class="nav-item {{active_menu('weights')[2]}}">
                         <a href="{{adminUrl('weights')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fas fa-balance-scale nav-icon"></i>
                         <p>{{trans('admin.weights')}}</p>
                         </a>
                     </li>
@@ -337,7 +337,7 @@
             @can('products-list')
                 <li class="nav-item has-treeview {{active_menu('products')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-flag"></i>
+                    <i class="nav-icon fab fa-product-hunt"></i>
                     <p>
                         {{trans('admin.products')}}
                         <i class="right fa fa-angle-left"></i>
@@ -346,7 +346,7 @@
                     <ul class="nav nav-treeview {{active_menu('products')[1]}}">
                     <li class="nav-item {{active_menu('products')[2]}}">
                         <a href="{{adminUrl('products')}}" class="nav-link">
-                        <i class="fa fa-flag nav-icon"></i>
+                        <i class="fab fa-product-hunt nav-icon"></i>
                         <p>{{trans('admin.products')}}</p>
                         </a>
                     </li>
