@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.form',['product' => new Product(),'title' => trans('admin.create')]);
+        return view('admin.products.form',['title' => trans('admin.create')]);
     }
 
     /**
@@ -133,7 +133,7 @@ class ProductController extends Controller
      */
     public function upload_images($id)
     {
-        dd($ddd);
+
         if (request()->hasFile('files')) {
 		    up()->uploadFile([
                 'file'        => 'files',
@@ -166,7 +166,7 @@ class ProductController extends Controller
     public function update_main_image($id)
     {
         $product = Product::findOrfail($id);
-         
+
         $product->update([
             'photo'=>up()->uploadFile([
                 'file'        => 'file',
@@ -177,7 +177,7 @@ class ProductController extends Controller
         ]);
          return response(['status' => true],200);
     }
-    public function delete_product_image()
+    public function delete_product_image($id)
     {
         $product = Product::findOrfail($id);
         Storage::delete($product->photo);
@@ -187,7 +187,7 @@ class ProductController extends Controller
 
     public function preapir_weight_size()
     {
-        
+
         if(request()->ajax() && request()->has('category_id'))
         {
             return get_parent(request('category_id'));

@@ -8,7 +8,7 @@
             
              
             $('#myDropzoneFile').dropzone({
-                url:"{{adminUrl('product/upload_images/'.$product->id)}}",
+                url:"{{adminUrl('product/upload_images/'.$product ?? ''->id)}}",
                 paramName : 'files[]',
                 uploadMultiple:true,
                 maxFiles:15,
@@ -35,7 +35,7 @@
                 },
                 init: function() {
 
-                    @foreach($product->files()->get() as $file)
+                    @foreach($product ?? ''->files()->get() as $file)
                         var mock={
                             name : "{{$file->name}}",
                             fid : "{{$file->id}}",
@@ -57,7 +57,7 @@
 
             $('#mainPhoto').dropzone({
                 
-                url:"{{adminUrl('product/update/image/'.$product->id)}}",
+                url:"{{adminUrl('product/update/image/'.$product ?? ''->id)}}",
                 paramName : 'file',
                 method:'POST',
                 uploadMultiple:false,
@@ -75,7 +75,7 @@
                     $.ajax({
                         dataType:'json',
                         type:'post',
-                        url:"{{adminUrl('product/delete/image/'.$product->id)}}",
+                        url:"{{adminUrl('product/delete/image/'.$product ?? ''->id)}}",
                         data:{
                              
                             _token:"{{csrf_token()}}",
@@ -88,14 +88,14 @@
                 },
                 init: function() {
 
-                    @if(!empty($product->photo))
+                    @if(!empty($product ?? ''->photo))
                         var mock={
-                            name : "{{$product->title}}",
+                            name : "{{$product ?? ''->title}}",
                             size : "",
                             type : "",
                         };
                         this.emit("addedfile", this.mock);
-                        this.options.thumbnail.call(this.mock,"{{url('storage/'.$product->id . '/' . $product->photo)}}");
+                        this.options.thumbnail.call(this.mock,"{{url('storage/'.$product ?? ''->id . '/' . $product ?? ''->photo)}}");
                         @endif
                     this.on('sending', function(file,xhr,formData){
                         formData.append('fid','');

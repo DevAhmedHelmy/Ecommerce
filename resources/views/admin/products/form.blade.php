@@ -67,11 +67,12 @@
 @endif
 
         <div class="col-md-12">
-            @if(!isset($product))
-                <form  action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
-            @else
+            @if(isset($product))
                 <form  action="{{ route('admin.products.update',$product->id) }}" method="POST" enctype="multipart/form-data">
-                {{-- @method('put') --}}
+                @method('put')
+            @else
+            <form  action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+
             @endif
                 @csrf
             <button type="submit" class="btn btn-primary">@lang('admin.save')</button>
@@ -107,10 +108,13 @@
                 @include('admin.products.taps.product_info')
                 @include('admin.products.taps.categories')
                 @include('admin.products.taps.product_setting')
-                @include('admin.products.taps.product_media')
+                @isset($product)
+                    @include('admin.products.taps.product_media')
+                @endisset
+
                 @include('admin.products.taps.product_size_weight')
                 @include('admin.products.taps.product_additional_data')
-                
+
               </div>
 
 
