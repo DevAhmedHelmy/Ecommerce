@@ -40,7 +40,7 @@
             @can('role-list')
                 <li class="nav-item">
                     <a href="{{route('admin.roles.index')}}" class="nav-link">
-                    <i class="nav-icon fa fa-dashboard"></i>
+                    <i class="nav-icon fad fa-drum"></i>
                     <p>
                         {{trans('admin.permissions')}}
 
@@ -51,7 +51,7 @@
             @can('settings-list')
                 <li class="nav-item">
                     <a href="{{adminUrl('settings')}}" class="nav-link">
-                    <i class="nav-icon fa fa-dashboard"></i>
+                    <i class="nav-icon fas fa-cog"></i>
                     <p>
                         {{trans('admin.settings')}}
                     </p>
