@@ -86,9 +86,13 @@ Route::group(
                  
                     Route::delete('products/destroy/all', 'Admin\ProductController@multiDelete')->name('products.deleteAll');
                     Route::resource('products','Admin\ProductController');
-                    Route::post('product/upload_images/{id}','Admin\ProductController@upload_images');
+                    // Route::post('product/upload_images/{id}','Admin\ProductController@upload_images');
                     
-                    Route::post('product/delete_image','Admin\ProductController@delete_image');
+                    // Route::post('product/delete_image','Admin\ProductController@delete_image');
+                    Route::post('product/upload_images/{id}',function(){
+                        return "heheheh";
+                    });
+
                     Route::post('product/delete/image/{id}','Admin\ProductController@delete_main_image');
                     Route::post('product/update/image/{id}','Admin\ProductController@update_main_image');
                     Route::get('load/weight/size','Admin\ProductController@preapir_weight_size');

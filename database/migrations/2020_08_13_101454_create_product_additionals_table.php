@@ -15,6 +15,8 @@ class CreateProductAdditionalsTable extends Migration
     {
         Schema::create('product_additionals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('name');
             $table->text('value');
             $table->timestamps();

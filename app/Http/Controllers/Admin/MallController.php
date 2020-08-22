@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Country;
 use App\Models\Mall;
 use Illuminate\Http\Request;
 use App\Http\Requests\MallRequest;
@@ -28,7 +28,8 @@ class MallController extends Controller
      */
     public function create()
     {
-        return view('admin.malls.create',['title' => trans('admin.create')]);
+        $countries = Country::all();
+        return view('admin.malls.create',['countries' => $countries,'title' => trans('admin.create')]);
     }
 
     /**

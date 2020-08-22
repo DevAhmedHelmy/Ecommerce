@@ -2,7 +2,7 @@
     <script>
         $(document).ready(function(){
             $('#jstree').jstree({ 'core' : {
-                'data' : {!! categories() !!}
+                'data' : {!! categories($product->category_id ) !!}
             },
             "checkbox" : {
                 "keep_selected_style" : true
@@ -26,7 +26,11 @@
             $.ajax({
                 url:"{{adminUrl('load/weight/size')}}",
                 dataType:'html',
-                data:{_token:"{{csrf_token()}}",category_id:category_id},
+                data:{
+                    _token:"{{csrf_token()}}",
+                    category_id:category_id,
+                    product_id:"{{$product->id}}"
+                },
                 success:function(data){
                     $('.size_weight').html(data);
                 }

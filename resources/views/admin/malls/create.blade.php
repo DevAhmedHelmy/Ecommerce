@@ -69,16 +69,33 @@
                     @endforeach
 
                 </div>
-
                 <div class="d-flex justify-content-between">
+                    <div class="col form-group">
+                        <label>@lang('admin.mall_manager')</label>
+                        <input type="text" name="mall_manager" class="form-control">
+
+                    </div>
                     <div class="col form-group">
                         <label>@lang('admin.email')</label>
                         <input type="email" name="email" class="form-control">
 
                     </div>
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    
                     <div class="col form-group">
                         <label>@lang('admin.phone')</label>
                         <input type="text" name="phone" class="form-control">
+                    </div>
+                    <div class="col form-group">
+                        <label>@lang('admin.countries')</label>
+                        <select name="country_id" class="form-control select2">
+                            @foreach($countries as $country)
+                                <option value="{{$country->id}}">{{$country->name}}</option>
+                            @endforeach
+                        </select>
+                        
                     </div>
 
                 </div>

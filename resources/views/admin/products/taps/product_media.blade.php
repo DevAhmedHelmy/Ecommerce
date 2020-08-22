@@ -5,10 +5,9 @@
     <script>
         Dropzone.autoDiscover = false;
         $(document).ready(function(){
-            
              
             $('#myDropzoneFile').dropzone({
-                url:"{{adminUrl('product/upload_images/'.$product ?? ''->id)}}",
+                url:"{{adminUrl('product/upload_images/'.$product->id)}}",
                 paramName : 'files[]',
                 uploadMultiple:true,
                 maxFiles:15,
@@ -27,7 +26,7 @@
                         url:"{{adminUrl('product/delete_image')}}",
                         data:{
                             _token:"{{csrf_token()}}",
-                            id:file.fid
+                            product_id:file.fid
                         }
                     });
                     var fmock;
@@ -35,7 +34,7 @@
                 },
                 init: function() {
 
-                    @foreach($product ?? ''->files()->get() as $file)
+                    @foreach($product->files()->get() ?? '' as $file)
                         var mock={
                             name : "{{$file->name}}",
                             fid : "{{$file->id}}",
@@ -88,14 +87,14 @@
                 },
                 init: function() {
 
-                    @if(!empty($product ?? ''->photo))
+                    @if(!empty($product->photo ?? ''))
                         var mock={
-                            name : "{{$product ?? ''->title}}",
+                            name : "{{$product->title ?? ''}}",
                             size : "",
                             type : "",
                         };
                         this.emit("addedfile", this.mock);
-                        this.options.thumbnail.call(this.mock,"{{url('storage/'.$product ?? ''->id . '/' . $product ?? ''->photo)}}");
+                        this.options.thumbnail.call(this.mock,"{{url('storage/'.$product ?? ''->id . '/' . $product->photo ?? '')}}");
                         @endif
                     this.on('sending', function(file,xhr,formData){
                         formData.append('fid','');
@@ -110,6 +109,6 @@
     </script>
 @endpush
 <div class="tab-pane container fade" id="product_media">
-    <div class="dropzone" id="mainPhoto"></div>
+    <div class="dropzone mb-2" id="mainPhoto"></div>
     <div class="dropzone" id="myDropzoneFile"></div>
 </div>

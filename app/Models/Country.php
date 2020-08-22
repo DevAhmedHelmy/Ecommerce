@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\City;
+use App\Models\Mall;
 use Astrotomic\Translatable\Translatable;
 
 class Country extends Model
@@ -13,5 +14,9 @@ class Country extends Model
     public function cities()
     {
         return $this->hasMany(City::class);
+    }
+    public function malls()
+    {
+        return $this->hasMany(Mall::class);
     }
 }

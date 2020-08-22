@@ -15,6 +15,7 @@ class CreateMallsTable extends Migration
     {
         Schema::create('malls', function (Blueprint $table) {
             $table->id();
+            $table->string('mall_manager');
             $table->string('phone');
             $table->string('email');
             $table->string('facebook')->nullable();
@@ -24,6 +25,8 @@ class CreateMallsTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('address')->nullable();
             $table->string('logo')->nullable();
+            $table->foreignId('country_id');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->timestamps();
         });
     }

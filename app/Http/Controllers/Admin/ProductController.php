@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Country;
 use App\Models\Size;
 use App\Models\Weight;
 use App\Models\Product;
+use App\Models\Manufacthrer;
+use App\Models\Color;
+use App\Models\Tradmark;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\ProductAdditional;
 class ProductController extends Controller
 {
     /**
@@ -31,7 +34,24 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.form',['title' => trans('admin.create')]);
+        $countries = Country::with('malls')->get();
+         
+        $colors = Color::all();
+        $tradmarks = Tradmark::all();
+        $manufacthrers = Manufacthrer::all();
+        // $data = ['en.name'=>'product name','ar.name' => 'اسم المنتج','en.content'=>'content','ar.content'=>'ar content'];
+        $product = Product::create(['size'=>1]);
+        if($product){
+            return redirect()->route('admin.products.update',$product->id);
+        }
+        // return view('admin.products.form',
+        //     [
+        //         'countries' => $countries,
+        //         'colors' => $colors,
+        //         'tradmarks' => $tradmarks,
+        //         'manufacthrers' => $manufacthrers,
+        //         'title' => trans('admin.create')
+        //     ]);
     }
 
     /**
@@ -68,7 +88,22 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.form',['product' => $product ,'title' => trans('admin.edit')]);
+        $countries = Country::with('malls')->get();
+        $colors = Color::all();
+        $tradmarks = Tradmark::all();
+        $manufacthrers = Manufacthrer::all();
+        $product->load('product_additionals');
+        $product->load('malls');
+
+         
+        return view('admin.products.form',[
+            'product' => $product ,
+            'countries' => $countries,
+            'colors' => $colors,
+            'tradmarks' => $tradmarks,
+            'manufacthrers' => $manufacthrers,   
+            'title' => trans('admin.edit')
+            ]);
     }
 
     /**
@@ -82,8 +117,38 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         $product->update($data);
-		session()->flash('success', trans('admin.updated_successfully'));
-		return redirect(route('admin.products.index'));
+        if(request('additionals_name') && request('additionals_value'))
+        {
+            $product_add = ProductAdditional::where('product_id',$product->id)->delete();
+            $add_data = [];
+            foreach(request('additionals_name') as $key => $value)
+            { 
+                if($value !== null){
+                    $row=[];
+                    $row['product_id'] = $product->id;
+                    $row['name']  = $value;
+                    $row['value'] =  request('additionals_value')[$key];
+                    $add_data[]=$row;
+                }
+            }
+            if(!empty($add_data)){
+                foreach($add_data as $data){
+                    ProductAdditional::create([
+                        'name' => $data['name'],
+                        'value' => $data['value'],
+                        'product_id' => $data['product_id'],
+                    ]);
+                }
+            }  
+        }
+
+        if(request('malls'))
+        {
+           $product->malls()->sync(request('malls'));   
+        }
+		// session()->flash('success', trans('admin.updated_successfully'));
+        // return redirect(route('admin.products.index'));
+        return response()->json(['message'=>trans('admin.updated_successfully'),'status'=>true],200);
     }
 
     /**
@@ -152,8 +217,9 @@ class ProductController extends Controller
      */
     public function delete_image()
     {
-        if (request()->has('id')) {
-		    up()->delete(request()->id);
+        if (request()->has('product_id')) {
+            dd("ajhfkdhdf");
+		    up()->delete(request()->product_id);
 		}
     }
 
@@ -187,13 +253,18 @@ class ProductController extends Controller
 
     public function preapir_weight_size()
     {
-
         if(request()->ajax() && request()->has('category_id'))
         {
-            return get_parent(request('category_id'));
-            $sizes = Size::where('category_id',request('category_id'))->get();
-            $weights = Weight::all();
-            return view('admin.products.ajax.size_weight',['sizes' => $sizes, 'weights' => $weights])->render();
+            $cat_list = array_diff(explode(', ',get_parent(request('category_id'))), [request('category_id')]);
+            $sizes = Size::listsTranslations('name')
+                    ->where('is_public','yes')
+                    ->whereIn('category_id',$cat_list)
+                    ->orWhere('category_id',(int) request('category_id'))
+                    ->pluck('name','id');
+             
+            $weights = Weight::listsTranslations('name')->pluck('name','id')->toArray();
+            $product = Product::findOrfail(request('product_id'));
+            return view('admin.products.ajax.size_weight',['sizes' => $sizes, 'product' => $product, 'weights' => $weights])->render();
         }else{
             return trans('admin.choose_category');
         }

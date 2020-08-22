@@ -33,7 +33,9 @@ class MallRequest extends FormRequest
             'email' => ['required'],
             'latitude' => ['sometimes','nullable'],
             'longitude' => ['sometimes','nullable'],
-            'adddress' => ['sometimes','nullable']
+            'adddress' => ['sometimes','nullable'],
+            'country_id'=>['required','exists:countries,id'],
+            'mall_manager' => ['required']
 
         ];
         foreach (config('translatable.locales') as $locale) {
