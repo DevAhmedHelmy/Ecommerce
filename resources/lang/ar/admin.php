@@ -18,7 +18,7 @@
     'confirm_delete'                                    => 'تاكيد الحذف',
     'yes'                                               => 'نعم',
     'no'                                                => 'لا',
-    'confirm_delete_user'                               => 'هل تريد حذف المستخدم ؟',
+    'confirm_delete_user'                               => 'هل تريد حذف العنصر المحدد ؟',
     'remember_me'                                       => 'تذكرني',
     'password'                                          => 'كلمه المرور',
     'password_confirmation'                             => 'تاكيد كلمه المرور',

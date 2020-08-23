@@ -15,6 +15,9 @@
 @push('js')
     <script>
         $(document).ready(function(){
+            $('#delete_btn').on('click',function(event){
+                event.preventDefault();
+            });
             $(document).on('click','.save_and_continue',function(){
                 var form_data = $('#product_form').serialize();
                 $.ajax({
@@ -83,7 +86,7 @@
             <button type="submit" class="btn btn-success save_and_continue"><i class="fas fa-save"></i> @lang('admin.save_and_continue')
                 <i class="fas fa-spinner loading_save d-none"></i></button>
             <button class="btn btn-info"><i class="fas fa-copy"></i> @lang('admin.copy')</button>
-            <button class="btn btn-danger"><i class="fas fa-trash"></i> @lang('admin.delete')</button>
+            <button class="btn btn-danger" id="delete_btn" data-toggle="modal" data-target="#deleteProduct"><i class="fas fa-trash"></i> @lang('admin.delete')</button>
             <div class="alert alert-danger error_message d-none mt-2">
                 <ul class="validate_massege">
 
@@ -137,6 +140,31 @@
 
 </div>
 
-
+ 
+  
+  <!-- Modal -->
+<div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="deleteProductLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteProductLabel">@lang('admin.delete')</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="delete-form-{{ $product->id }}" action="{{ route('admin.products.destroy',$product->id) }}" method="post" style="display: inline-block">
+                @csrf
+                @method('delete')
+                <div class="modal-body">
+                    <p>@lang('admin.confirm_delete_user') {{$product->title}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('admin.no')</button>
+                    <button type="button" class="btn btn-danger btn-sm"> @lang('admin.yes')</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @endsection

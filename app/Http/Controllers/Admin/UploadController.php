@@ -17,6 +17,7 @@ class UploadController extends Controller
     // $file, $path,$upload_type='single', $delete_file=null,$curd_type=[] , $new_name = null
     public function uploadFile($data=[])
     {
+        
         if(in_array('new_name',$data))
         {
             $new_name = $data['new_name'] === null ? time() : $data['new_name'];
@@ -26,7 +27,8 @@ class UploadController extends Controller
         {
             \Storage::has($data['delete_file']) && !empty($data['delete_file']) ? \Storage::delete($data['delete_file']) : '';
             return request()->file($data['file'])->store($data['path']);
-        }elseif(request()->hasFile($data['file']) && $data['upload_type']=='files'){
+        }elseif(request()->has($data['file']) && $data['upload_type']=='files'){
+             
             $file = request()->file($data['file']);
             $size = $file->getSize();
             $mime_type = $file->getMimeType();
@@ -44,7 +46,7 @@ class UploadController extends Controller
                     'file_type'     => $data['file_type'],
                     'relation_id'   => $data['relation_id']
                 ]);
-                return true;
+            return true;
         }
     }
 }

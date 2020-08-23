@@ -39,19 +39,10 @@ class ProductController extends Controller
         $colors = Color::all();
         $tradmarks = Tradmark::all();
         $manufacthrers = Manufacthrer::all();
-        // $data = ['en.name'=>'product name','ar.name' => 'اسم المنتج','en.content'=>'content','ar.content'=>'ar content'];
-        $product = Product::create(['size'=>1]);
+
         if($product){
             return redirect()->route('admin.products.update',$product->id);
         }
-        // return view('admin.products.form',
-        //     [
-        //         'countries' => $countries,
-        //         'colors' => $colors,
-        //         'tradmarks' => $tradmarks,
-        //         'manufacthrers' => $manufacthrers,
-        //         'title' => trans('admin.create')
-        //     ]);
     }
 
     /**
@@ -159,8 +150,19 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        
+        if(count($product->files) > 0)
+        {
+            $product->files()->delete();
+            foreach($product->files as $file)
+            {
+                Storage::delete($file);
+            }
+        }
+        ($product->malls()) ? $product->malls()->detach($product->id) : ''; 
+        ($product->product_additionals()) ? $product->product_additionals()->delete() : '';
+        Storage::delete($product->photo);
         $product->delete();
-        Storage::delete($product->logo);
         session()->flash('success', trans('admin.deleted_successfully'));
         return redirect(route('admin.products.index'));
     }
@@ -198,8 +200,10 @@ class ProductController extends Controller
      */
     public function upload_images($id)
     {
+        
 
-        if (request()->hasFile('files')) {
+        if (request()->has('files')) {
+            
 		    up()->uploadFile([
                 'file'        => 'files',
                 'path'        => 'product/'.$id,

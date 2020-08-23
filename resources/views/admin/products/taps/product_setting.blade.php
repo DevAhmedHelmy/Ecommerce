@@ -9,6 +9,11 @@
             todayBtn:true,
             clearBtn:true
         });
+
+        $('#status').on('change',function(){
+            var status = $('#status option:selected').val();
+            (status == 'refused') ? $('#refused_reason').removeClass('d-none') : $('#refused_reason').addClass('d-none');
+        });
     </script>
 @endpush
 <div class="tab-pane container fade" id="product_setting">
@@ -58,7 +63,7 @@
 
     </div>
     <div class="d-flex justify-content-between">
-        <div class="col form-group">
+        <div class="col form-group d-none" id="refused_reason">
             <label>@lang('admin.refuse_reason')</label>
             <textarea name="refuse_reason" class="form-control" id="" cols="30" rows="10">{{$product->refuse_reason}}</textarea>
         </div>
