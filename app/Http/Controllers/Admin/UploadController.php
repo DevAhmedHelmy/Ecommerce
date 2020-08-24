@@ -27,8 +27,10 @@ class UploadController extends Controller
         {
             \Storage::has($data['delete_file']) && !empty($data['delete_file']) ? \Storage::delete($data['delete_file']) : '';
             return request()->file($data['file'])->store($data['path']);
-        }elseif(request()->has($data['file']) && $data['upload_type']=='files'){
 
+
+        }elseif(request()->hasFile($data['file']) && $data['upload_type']=='files'){
+            dd("hhh");
             $file = request()->file($data['file']);
             $size = $file->getSize();
             $mime_type = $file->getMimeType();

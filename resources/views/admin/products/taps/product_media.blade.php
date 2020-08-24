@@ -2,6 +2,7 @@
 
 <script src="{{asset('adminPanal/js/dropzone.min.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('adminPanal/css/dropzone.min.css') }}">
+ 
     <script>
         Dropzone.autoDiscover = false;
         $(document).ready(function(){
@@ -20,30 +21,32 @@
                     _token:"{{csrf_token()}}",
                 },
                 addRemoveLinks:true,
-                removefile:function(file){
+                removedfile:function(file){
                     $.ajax({
                         dataType:'json',
                         type:'post',
-                        url:"{{adminUrl('product/delete_image')}}",
+                        url:"{{route('admin.deleteFiles')}}",
                         data:{
                             _token:"{{csrf_token()}}",
                             product_id:file.fid
                         }
                     });
-                    var fmock;
-                    return (fmock = file.previweElement) != null ? fmock.parentMode.removeChild(file.previweElement) : void 0;
+                    var fileRef;
+                    return (fileRef = file.previewElement) != null ? 
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
                 },
                 init: function() {
 
-                    @foreach($product->files()->get() ?? '' as $file)
+                    @foreach($product->files()->get() as $file)
                         var mock={
                             name : "{{$file->name}}",
                             fid : "{{$file->id}}",
                             size : "{{$file->size}}",
                             type : "{{$file->mime_type}}",
                         };
-                        this.emit("addedfile", this.mock);
-                        this.options.thumbnail.call(this.mock,"{{url('storage/'.$file->full_path)}}");
+                        this.emit("addedfile", mock);
+                        this.emit('thumbnail',mock,"{{url(\Storage::url($file->full_path) )}}");
+                         
                     @endforeach
                     this.on('sending', function(file,xhr,formData){
                          
@@ -58,61 +61,62 @@
 
 
             // main product photo
-            // $('#mainPhoto').dropzone({
+            $('#mainPhoto').dropzone({
                 
-            //     url:"{{adminUrl('product/update/image/'.$product->id ?? '')}}",
-            //     method: 'POST',
-            //     paramName : 'file', 
-            //     uploadMultiple:false,
-            //     autoDiscover:false,
-            //     maxFiles:1,
-            //     maxFilesize:10,
-            //     acceptedFiles:'image/*',
-            //     dictDefaultMessage:"{{trans('admin.uploadFiles')}}",
-            //     dictRemoveFile:"{{trans('admin.delete')}}",
-            //     params:{
-            //         _token:"{{csrf_token()}}"
-            //     },
-            //     addRemoveLinks:true,
-            //     removefile:function(file){
-            //         $.ajax({
-            //             dataType:'json',
-            //             type:'post',
-            //             url:"{{adminUrl('product/delete/image/'.$product->id ?? '')}}",
-            //             data:{
-                             
-            //                 _token:"{{csrf_token()}}",
-            //                 id:file.fid
-            //             }
-            //         });
+                url:"{{route('admin.productUploadImage',$product->id)}}",
+                method: 'POST',
+                paramName : 'file', 
+                uploadMultiple:false,
+                autoDiscover:false,
+                maxFiles:1,
+                maxFilesize:10,
+                acceptedFiles:'image/*',
+                dictDefaultMessage:"{{trans('admin.uploadFiles')}}",
+                dictRemoveFile:"{{trans('admin.delete')}}",
+                params:{
+                    _token:"{{csrf_token()}}"
+                },
+                addRemoveLinks:true,
+                removedfile:function(file){
+                   
+                    $.ajax({
+                        dataType:'json',
+                        type:'post',
+                        url:"{{route('admin.productDeleteImage',$product->id)}}",
+                        data:{
+                            _token:"{{csrf_token()}}",
+                        }
+                    });
                      
-            //         var fmock;
-            //         return (fmock = file.previweElement) != null ? fmock.parentMode.removeChild(file.previweElement) : void 0;
-            //     },
-            //     init: function() {
+                    var fileRef;
+                    return (fileRef = file.previewElement) != null ? 
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
+                },
+                init: function() {
 
-            //         @if(!empty($product->photo ?? ''))
-            //             var mock={
-            //                 name : "{{$product->title ?? ''}}",
-            //                 size : "",
-            //                 type : "",
-            //             };
-            //             this.emit("addedfile", this.mock);
-            //             this.options.thumbnail.call(this.mock,"{{url('storage/'.$product->id ?? '' . '/' . $product->photo ?? '')}}");
-            //             @endif
-            //         this.on('sending', function(file,xhr,formData){
-            //             formData.append('fid','');
-            //             file.id=''
-            //         });
-            //         this.on('success', function(file,response){
-            //             file.id = response.id
-            //         });
-            //     },
-            // });
+                    @if(!empty($product->photo ))
+
+                        var mock={
+                            name : "{{$product->title}}",
+                            size : "",
+                            type : "",
+                        };
+                        this.emit("addedfile", mock);
+                        this.emit('thumbnail',mock,"{{url(\Storage::url($product->photo) )}}");
+                    @endif
+                    this.on('sending', function(file,xhr,formData){
+                        formData.append('fid','');
+                        file.id=''
+                    });
+                    this.on('success', function(file,response){
+                        file.id = response.id
+                    });
+                },
+            });
         });
     </script>
 @endpush
 <div class="tab-pane container fade" id="product_media">
-    {{-- <div class="dropzone mb-2" id="mainPhoto"></div> --}}
+    <div class="dropzone mb-2" id="mainPhoto"></div>
     <div class="dropzone" id="myDropzoneFile"></div>
 </div>

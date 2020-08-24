@@ -204,12 +204,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function upload_images($id)
+    public function upload_files(Request $request, $id)
     {
-
-
-        if (request()->has('files')) {
-
+        // dd($request->files);
+        if (request()->hasfile('files')) {
+            dd("jjj");
 		    up()->uploadFile([
                 'file'        => 'files',
                 'path'        => 'product/'.$id,
@@ -253,12 +252,14 @@ class ProductController extends Controller
         ]);
          return response(['status' => true],200);
     }
-    public function delete_product_image($id)
+    public function delete_main_image($id)
     {
+         
         $product = Product::findOrfail($id);
         Storage::delete($product->photo);
         $product->photo = null;
         $product->save();
+        return response(['status' => true],200);
     }
 
     public function preapir_weight_size()
