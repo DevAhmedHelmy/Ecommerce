@@ -12,12 +12,12 @@ class UploadController extends Controller
         $file = File::findOrfail($id);
         (!empty($file)) ? \Storage::delete($file->full_file) : '';
         $file->delete();
-        
+
     }
     // $file, $path,$upload_type='single', $delete_file=null,$curd_type=[] , $new_name = null
     public function uploadFile($data=[])
     {
-        
+
         if(in_array('new_name',$data))
         {
             $new_name = $data['new_name'] === null ? time() : $data['new_name'];
@@ -28,7 +28,7 @@ class UploadController extends Controller
             \Storage::has($data['delete_file']) && !empty($data['delete_file']) ? \Storage::delete($data['delete_file']) : '';
             return request()->file($data['file'])->store($data['path']);
         }elseif(request()->has($data['file']) && $data['upload_type']=='files'){
-             
+
             $file = request()->file($data['file']);
             $size = $file->getSize();
             $mime_type = $file->getMimeType();

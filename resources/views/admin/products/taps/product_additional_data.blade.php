@@ -3,7 +3,7 @@
         var x = 1;
         $(document).on('click','.add_input',function(){
             var max_input = 9;
-            
+
             var content = `<div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.name')</label>
@@ -17,7 +17,7 @@
                 </div>`;
             if(x < max_input)
             {
-                
+
                 $('.additional_input').append(content);
                 x++;
             }
@@ -34,8 +34,8 @@
 </div>
 <div class="tab-pane container fade" id="additional_data">
     <div class="additional_input">
-        @if(count($product->product_additionals) > 0) 
-            @foreach($product->product_additionals as $value)
+        @if($product->product_additionals() !== null)
+            @foreach($product->product_additionals() as $value)
                 <div class="d-flex justify-content-between">
                     <div class="col form-group">
                         <label>@lang('admin.name')</label>
@@ -50,6 +50,6 @@
             @endforeach
         @endif
     </div>
-    
+
     <button type="button" class="btn btn-info add_input"><i class="fa fa-plus"></i> @lang('admin.add')</button>
 </div>

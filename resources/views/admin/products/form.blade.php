@@ -18,6 +18,42 @@
             $('#delete_btn').on('click',function(event){
                 event.preventDefault();
             });
+            $(document).on('click','.copy',function(){
+                var form_data = $('#product_form').serialize();
+                $.ajax({
+                    url:"{{route('admin.productCopy',$product->id)}}",
+                    dataType:'json',
+                    type:'post',
+                    data:{_token:"{{ csrf_token() }}",data:form_data},
+                    beforeSend:function(){
+                        $('.loading_save').removeClass('d-none');
+                    },
+                    success:function(data){
+                        if(data.status == true)
+                        {
+                            $('.loading_copy').addClass('d-none');
+                            $('.validate_massege').html('');
+                            $('.error_message').addClass('d-none');
+                            $('.success_message').html('<h2>'+data.message+'</h2>').removeClass('d-none');
+                            setTimeout(function(){
+
+                            },5000);
+
+                        }
+                    },
+                    error(response){
+                        $('.loading_copy').addClass('d-none');
+                        var error_li = '';
+
+                        $.each(response.responseJSON.errors,function(index,value){
+                            error_li += `<li>`+value+`</li>`
+                        });
+                        $('.error_message').removeClass('d-none');
+                        $('.validate_massege').html(error_li);
+                    }
+                });
+                return false;
+            });
             $(document).on('click','.save_and_continue',function(){
                 var form_data = $('#product_form').serialize();
                 $.ajax({
@@ -37,13 +73,11 @@
                             $('.success_message').html('<h2>'+data.message+'</h2>').removeClass('d-none');
 
                         }
-                        
-                        
                     },
                     error(response){
                         $('.loading_save').addClass('d-none');
                         var error_li = '';
-                         
+
                         $.each(response.responseJSON.errors,function(index,value){
                             error_li += `<li>`+value+`</li>`
                         });
@@ -85,7 +119,7 @@
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> @lang('admin.save')</button>
             <button type="submit" class="btn btn-success save_and_continue"><i class="fas fa-save"></i> @lang('admin.save_and_continue')
                 <i class="fas fa-spinner loading_save d-none"></i></button>
-            <button class="btn btn-info"><i class="fas fa-copy"></i> @lang('admin.copy')</button>
+            <button class="btn btn-info copy"><i class="fas fa-copy"></i> @lang('admin.copy') <i class="fas fa-spinner loading_copy d-none"></i></button></button>
             <button class="btn btn-danger" id="delete_btn" data-toggle="modal" data-target="#deleteProduct"><i class="fas fa-trash"></i> @lang('admin.delete')</button>
             <div class="alert alert-danger error_message d-none mt-2">
                 <ul class="validate_massege">
@@ -93,7 +127,7 @@
                 </ul>
             </div>
             <div class="alert alert-success success_message d-none mt-2">
-                
+
             </div>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
@@ -140,8 +174,8 @@
 
 </div>
 
- 
-  
+
+
   <!-- Modal -->
 <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="deleteProductLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -34,14 +34,19 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $countries = Country::with('malls')->get();
-         
-        $colors = Color::all();
-        $tradmarks = Tradmark::all();
-        $manufacthrers = Manufacthrer::all();
+        // $countries = Country::with('malls')->get();
 
+        // $colors = Color::all();
+        // $tradmarks = Tradmark::all();
+        // $manufacthrers = Manufacthrer::all();
+        $data = [
+            'status' => 'pending',
+            'en' => ['title' => 'TEST', 'content' => 'TEST'],
+            'ar' => ['title' => 'تجريبى', 'content' => 'تجريبى'],
+          ];
+          $product = Product::create($data);
         if($product){
-            return redirect()->route('admin.products.update',$product->id);
+            return redirect()->route('admin.products.edit',$product->id);
         }
     }
 
@@ -83,16 +88,17 @@ class ProductController extends Controller
         $colors = Color::all();
         $tradmarks = Tradmark::all();
         $manufacthrers = Manufacthrer::all();
-        $product->load('product_additionals');
-        $product->load('malls');
 
-         
+        // $product->load('product_additionals') ?? '';
+        // $product->load('malls') ?? '';
+
+
         return view('admin.products.form',[
             'product' => $product ,
             'countries' => $countries,
             'colors' => $colors,
             'tradmarks' => $tradmarks,
-            'manufacthrers' => $manufacthrers,   
+            'manufacthrers' => $manufacthrers,
             'title' => trans('admin.edit')
             ]);
     }
@@ -113,7 +119,7 @@ class ProductController extends Controller
             $product_add = ProductAdditional::where('product_id',$product->id)->delete();
             $add_data = [];
             foreach(request('additionals_name') as $key => $value)
-            { 
+            {
                 if($value !== null){
                     $row=[];
                     $row['product_id'] = $product->id;
@@ -130,12 +136,12 @@ class ProductController extends Controller
                         'product_id' => $data['product_id'],
                     ]);
                 }
-            }  
+            }
         }
 
         if(request('malls'))
         {
-           $product->malls()->sync(request('malls'));   
+           $product->malls()->sync(request('malls'));
         }
 		// session()->flash('success', trans('admin.updated_successfully'));
         // return redirect(route('admin.products.index'));
@@ -150,7 +156,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        
+
         if(count($product->files) > 0)
         {
             $product->files()->delete();
@@ -159,7 +165,7 @@ class ProductController extends Controller
                 Storage::delete($file);
             }
         }
-        ($product->malls()) ? $product->malls()->detach($product->id) : ''; 
+        ($product->malls()) ? $product->malls()->detach($product->id) : '';
         ($product->product_additionals()) ? $product->product_additionals()->delete() : '';
         Storage::delete($product->photo);
         $product->delete();
@@ -200,10 +206,10 @@ class ProductController extends Controller
      */
     public function upload_images($id)
     {
-        
+
 
         if (request()->has('files')) {
-            
+
 		    up()->uploadFile([
                 'file'        => 'files',
                 'path'        => 'product/'.$id,
@@ -265,13 +271,30 @@ class ProductController extends Controller
                     ->whereIn('category_id',$cat_list)
                     ->orWhere('category_id',(int) request('category_id'))
                     ->pluck('name','id');
-             
+
             $weights = Weight::listsTranslations('name')->pluck('name','id')->toArray();
             $product = Product::findOrfail(request('product_id'));
             return view('admin.products.ajax.size_weight',['sizes' => $sizes, 'product' => $product, 'weights' => $weights])->render();
         }else{
             return trans('admin.choose_category');
         }
+    }
+
+    public function copy($id)
+    {
+
+        $old_product = Product::findOrfail($id);
+
+        $new_product = $old_product->replicate();
+        $new_product->update(request()->data);
+
+
+
+        return response([
+            'status' => true,
+            'message' => trans('admin.added_successfully'),
+
+        ],200);
     }
 
 }
