@@ -29,10 +29,11 @@
         });
     </script>
 @endpush
-<div>
-    <h2>@lang('admin.additional_data')</h2>
-</div>
+
 <div class="tab-pane container fade" id="additional_data">
+    <div>
+        <h2>@lang('admin.additional_data')</h2>
+    </div>
     <div class="additional_input">
         @if($product->product_additionals() !== null)
             @foreach($product->product_additionals() as $value)

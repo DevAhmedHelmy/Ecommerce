@@ -2,15 +2,15 @@
 
 <script src="{{asset('adminPanal/js/dropzone.min.js')}}"></script>
 <link rel="stylesheet" href="{{ asset('adminPanal/css/dropzone.min.css') }}">
- 
+
     <script>
         Dropzone.autoDiscover = false;
         $(document).ready(function(){
             //  product media
-             
+
             $('#myDropzoneFile').dropzone({
                 url:"{{route('admin.uploadFiles',$product->id)}}",
-                paramName : 'files[]',
+                paramName : 'files',
                 uploadMultiple:true,
                 maxFiles:15,
                 maxFilesize:10,
@@ -32,7 +32,7 @@
                         }
                     });
                     var fileRef;
-                    return (fileRef = file.previewElement) != null ? 
+                    return (fileRef = file.previewElement) != null ?
                     fileRef.parentNode.removeChild(file.previewElement) : void 0;
                 },
                 init: function() {
@@ -46,10 +46,10 @@
                         };
                         this.emit("addedfile", mock);
                         this.emit('thumbnail',mock,"{{url(\Storage::url($file->full_path) )}}");
-                         
+
                     @endforeach
                     this.on('sending', function(file,xhr,formData){
-                         
+
                         formData.append('fid','');
                         file.id=''
                     });
@@ -62,10 +62,10 @@
 
             // main product photo
             $('#mainPhoto').dropzone({
-                
+
                 url:"{{route('admin.productUploadImage',$product->id)}}",
                 method: 'POST',
-                paramName : 'file', 
+                paramName : 'file',
                 uploadMultiple:false,
                 autoDiscover:false,
                 maxFiles:1,
@@ -78,7 +78,7 @@
                 },
                 addRemoveLinks:true,
                 removedfile:function(file){
-                   
+
                     $.ajax({
                         dataType:'json',
                         type:'post',
@@ -87,9 +87,9 @@
                             _token:"{{csrf_token()}}",
                         }
                     });
-                     
+
                     var fileRef;
-                    return (fileRef = file.previewElement) != null ? 
+                    return (fileRef = file.previewElement) != null ?
                     fileRef.parentNode.removeChild(file.previewElement) : void 0;
                 },
                 init: function() {

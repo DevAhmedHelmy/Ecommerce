@@ -37,7 +37,7 @@ class RoleController extends Controller
     {
 
         $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('admin.roles.index',compact('roles'))
+        return view('admin.roles.index',['roles' => $roles,'title'=>trans('permission.permission')])
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -52,7 +52,12 @@ class RoleController extends Controller
         $role = new Role();
         $rolePermissions = [];
         $permission = Permission::get();
-        return view('admin.roles.form',compact('role','permission','rolePermissions'));
+        return view('admin.roles.form',[
+            'role' => $role,
+            'permission' => $permission,
+            'rolePermissions' => $rolePermissions,
+            'title' => trans('permission.Create_New_Role')
+        ]);
     }
 
 
@@ -67,7 +72,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')
-                        ->with('success',trans('general.created_Successfully'));
+                        ->with('success',trans('admin.created_Successfully'));
     }
     /**
      * Display the specified resource.
@@ -81,8 +86,6 @@ class RoleController extends Controller
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
             ->where("role_has_permissions.role_id",$id)
             ->get();
-
-
         return view('admin.roles.show',compact('role','rolePermissions'));
     }
 
@@ -102,7 +105,12 @@ class RoleController extends Controller
             ->all();
 
 
-        return view('admin.roles.form',compact('role','permission','rolePermissions'));
+        return view('admin.roles.form',[
+            'role' => $role,
+            'permission' => $permission,
+            'rolePermissions' => $rolePermissions,
+            'title' => trans('permission.update_Role')
+        ]);
     }
 
 
@@ -120,7 +128,7 @@ class RoleController extends Controller
         $role->save();
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')
-                        ->with('success',trans('general.updated_Successfully'));
+                        ->with('success',trans('admin.updated_Successfully'));
     }
     /**
      * Remove the specified resource from storage.
@@ -133,10 +141,10 @@ class RoleController extends Controller
         if($id == 1)
         {
             return redirect()->route('roles.index')
-                        ->with('error',trans('general.Can_not_delete_This_element'));
+                        ->with('error',trans('admin.Can_not_delete_This_element'));
         }
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                    ->with('success',trans('general.deleted_Successfully'));
+                    ->with('success',trans('admin.deleted_Successfully'));
     }
 }

@@ -30,13 +30,13 @@ class UploadController extends Controller
 
 
         }elseif(request()->hasFile($data['file']) && $data['upload_type']=='files'){
-            dd("hhh");
+
             $file = request()->file($data['file']);
-            $size = $file->getSize();
-            $mime_type = $file->getMimeType();
-            $name = $file->getClientOriginalName();
-            $hashName = $file->hashName();
-            $file->store($data['path']);
+            $size = $file[0]->getSize();
+            $mime_type = $file[0]->getMimeType();
+            $name = $file[0]->getClientOriginalName();
+            $hashName = $file[0]->hashName();
+            $file[0]->store($data['path']);
             File::create(
                 [
                     'name'          => $name ,

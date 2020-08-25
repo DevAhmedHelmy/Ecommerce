@@ -206,9 +206,7 @@ class ProductController extends Controller
      */
     public function upload_files(Request $request, $id)
     {
-        // dd($request->files);
-        if (request()->hasfile('files')) {
-            dd("jjj");
+        if (request()->hasFile('files')) {
 		    up()->uploadFile([
                 'file'        => 'files',
                 'path'        => 'product/'.$id,
@@ -254,7 +252,7 @@ class ProductController extends Controller
     }
     public function delete_main_image($id)
     {
-         
+
         $product = Product::findOrfail($id);
         Storage::delete($product->photo);
         $product->photo = null;
@@ -279,23 +277,6 @@ class ProductController extends Controller
         }else{
             return trans('admin.choose_category');
         }
-    }
-
-    public function copy($id)
-    {
-
-        $old_product = Product::findOrfail($id);
-
-        $new_product = $old_product->replicate();
-        $new_product->update(request()->data);
-
-
-
-        return response([
-            'status' => true,
-            'message' => trans('admin.added_successfully'),
-
-        ],200);
     }
 
 }

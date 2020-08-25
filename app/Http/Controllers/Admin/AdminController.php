@@ -9,6 +9,18 @@ use App\Http\Requests\AdminsRequest;
 
 class AdminController extends Controller
 {
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    function __construct()
+    {
+        $this->middleware('permission:admin-list|admin-create|admin-edit|admin-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:admin-create', ['only' => ['create','store']]);
+        $this->middleware('permission:admin-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:admin-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -57,7 +69,7 @@ class AdminController extends Controller
     public function show(Admin $admin)
     {
 
-        return view('admin.admins.show',['title' => trans('admin.show'), 'admin' => $admin]);
+        return view('admin.admins.show',['title' => trans('admin.show_admins'), 'admin' => $admin]);
     }
 
     /**
@@ -68,7 +80,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        return view('admin.admins.form',['titleEdit' => trans('admin.edit'), 'admin' => $admin]);
+        return view('admin.admins.form',['titleEdit' => trans('admin.edit_admin'), 'admin' => $admin]);
     }
 
     /**

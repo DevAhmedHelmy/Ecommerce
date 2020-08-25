@@ -30,7 +30,7 @@
 
 			<li class="nav-item">
 				<a href="{{adminUrl('')}}" class="nav-link">
-				<i class="nav-icon fas fa-tachometer-alt-slowest"></i>
+				    <i class="nav-icon fas fa-tachometer-alt"></i>
 				<p>
 					{{trans('admin.dashboard')}}
 
@@ -40,7 +40,7 @@
             @can('role-list')
                 <li class="nav-item">
                     <a href="{{route('admin.roles.index')}}" class="nav-link">
-                    <i class="nav-icon fad fa-drum"></i>
+                        <i class="nav-icon fas fa-hand-sparkles"></i>
                     <p>
                         {{trans('admin.permissions')}}
 
@@ -299,7 +299,7 @@
             @can('sizes-list')
                 <li class="nav-item has-treeview {{active_menu('sizes')[0]}}">
                     <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-sort-size-up-alt"></i>
+                        <i class="nav-icon fas fa-business-time"></i>
                     <p>
                         {{trans('admin.sizes')}}
                         <i class="right fa fa-angle-left"></i>
@@ -308,7 +308,7 @@
                     <ul class="nav nav-treeview {{active_menu('sizes')[1]}}">
                     <li class="nav-item {{active_menu('sizes')[2]}}">
                         <a href="{{adminUrl('sizes')}}" class="nav-link">
-                        <i class="fas fa-sort-size-up-alt nav-icon"></i>
+                            <i class="nav-icon fas fa-business-time"></i>
                         <p>{{trans('admin.sizes')}}</p>
                         </a>
                     </li>
@@ -355,7 +355,7 @@
             @endcan
             <li class="nav-item">
                 <a href="{{adminUrl('logout')}}" class="nav-link">
-                <i class="nav-icon fa fa-sign-out"></i>
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
 
                     {{ trans('admin.logout') }}

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+
     <title> {{ (app()->getLocale() == 'ar') ? setting()->sitename_ar : setting()->sitename_en }} | {{ !empty($title) ? $title : trans('admin.adminpanel')}}</title>
 
     {{-- Font Awesome Icons --}}
@@ -37,13 +37,12 @@
     @if(app()->getLocale() == 'en')
 
         <link rel="stylesheet" href="{{asset('adminPanal/css/adminlte.min.css')}}">
-
     @else
-
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/bootstrap-4.min.css')}}">
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/AdminLTE-rtl.min.css')}}">
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/_all-skins-rtl.min.css')}}">
         {{-- <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet"> --}}
+
         <style>
         *,body,p,h1,h2,h3,h4,h5,h6,span{
             font-family: 'Cairo', sans-serif;
@@ -55,12 +54,14 @@
 
 
     @endif
+    {{-- fonts --}}
+        <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet"> font-family: 'Tajawal', sans-serif; --}}
         {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto&display=swap" rel="stylesheet"> --}}
 
     <style>
         *,body,p,h1,h2,h3,h4,h5,h6,span{
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Open Sans Condensed', sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
     </style>
