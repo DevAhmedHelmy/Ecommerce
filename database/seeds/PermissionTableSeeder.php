@@ -15,8 +15,8 @@ class PermissionTableSeeder extends Seeder
         $permissions = [
             'settings-list','settings-update',
             'role-list','role-create','role-edit','role-delete',
-            'user-list','user-create','user-edit','user-delete','company-users-list','all-users-list','vendor-users-list',
-            'admin-list','admin-create','admin-edit','admin-delete','admin-multi-delete',
+            'users-list','users-create','users-edit','users-delete','company-users-list','all-users-list','vendor-users-list',
+            'admins-list','admins-create','admins-edit','admins-delete','admins-multi-delete',
             'countries-list','countries-create','countries-edit','countries-delete','countries-multi-delete',
             'cities-list','cities-create','cities-edit','cities-delete','cities-multi-delete',
             'states-list','states-create','states-edit','states-delete','states-multi-delete',
