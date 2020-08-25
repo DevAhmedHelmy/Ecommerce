@@ -17,7 +17,7 @@
 @section('content')
 
 <div class="col-12">
-    <div class="card card-info">
+    <div class="card">
         <div class="card-header">
           <h3 class="card-title">@if(!$role->id) @lang('permission.Create_New_Role') @else @lang('permission.update_Role') @endif</h3>
         </div>

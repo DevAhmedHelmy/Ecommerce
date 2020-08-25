@@ -14,8 +14,8 @@
 <div class="card">
     {!! Form::open(['id'=>'form_data','route'=>'admin.admins.deleteAll','method'=>'delete']) !!}
     <div class="card-header">
-        <a href="{{ route('admin.admins.create') }}" class="btn btn-primary">@lang('admin.create_admin')</a>
-        <button type="button" class="btn btn-danger ml-2 delBtn" data-toggle="modal" data-target="#multiDelete">@lang('admin.deleteAll')</button>
+        <a href="{{ route('admin.admins.create') }}" class="btn btn-info btn-sm"><i class="fa fa-plus fa-sm"></i> @lang('admin.create_admin')</a>
+        <button type="button" class="btn btn-danger btn-sm ml-2 delBtn" data-toggle="modal" data-target="#multiDelete"><i class="fa fa-trash fa-sm"></i> @lang('admin.deleteAll')</button>
 
     </div>
     <div class="card-body">

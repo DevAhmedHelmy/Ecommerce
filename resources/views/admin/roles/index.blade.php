@@ -22,7 +22,7 @@
         <div class="card-header">
             <h3 class="card-title">
                 @can('roles-create')
-                    <a class="btn btn-info" href="{{ route('admin.roles.create') }}"><i class="fa fa-plus"></i> @lang('permission.Create_New_Role')</a>
+                    <a class="btn btn-info btn-sm" href="{{ route('admin.roles.create') }}"><i class="fa fa-plus fa-sm"></i> @lang('permission.Create_New_Role')</a>
                 @endcan
             </h3>
         </div>

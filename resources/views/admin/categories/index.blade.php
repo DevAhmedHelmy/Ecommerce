@@ -53,7 +53,7 @@
 
 
     <div class="card-header">
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-sm"></i> @lang('admin.create')</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-info btn-sm"><i class="fa fa-plus fa-sm"></i> @lang('admin.create')</a>
     </div>
     <div class="card-body">
         <div class="mb-2">
