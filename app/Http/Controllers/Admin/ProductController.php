@@ -20,6 +20,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('permission:admins-list|admins-create|admins-edit|admins-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:admins-create', ['only' => ['create','store']]);
+        $this->middleware('permission:admins-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:admins-delete', ['only' => ['destroy']]);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $products = Product::paginate(10);

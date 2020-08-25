@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Storage;
 class CountryController extends Controller
 {
 
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     function __construct()
     {
         $this->middleware('permission:countries-list|countries-create|countries-edit|countries-delete', ['only' => ['index','store']]);

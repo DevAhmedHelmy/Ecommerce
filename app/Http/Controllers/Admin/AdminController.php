@@ -9,17 +9,17 @@ use App\Http\Requests\AdminsRequest;
 
 class AdminController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     function __construct()
     {
-        $this->middleware('permission:admin-list|admin-create|admin-edit|admin-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:admin-create', ['only' => ['create','store']]);
-        $this->middleware('permission:admin-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:admin-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:admins-list|admins-create|admins-edit|admins-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:admins-create', ['only' => ['create','store']]);
+        $this->middleware('permission:admins-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:admins-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

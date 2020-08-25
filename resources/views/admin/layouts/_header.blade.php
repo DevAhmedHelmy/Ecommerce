@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/bootstrap-4.min.css')}}">
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/AdminLTE-rtl.min.css')}}">
         <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/_all-skins-rtl.min.css')}}">
-        {{-- <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet"> --}}
+
 
         <style>
         *,body,p,h1,h2,h3,h4,h5,h6,span{
@@ -55,9 +55,10 @@
 
     @endif
     {{-- fonts --}}
-        <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet"> --}}
         {{-- <link href="https://fonts.googleapis.com/css2?family=Tajawal&display=swap" rel="stylesheet"> font-family: 'Tajawal', sans-serif; --}}
         {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto&display=swap" rel="stylesheet"> --}}
+        {{-- <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet"> --}}
 
     <style>
         *,body,p,h1,h2,h3,h4,h5,h6,span{
