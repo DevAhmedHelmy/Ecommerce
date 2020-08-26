@@ -14,33 +14,34 @@
     <title> {{ (app()->getLocale() == 'ar') ? setting()->sitename_ar : setting()->sitename_en }} | {{ !empty($title) ? $title : trans('admin.adminpanel')}}</title>
 
     {{-- Font Awesome Icons --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('adminPanal/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/all.min.css')}}">
     {{-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/skins/skin-blue.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/skins/skin-blue.min.css')}}">
     {{-- iCheck --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/blue.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/blue.css')}}">
     {{-- Morris chart --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/morris.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/morris.css')}}">
     {{-- jvectormap --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/jquery-jvectormap-1.2.2.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/jquery-jvectormap-1.2.2.css')}}">
     {{-- Date Picker --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap-datepicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/bootstrap-datepicker.min.css')}}">
     {{-- Daterange picker --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/daterangepicker-bs3.css')}}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/daterangepicker-bs3.css')}}">
     {{-- bootstrap wysihtml5 - text editor --}}
-    <link rel="stylesheet" href="{{asset('adminPanal/css/bootstrap3-wysihtml5.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('adminPanal/jstree/themes/default/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('adminPanal/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{asset('adminPanel/css/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('adminPanel/jstree/themes/default/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminPanel/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminPanel/css/dropify.min.css') }}">
 
 
     @if(app()->getLocale() == 'en')
 
-        <link rel="stylesheet" href="{{asset('adminPanal/css/adminlte.min.css')}}">
+        <link rel="stylesheet" href="{{asset('adminPanel/css/adminlte.min.css')}}">
     @else
-        <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/bootstrap-4.min.css')}}">
-        <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/AdminLTE-rtl.min.css')}}">
-        <link rel="stylesheet" href="{{asset('adminPanal/css/rtl/_all-skins-rtl.min.css')}}">
+        <link rel="stylesheet" href="{{asset('adminPanel/css/rtl/bootstrap-4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('adminPanel/css/rtl/AdminLTE-rtl.min.css')}}">
+        <link rel="stylesheet" href="{{asset('adminPanel/css/rtl/_all-skins-rtl.min.css')}}">
 
 
         <style>
@@ -66,10 +67,10 @@
         }
 
     </style>
-    <link rel="stylesheet" href="{{asset('adminPanal/css/toastr.min.css')}}">
-    <script src="{{asset('adminPanal/js/jquery.min.js')}}"></script>
-    <script src="{{asset('adminPanal/js/toastr.min.js')}}"></script>
-    <script src="{{asset('adminPanal/js/sweetalert2.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('adminPanel/css/toastr.min.css')}}">
+    <script src="{{asset('adminPanel/js/jquery.min.js')}}"></script>
+    <script src="{{asset('adminPanel/js/toastr.min.js')}}"></script>
+    <script src="{{asset('adminPanel/js/sweetalert2.min.js')}}"></script>
 
 
 </head>

@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'sitename_ar' => 'Ecommerce',
+            'sitename_ar' => 'اون لاين شوب',
             'sitename_en' => 'Ecommerce',
 
         ]);

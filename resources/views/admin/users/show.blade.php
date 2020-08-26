@@ -11,61 +11,40 @@
     </div>
 @endsection
 @section('content')
-<div class="card">
 
-    <div class="card-header">
+<div class="col-6 offset-md-3 mt-4">
+    <div class="card card-primary card-outline">
+        <div class="card-body box-profile">
+          <div class="text-center">
+            @if($user->image)
+                <img class="profile-user-img img-fluid img-circle" src="{{url(\Storage::url($user->image))}}">
+            @else
+                <img class="profile-user-img img-fluid img-circle" src="{{asset('/adminPanel/uploads/users/user.png')}}">
+            @endif
+          </div>
+
+          <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
 
-    </div>
-    <div class="card-body">
 
-        <div class="row mb-5">
-
-
-            <div class="col-sm-6 border-right">
-                <div class="description-block">
-                <h5 class="description-header">@lang('admin.name')</h5>
-                <span class="description-text"> {{ $user->name }} </span>
-                </div>
-            </div>
-            <div class="col-sm-6 border-right">
-                <div class="description-block">
-                <h5 class="description-header">@lang('admin.email')</h5>
-                <span class="description-text"> {{ $user->email }} </span>
-                </div>
-
-            </div>
-
+          <ul class="list-group list-group-unbordered mt-3">
+            <li class="list-group-item">
+              <b>@lang('admin.email')</b> <a class="float-right">{{ $user->email }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>@lang('admin.level')</b> <a class="float-right"> {{ $user->level }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>@lang('admin.created_at')</b> <a class="float-right">{{ $user->created_at->format('Y/m/d') }}</a>
+            </li>
+          </ul>
 
 
         </div>
-        <div class="row">
-            <div class="col-sm-6 border-right">
-                <div class="description-block">
-                <h5 class="description-header">@lang('admin.level')</h5>
-                <span class="description-text"> {{ $user->level }} </span>
-                </div>
 
-            </div>
-
-            <div class="col-sm-6 border-right">
-                <div class="description-block">
-                <h5 class="description-header">@lang('admin.created_at')</h5>
-                <span class="description-text"> {{ $user->created_at->format('Y/m/d') }} </span>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-
+      </div>
 </div>
+
 
 
 @endsection

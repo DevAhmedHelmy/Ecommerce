@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use App\DataTables\UsersDataTable;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 
@@ -60,7 +58,18 @@ class UserController extends Controller
     {
 
         $data = $request->validated();
+
+        if (request()->hasFile('image')) {
+			$data['image'] = up()->uploadFile([
+                'file'        => 'image',
+                'path'        => 'users',
+                'upload_type' => 'single',
+                'delete_file' => '',
+            ]);
+        }
+
         $data['password'] = bcrypt($request->password);
+
         User::create($data);
         session()->flash('success', trans('admin.added_successfully'));
         return redirect(route('admin.users.index'));
@@ -74,7 +83,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.users.show',['title' => trans('admin.show'), 'user' => $user]);
+        return view('admin.users.show',['title' => trans('admin.user_show'), 'user' => $user]);
 
     }
 
@@ -87,7 +96,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return view('admin.users.form',['titleEdit' => trans('admin.edit'), 'user' => $user]);
+        return view('admin.users.form',['title' => trans('admin.user_edit'), 'user' => $user]);
     }
 
     /**
@@ -100,6 +109,15 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $data = $request->validated();
+
+        if (request()->hasFile('image')) {
+			$data['image'] = up()->uploadFile([
+                'file'        => 'image',
+                'path'        => 'users',
+                'upload_type' => 'single',
+                'delete_file' => $user->logo,
+            ]);
+		}
 		if (request()->has('password')) {
 			$data['password'] = bcrypt(request('password'));
 		}
@@ -134,13 +152,10 @@ class UserController extends Controller
     public function multiDelete()
     {
        if(is_array(request()->item)){
-           // User::whereIn('id', request('item'))->delete();
-           // or
            User::destroy(request('item'));
        }else{
            User::findOrfail(request('item'))->delete();
        }
-
        session()->flash('success', trans('admin.deleted_successfully'));
        return redirect(route('admin.users.index'));
     }
