@@ -12,17 +12,17 @@ use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-
+use Illuminate\Http\UploadedFile;
 class UsersTest extends TestCase
 {
+     
     use RefreshDatabase;
-
     protected $admin;
 
     public function setUp(): void
     {
         parent::setUp();
-
+        \Artisan::call('db:seed', ['--class' => 'SettingSeeder']);
         $this->setupPermissions();
         $this->admin = factory(\App\Models\Admin::class)->create();
         $this->admin->assignRole('superadmin');
@@ -31,7 +31,7 @@ class UsersTest extends TestCase
     }
     protected function setupPermissions()
     {
-        $permissions=['create users','show user', 'edit users', 'delete user'];
+        $permissions=['users-create','users-list', 'users-edit', 'users-delete'];
         foreach ($permissions as $permission) {
             Permission::create(['guard_name' => 'admin','name' => $permission]);
         }
@@ -54,27 +54,29 @@ class UsersTest extends TestCase
     */
     public function logged_in_admin_can_add_user()
     {
-
-        $this->actingAs($this->admin,'admin');
-        $this->post(route('admin.users.store'),
-            [
-                'name' => 'ahmed helmy',
-                'email' => 'admin@admin.com',
-                'email_verified_at' => now(),
-                'level' => 'user',
-                'password' => bcrypt('123456789'),
-                'remember_token' => Str::random(10),
-            ]);
-            $this->assertDatabaseHas('users',[
-                'name' => 'ahmed helmy',
-                'email' => 'admin@admin.com',
-            ]);
+        $this->withoutExceptionHandling();
+         
+        $data = [
+            'name' => 'ahmed helmy',
+            'image' => UploadedFile::fake()->image('file.png', 600, 600), 
+            'email' => 'ahmed@admin.com',
+            'email_verified_at' => null,
+            'level' => 'user',
+            'password' => bcrypt('123456789'),
+            'remember_token' => Str::random(10),
+        ];
+        
+        $response =  $this->actingAs($this->admin,'admin')
+                          ->post(route('admin.users.store'), $data);
+         
+            $this->assertDatabaseHas('users',['email' => 'ahmed@admin.com']);
     }
     /**
      * @test
     */
     public function logged_in_admin_can_show_user()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $this->actingAs($this->admin,'admin')
             ->get(route('admin.users.show',$user->id))
@@ -85,6 +87,7 @@ class UsersTest extends TestCase
     */
     public function logged_in_admin_can_show_edit_user_page()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $this->actingAs($this->admin,'admin')
             ->get(route('admin.users.edit',$user->id))
@@ -95,6 +98,7 @@ class UsersTest extends TestCase
     */
     public function logged_in_admin_can_update_user()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $this->actingAs($this->admin,'admin')
             ->put(route('admin.users.update',$user->id),[
@@ -113,6 +117,7 @@ class UsersTest extends TestCase
     */
     public function logged_in_admin_can_delete_user()
     {
+        $this->withoutExceptionHandling();
         $user = factory(User::class)->create();
         $this->actingAs($this->admin,'admin')
             ->delete(route('admin.users.destroy',$user->id));
