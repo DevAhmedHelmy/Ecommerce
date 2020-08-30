@@ -30,8 +30,6 @@ class UserController extends Controller
         $users = User::when(request()->level, function($query){
             return $query->where('level',request()->level);
         })->latest()->paginate(20);
-
-
         return view('admin.users.index',[
             'title' => trans('admin.users_acounts'),
             'users' => $users

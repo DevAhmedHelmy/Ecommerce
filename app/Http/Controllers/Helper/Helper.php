@@ -63,11 +63,7 @@ if(!function_exists('lang'))
 {
     function lang()
     {
-       if(session()->has('lang')) {
-           return session('lang');
-        }else{
-            return setting()->main_lang;
-        }
+        app()->setLocale(setting()->main_lang);
     }
 }
 

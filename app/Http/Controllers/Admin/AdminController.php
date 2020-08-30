@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\DataTables\AdminsDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminsRequest;
-
+use App\Repositories\Contracts\Admin\AdminRepositoryInterface;
 class AdminController extends Controller
 {
     /**
@@ -14,12 +14,14 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    private $adminRepository;
+    function __construct(AdminRepositoryInterface $adminRepository)
     {
         $this->middleware('permission:admins-list|admins-create|admins-edit|admins-delete', ['only' => ['index','store']]);
         $this->middleware('permission:admins-create', ['only' => ['create','store']]);
         $this->middleware('permission:admins-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:admins-delete', ['only' => ['destroy']]);
+        $this->adminRepository = $adminRepository;
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +30,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::paginate(20);
+        $admins = $this->adminRepository->getAll();
+    
         return view('admin.admins.index',['admins' => $admins,'title' => trans('admin.admins')]);
     }
 
@@ -56,8 +59,6 @@ class AdminController extends Controller
         Admin::create($data);
         session()->flash('success', trans('admin.added_successfully'));
         return redirect(route('admin.admins.index'));
-
-
     }
 
     /**
@@ -68,7 +69,6 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-
         return view('admin.admins.show',['title' => trans('admin.show_admins'), 'admin' => $admin]);
     }
 
@@ -113,7 +113,6 @@ class AdminController extends Controller
         session()->flash('success', trans('admin.deleted_successfully'));
         return redirect(route('admin.admins.index'));
     }
-
     /**
      * Remove the specified resource from storage.
      *

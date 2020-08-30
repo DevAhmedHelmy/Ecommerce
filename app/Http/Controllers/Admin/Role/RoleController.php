@@ -67,11 +67,12 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RoleRequeset $request)
+    public function store(Request $request)
     {
+       
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-        return redirect()->route('roles.index')
+        return redirect()->route('admin.roles.index')
                         ->with('success',trans('admin.created_Successfully'));
     }
     /**
