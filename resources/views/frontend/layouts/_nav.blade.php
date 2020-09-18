@@ -98,15 +98,22 @@
 
                                 <div id="sideNavPages5" class="collapse sideNavPages user-utiliity">
                                     <i class="fas fa-caret-up user-utiliity-caret"></i>
-                                    <h6 class="user-utiliity-title">MY ACCOUNT </h6>
+                                    <h6 class="user-utiliity-title">@lang('my_account')</h6>
                                     <hr>
                                     <ul class="text-left">
-                                        <li>
-                                            <a href="shop/register.html">Register</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop/login.html">Login</a>
-                                        </li>
+                                        @auth
+                                            <li>
+                                                <a href="#">@lang('my_account')</a>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <a href="{{route('register')}}">@lang('register')</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{route('login')}}">@lang('login')</a>
+                                            </li>
+                                        @endauth
+
                                     </ul>
                                 </div>
 
