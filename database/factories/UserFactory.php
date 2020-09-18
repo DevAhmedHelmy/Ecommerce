@@ -20,6 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     $array = ['user','vendor','company'];
     return [
         'name' => $faker->name,
+        'username' => $faker->username,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'level' => $faker->randomElement($array),
