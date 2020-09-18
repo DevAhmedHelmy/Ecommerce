@@ -32,7 +32,7 @@
                 name.push(data.instance.get_node(data.selected[i]).text);
             }
 
-            $('#delete_category').attr('href',"{{ adminUrl('categories') }}/"+r.join(', '));
+            $('#delete_category').attr('action',"{{ adminUrl('categories') }}/"+r.join(', '));
             $('.cat_name').text(name,r.join(', '));
 
 

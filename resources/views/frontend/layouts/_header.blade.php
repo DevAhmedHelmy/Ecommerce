@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<!--
-	ustora by freshdesignweb.com
-	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com/ustora/
--->
 <html lang="en">
-  <head>
+<head>
+    <!-- Meta Tags For Seo + Page Optimization -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ustora Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Themes Industry">
+    <!-- description -->
+    <meta name="description" content="Woman Store is a highly creative, modern, visually stunning and Bootstrap responsive multipurpose agency and HTML5 template with 14 ready home page demos.">
+    <!-- keywords -->
+    <meta name="keywords" content="creative, modern, clean, bootstrap responsive, h tml5, css3, portfolio, blog, agency, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, personal, masonry, grid, faq">
+    <!-- Page Title -->
+    <title>Woman Store | Home</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{asset('frontend/shop/img/favicon.ico')}}">
+    <!-- Bundle -->
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/bundle.min.css')}}">
+    <!-- Plugin Css -->
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/swiper.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/cubeportfolio.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/wow.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/vendor/css/LineIcons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/nouislider.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/range-slider.css')}}">
+    <!-- Slider Setting Css  -->
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/settings.css')}}">
+    <!-- Mega Menu  -->
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/megamenu.css')}}">
+    <!-- StyleSheet  -->
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/style.css')}}">
+    <!-- Custom Css  -->
+    <link rel="stylesheet" href="{{asset('frontend/shop/css/custom.css')}}">
 
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('frontend/css/font-awesome.min.css')}}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
-
-
-    @if(lang() == 'ar')
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.min.css" integrity="sha256-QaRlBIHoN1LIkxeziW34nknOVrCasnLJY6esf3ldv+k=" crossorigin="anonymous" />
-    @endif
-    <link rel="icon" href="{{ asset('storage/'.setting()->icon) }}">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+</head>
 <body>
+    <a class="scroll-top-arrow" href="javascript:void(0);"><i class="fa fa-angle-up"></i></a>
+
+    <!--START LOADER-->
+    {{-- <div class="loader1">
+        <div class="loader-inner">
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
+        </div>
+    </div> --}}

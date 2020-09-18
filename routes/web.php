@@ -15,8 +15,16 @@ Route::group(['middleware'=>'Maintenance'],function(){
     Route::get('/', function () {
         return view('frontend.home.home');
     });
+
+    Route::get('/test', function () {
+        return view('frontend.home.home2');
+    });
 });
 Route::get('maintenance', function(){
     return "Maintenance";
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
