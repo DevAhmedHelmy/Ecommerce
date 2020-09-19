@@ -22,36 +22,57 @@
             <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 pr-lg-0 whitebox wow slideInLeft" style="visibility: visible; animation-name: slideInLeft;">
                 <div class="widget logincontainer register-account">
                     <h3 class="bottom35 text-center text-md-left"> @lang('create_your_account')</h3>
-                    <form class="getin_form border-form" id="register">
+                    <form class="getin_form border-form" id="register" action="" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerName" class="d-none"></label>
-                                    <input class="form-control" type="text" placeholder="Full Name:" required="required" name="name" id="registerName">
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Full Name:" required="required" name="name" id="registerName" value="{{ old('name')}}">
+                                    @error('name')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="username" class="d-none"></label>
-                                    <input class="form-control" type="text" placeholder="User Name:" required="required" name="username" id="username">
+                                    <input class="form-control @error('username') is-invalid @enderror" type="text" placeholder="User Name:" required="required" name="username" id="username" value="{{ old('username') }}">
+                                    @error('username')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerEmail" class="d-none"></label>
-                                    <input class="form-control" type="email" placeholder="Email:" required="" id="registerEmail">
+                                    <input name="email" class="form-control @error('email') is-invalid @enderror" type="email" placeholder="Email:" required="" id="registerEmail" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">
+                                        {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerPass" class="d-none"></label>
-                                    <input class="form-control" type="password" placeholder="Password:" required="" id="registerPass">
+                                    <input name="password" class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Password:" required="" id="registerPass">
+                                    @error('password')
+                                        <div class="invalid-feedback">
+                                        {{ $message }}
+                                        </div>
+                                   @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerPassConfirm" class="d-none"></label>
-                                    <input class="form-control" type="password" placeholder="Confirm Password:" required="" id="registerPassConfirm">
+                                    <input name="password_confirmation" class="form-control" type="password" placeholder="Confirm Password:" required="" id="registerPassConfirm">
                                 </div>
                             </div>
 

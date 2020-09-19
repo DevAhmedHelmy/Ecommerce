@@ -17,24 +17,34 @@
             </div>
         </div>
 
+
+
         <!--  START FORM SECTION  -->
         <div class="row no-gutters">
             <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 pr-lg-0 whitebox wow slideInLeft" style="visibility: visible; animation-name: slideInLeft;">
                 <div class="widget logincontainer register-account">
-                    <form class="getin_form border-form" id="login">
+                    <form class="getin_form border-form" id="login" action="{{ route('login') }}" method="POST">
+                        @csrf
                         <div class="row">
 
 
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerEmail" class="d-none"></label>
-                                    <input class="form-control" type="email" placeholder="Email:" required="" id="registerEmail">
+                                    <input name="email" class="form-control @error('email') is-invalid @enderror" type="email" placeholder="Email:" required="" id="registerEmail">
+                                @error('email')
+
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+
+                                @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="registerPass" class="d-none"></label>
-                                    <input class="form-control" type="password" placeholder="Password:" required="" id="registerPass">
+                                    <input name="password" class="form-control" type="password" placeholder="Password:" required="" id="registerPass">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12">
