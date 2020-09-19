@@ -108,6 +108,13 @@ if(!function_exists('setting'))
         return App\Models\Setting::orderBy('id', 'desc')->first();
     }
 }
+if(!function_exists('social'))
+{
+    function social()
+    {
+        return json_decode(setting()->social_media, true);
+    }
+}
 ////////////////////// validate functions ////////////////////////////
 if(!function_exists('validate_image'))
 {
@@ -172,7 +179,7 @@ if(!function_exists('get_parent'))
     function get_parent($category_id)
     {
 
-        
+
         $category = App\Models\Category::findOrfail($category_id);
         if(!empty($category->parent_id) && $category->parent_id > 0)
         {
@@ -181,7 +188,7 @@ if(!function_exists('get_parent'))
         }else{
             return $category_id;
         }
-        
+
 
         return $categories_list;
     }

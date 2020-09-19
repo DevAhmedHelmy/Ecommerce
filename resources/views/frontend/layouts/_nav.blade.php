@@ -132,7 +132,7 @@
                             <div class="collapse navbar-collapse">
                                 <ul class="navbar-nav ml-auto mr-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index-shop.html">HOME</a>
+                                    <a class="nav-link" href="{{url('/')}}">@lang('site.home')</a>
                                     </li>
                                     <li class="nav-item dropdown static">
                                         <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> WOMEN </a>
