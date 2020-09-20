@@ -1,36 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Storage;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Setting;
-use Storage;
+use App\Http\Requests\SettingRequest;
 
 class SettingController extends Controller
 {
     public function index()
     {
 
+
         return view('admin.settings.index', ['title' => trans('admin.settings')]);
     }
-    public function update_setting()
+    public function update_setting(SettingRequest $request)
     {
-        $data = $this->validate(request(),[
-            'logo' => validate_image(),
-            'icon' => validate_image(),
-            'sitename_ar'=>'',
-            'sitename_en'=>'',
-            'email'=>'',
-            'description'=>'',
-            'main_lang'=>'',
-            'status' => '',
-            'message_maintenance'=>''
-        ], [],
-		[
-			'logo' => trans('admin.logo'),
-			'icon' => trans('admin.icon')
-		]);
-
+        $data = $request->validated();
         if(request()->hasFile('logo'))
         {
 
@@ -42,7 +29,17 @@ class SettingController extends Controller
                 'delete_file' => setting()->logo
             ]);
         }
+        if(request()->hasFile('breadcrumb_img'))
+        {
 
+            $data['breadcrumb_img'] = up()->uploadFile([
+                'new_name' => '',
+                'file' => 'breadcrumb_img',
+                'path' => 'settings',
+                'upload_type' =>'single',
+                'delete_file' => setting()->breadcrumb_img
+            ]);
+        }
         if(request()->hasFile('icon'))
         {
 
@@ -55,7 +52,22 @@ class SettingController extends Controller
             ]);
 
         }
-
+        $rows = [];
+        if($request->social_media)
+        {
+            $count=1;
+            $social = $request->social_media;
+            foreach ($social['name'] as $key => $value) {
+                $row = [];
+                $row['id'] = $count;
+                $row['name'] = $value;
+                $row['icon'] = $social['icon'][$key];
+                $row['url'] = $social['url'][$key];
+                $count++;
+                $rows[] = $row;
+            }
+        }
+        $data['social_media'] = json_encode($rows);
         Setting::orderBy('id', 'desc')->update($data);
 		session()->flash('success', trans('admin.updated_successfully'));
 		return redirect(adminUrl('settings'));

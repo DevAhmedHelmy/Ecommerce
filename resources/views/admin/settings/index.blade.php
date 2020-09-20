@@ -92,6 +92,25 @@
                     </div>
                 </div>
             </div>
+
+            <div class=col-12>
+                <div class="mt-4 d-flex justify-content-between">
+                    <div class="col form-group">
+                        {!! Form::label('video_url',trans('admin.video_url')) !!}
+                        {!! Form::text('video_url', setting()->video_url, ['class'=>'form-control' ,'placeholder' =>  trans('admin.video_url'),]) !!}
+
+                    </div>
+                    <div class="col form-group">
+                        {!! Form::label('breadcrumb_img',trans('admin.breadcrumb_img')) !!}
+                        {!! Form::file('breadcrumb_img',['class'=>'form-control']) !!}
+                        @if(!empty(setting()->breadcrumb_img))
+                            <img src="{{ asset('storage/'.setting()->breadcrumb_img) }}" style="width:50px;height: 50px;" />
+                        @endif
+
+                    </div>
+
+                </div>
+            </div>
             <div class="col-12">
                 <div class="form-group">
                     {!! Form::label('message_maintenance',trans('admin.message_maintenance')) !!}
@@ -99,6 +118,7 @@
                 </div>
 
             </div>
+            @include('admin.settings.social')
             <div class="col-12 text-center">
                 {!! Form::submit(trans('admin.save'),['class'=>'btn btn-primary mt-3 text-center']); !!}
             </div>
