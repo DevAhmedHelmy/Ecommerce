@@ -27,6 +27,10 @@ Route::group(
                     Route::post('/settings', 'Admin\SettingController@update_setting')->name('save_settings');
                 // dashboard route
                     Route::get('/', function(){return view('admin.dashboard');})->name('home');
+
+                    Route::get('/about', 'Admin\AboutController@index')->name('get.about');
+                    Route::post('/about', 'Admin\AboutController@store')->name('save.about');;
+
                 // start admins routes
                     Route::resource('admins', 'Admin\AdminController');
                 // multiDelete

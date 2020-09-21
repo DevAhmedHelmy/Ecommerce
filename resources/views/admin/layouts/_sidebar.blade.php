@@ -48,6 +48,17 @@
                             </a>
                         </li>
                     @endcan
+                    @can('roles-list')
+                        <li class="nav-item">
+                            <a href="{{route('admin.get.about')}}" class="nav-link">
+                                <i class="nav-icon fas fa-hand-sparkles"></i>
+                                <p>
+                                    {{trans('admin.about')}}
+
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
                     @can('settings-list')
                         <li class="nav-item">
                             <a href="{{adminUrl('settings')}}" class="nav-link">

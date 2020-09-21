@@ -29,7 +29,8 @@ class PermissionTableSeeder extends Seeder
             'sizes-list','sizes-create','sizes-edit','sizes-delete',
             'products-list','products-create','products-edit','products-delete',
             'weights-list','weights-create','weights-edit','weights-delete',
-
+            'carts-list','carts-create','carts-edit','carts-delete',
+            'about-list',
             'search','pdf','excel',
         ];
 
