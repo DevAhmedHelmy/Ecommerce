@@ -153,6 +153,7 @@
     'create_tradmark'                                   => 'اضافة علامة مائية',
     'create_product'                                    => 'اضافة منتج',
     'No'                                                => 'المسلسل',
+    'about'                                             => 'عن الشركة',
     'show_admins' => 'عرض المشرفين',
     'edit_admin' => 'تعديل المشرف',
     'create_manufacthrer' => 'اضافة مصنع',

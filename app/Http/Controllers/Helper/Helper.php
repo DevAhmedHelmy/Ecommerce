@@ -1,5 +1,8 @@
 <?php
 // url function
+
+use App\Models\Category;
+
 if(!function_exists('adminUrl'))
 {
     function adminUrl($url=null)
@@ -192,4 +195,13 @@ if(!function_exists('get_parent'))
 
         return $categories_list;
     }
+}
+
+if(!function_exists('get_categories'))
+{
+    function get_categories(){
+        $categories = Category::where('parent_id',null)->get();
+        return $categories;
+    }
+
 }

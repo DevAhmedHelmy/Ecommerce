@@ -134,6 +134,9 @@
                                     <li class="nav-item">
                                     <a class="nav-link" href="{{url('/')}}">@lang('site.home')</a>
                                     </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="{{route('about')}}">@lang('site.about')</a>
+                                    </li>
                                     <li class="nav-item dropdown static">
                                         <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> WOMEN </a>
                                         <ul class="dropdown-menu megamenu flexable-megamenu">
