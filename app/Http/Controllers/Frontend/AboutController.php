@@ -9,7 +9,6 @@ class AboutController extends Controller
 {
     public function index()
     {
-        dd(get_categories()->first()->childs()->get());
-        return view('frontend.about_us/index');
+        return view('frontend.about_us.index');
     }
 }
