@@ -91,6 +91,27 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="d-inline-block simple-dropdown" id="mini-menu1">
+                                <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
+                                    <i class="fas fa-th"></i>
+                                </a>
+
+                                <div id="sideNavPages1" class="collapse sideNavPages user-utiliity">
+                                    <i class="fas fa-caret-up user-utiliity-caret"></i>
+                                    <h6 class="user-utiliity-title">@lang('languages')</h6>
+                                    <hr>
+                                    <ul class="text-left">
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}" class="dropdown-item text-dark">
+                                              {{ $properties['native'] }}
+                                        </a>
+                                        @endforeach
+
+                                    </ul>
+                                </div>
+
+                            </li>
                             <li class="d-inline-block simple-dropdown" id="mini-menu">
                                 <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages5">
                                     <i class="fas fa-th"></i>
@@ -137,74 +158,65 @@
                                     <li class="nav-item">
                                     <a class="nav-link" href="{{route('about')}}">@lang('site.about')</a>
                                     </li>
-                                    <li class="nav-item dropdown static">
-                                        <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> WOMEN </a>
-                                        <ul class="dropdown-menu megamenu flexable-megamenu">
-                                            <li>
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                            <h5 class="dropdown-title"> Most Wanted </h5>
-                                                            <ul>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">WomensWear</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Classic Dress</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Nightwear</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Active wear</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Footwear / Shoes</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Coats / Outerwear</a></li>
-                                                            </ul>
-                                                            <h5 class="dropdown-title"> Babies </h5>
-                                                            <ul>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Baby Clothes</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Baby Footwear</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Sleep Suits</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Socks And Tights</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
-                                                            <h5 class="dropdown-title"> All Accessories </h5>
-                                                            <ul>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Hand Bags</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Belts</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Jewellery</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Scarves</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Sun Glasses</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Others</a></li>
-                                                            </ul>
-
-                                                            <h5 class="dropdown-title"> Shop Collections </h5>
-                                                            <ul>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Holiday Shop</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Gifts</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Workwear Range</a></li>
-                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/product-listing.html">Essential</a></li>
-                                                            </ul>
-
-                                                        </div>
-
-                                                        <div class="col-lg-6 col-md-12 col-sm-12">
-                                                            <h5 class="dropdown-title text-left">Featured Items </h5>
-                                                            <div class="carousel-menu mt-4">
-                                                                <div class="featured-megamenu-carousel owl-carousel owl-theme">
-                                                                    <div class="item ">
-                                                                        <img src="{{asset('frontend/shop/img/shop1.jpg')}}" alt="shop-image" >
-                                                                    </div>
-                                                                    <div class="item">
-                                                                        <img src="{{asset('frontend/shop/img/shop2.jpg')}}"  alt="shop-image">
-                                                                    </div>
-                                                                </div>
-                                                                <i class="lni-chevron-left ini-customPrevBtn"></i>
-                                                                <i class="lni-chevron-right ini-customNextBtn"></i>
-                                                            </div>
-                                                            <p class="mt-4 megamenu-slider-para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
-                                                            <a href="shop/product-listing.html" class="btn trans-pink-color-gradient-btn slider-btn text-left">Shop Now</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    @if(count(get_categories()) > 0)
+                                        @foreach(get_categories() as $category)
+                                            @if(!count($category->childs) > 0)
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{route('show.category',$category->id)}}">{{$category->name}}</a>
                                             </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown static">
+                                            @else
+                                            <li class="nav-item dropdown static">
+                                                <a class="nav-link dropdown-toggle active" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{$category->name}} </a>
+                                                <ul class="dropdown-menu megamenu flexable-megamenu">
+                                                    <li>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                @if($category->childs)
+                                                                    @foreach($category->childs as $sub_cat)
+                                                                        <div class="col-lg-3 col-md-6 col-sm-12 mengmenu_border">
+
+                                                                        <h5 class="dropdown-title"> {{$sub_cat->name}}</h5>
+                                                                            <ul>
+                                                                                @if($sub_cat->childs)
+                                                                                @foreach($sub_cat->childs as $sub_sub_cat)
+                                                                                <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="{{route('show.category',$category->id)}}">{{$sub_sub_cat->name}}</a></li>
+
+                                                                                @endforeach
+                                                                                @endif
+                                                                            </ul>
+
+
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+
+
+                                                                <div class="col-lg-6 col-md-12 col-sm-12">
+                                                                    <h5 class="dropdown-title text-left">Featured Items </h5>
+                                                                    <div class="carousel-menu mt-4">
+                                                                        <div class="featured-megamenu-carousel owl-carousel owl-theme">
+                                                                            <div class="item ">
+                                                                                <img src="{{asset('frontend/shop/img/shop1.jpg')}}" alt="shop-image" >
+                                                                            </div>
+                                                                            <div class="item">
+                                                                                <img src="{{asset('frontend/shop/img/shop2.jpg')}}"  alt="shop-image">
+                                                                            </div>
+                                                                        </div>
+                                                                        <i class="lni-chevron-left ini-customPrevBtn"></i>
+                                                                        <i class="lni-chevron-right ini-customNextBtn"></i>
+                                                                    </div>
+                                                                    <p class="mt-4 megamenu-slider-para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
+                                                                    <a href="shop/product-listing.html" class="btn trans-pink-color-gradient-btn slider-btn text-left">Shop Now</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    {{-- <li class="nav-item dropdown static">
                                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> CLOTHES </a>
                                         <ul class="dropdown-menu megamenu flexable-megamenu">
                                             <li>
@@ -288,11 +300,11 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
 <!--                                    <li class="nav-item">-->
 <!--                                        <a class="nav-link" href="about.html">SHOES</a>-->
 <!--                                    </li>-->
-                                    <li class="nav-item dropdown position-relative">
+                                    {{-- <li class="nav-item dropdown position-relative">
                                         <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PAGES</a>
                                         <div class="dropdown-menu">
                                             <ul>
@@ -301,9 +313,9 @@
                                                 <li><i class="lni-angle-double-right right-arrow"></i><a class="dropdown-item" href="shop/standalone.html">StandAlone Page</a></li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="shop/contact.html">CONTACT</a>
+                                        <a class="nav-link" href="{{route('contact')}}">@lang('site.contact_us')</a>
                                     </li>
 
                                 </ul>
